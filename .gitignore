@@ -1,0 +1,15 @@
+#python
+build/
+dist/
+__pycache__*
+*.pyc
+*.pyo
+*.key
+*.egg-info
+
+# jupyter / ipython
+.ipynb_checkpoints
+Untitled*.ipynb
+
+# success6g
+success6g/
