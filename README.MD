@@ -18,9 +18,13 @@ Step by step procedure to run the implementation can be found in [procedure.md](
 * expose measurements and predictions over [http](https://prometheus.github.io/client_python/exporting/http/)
 * scrape data from edge by Prometheus, i.e. using service like [redis_exporter](/configs/prometheus_kepler_service_monitor.yaml)
   * NOT tested [success6g service monitor](/configs/prometheus_success6g_edge_service_monitor.yaml)
+* 
 
 ## Prometheus-stack
 * finish Thanos [configuration](/configs/prometheus_stack.yaml)
+* how to do `tls-credential`, `hosts` and `externalUrl` in NearbyComputing orchestration
+  * [ingress_prometheus_stack](/configs/ingress_prometheus_stack.yaml)
+  * [ingress_prometheus_stack](/configs/prometheus_stack.yaml)
 
 ## Grafana
 * make [success6g dashboard](/configs/success6g_dashboard.json)
