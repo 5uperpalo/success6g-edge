@@ -1,3 +1,5 @@
+# Step-by-step procedure
+ 
 * add Prometheus, Kepler, success6g Helm repos
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -11,7 +13,13 @@ helm install prometheus-stack prometheus-community/kube-prometheus-stack --names
 helm install kepler kepler/kepler --namespace kepler --create-namespace
 helm install success6g-edge success6g-edge/success6g-edge --namespace success6g --create-namespace -f configs/success_6g_edge.yaml
 ```
+* scrape (i) edge data(predictions and redis) and (ii) Kepler metrics by Prometheus
+```
+kubectl apply -f configs/prometheus_success6g_edge_service_monitor.yaml
+kubectl apply -f configs/prometheus_kepler_service_monitor.yaml
+```
 * make the grafana and prometheus service available from outside using ingress
 ```
-kubectyl apply -f configs/ingress_prometheus_stack.yaml
+kubectl apply -f configs/ingress_prometheus_stack.yaml
 ```
+* import (i) [success6g](https://github.com/5uperpalo/success6g/configs/success6g_dashboard.json) and (ii) [Kepler](https://github.com/5uperpalo/success6g/configs/Kepler_Exporter_dashboard.json) dashboard into Grafana
