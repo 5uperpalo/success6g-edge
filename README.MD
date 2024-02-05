@@ -1,7 +1,9 @@
 # success6g-edge
 
-Work in progress architecture:
-<img src="https://github.com/5uperpalo/success6g-edge/img/success6g_edge_architecture.png" height="320"/>
+<figure>
+<img src="https://github.com/5uperpalo/success6g-edge/tree/main/img/success6g_edge_architecture.png" height="320"/>
+<figcaption align = "center"><b>Work in progress architecture</b></figcaption>
+</figure>
 
 This repository is for the edge pod implementation, monitoring and analysis in [SUCCESS6G](https://success-6g-project.cttc.es/) project.
 
