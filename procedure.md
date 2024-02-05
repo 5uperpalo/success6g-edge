@@ -1,5 +1,5 @@
 # Step-by-step procedure
- 
+
 * add Prometheus, Kepler, success6g Helm repos
 ```
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
@@ -22,4 +22,4 @@ kubectl apply -f configs/prometheus_kepler_service_monitor.yaml
 ```
 kubectl apply -f configs/ingress_prometheus_stack.yaml
 ```
-* import (i) [success6g](https://github.com/5uperpalo/success6g/configs/success6g_dashboard.json) and (ii) [Kepler](https://github.com/5uperpalo/success6g/configs/Kepler_Exporter_dashboard.json) dashboard into Grafana
+* import (i) [success6g](/configs/success6g_dashboard.json) and (ii) [Kepler](/configs/Kepler_Exporter_dashboard.json) dashboard into Grafana
