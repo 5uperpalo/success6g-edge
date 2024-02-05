@@ -1,7 +1,7 @@
 # success6g-edge
 
 <figure>
-<img src="https://github.com/5uperpalo/success6g-edge/tree/main/img/success6g_edge_architecture.png" height="320"/>
+<img src="https://github.com/5uperpalo/success6g-edge/tree/main/img/success6g_edge_architecture.png"/>
 <figcaption align = "center"><b>Work in progress architecture</b></figcaption>
 </figure>
 
