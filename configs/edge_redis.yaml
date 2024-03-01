@@ -1,2 +1,15 @@
-success6g-edge:
-# TODO
+version: '3.1'
+
+services:
+  redis:
+    container_name: database-sucs6g
+    image: redis/redis-stack-server
+    ports:
+      - "127.0.0.1:63790:6379"
+      - "127.0.0.1:63800:6380"
+    environment:
+      - REDIS_ARGS=--requirepass Success6G&Idneo
+      - REDISTIMESERIES_ARGS=DUPLICATE_POLICY LAST RETENTION_POLICY 604800000
+    restart: on-failure
+    labels:
+      - "success6g database"
