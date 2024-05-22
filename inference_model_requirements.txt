@@ -1,0 +1,15 @@
+ipywidgets
+pandas
+modin
+plotly
+seaborn
+h2o
+lightgbm
+sklearn_pandas
+optuna
+shap
+optuna_integration
+mlflow
+prometheus-client
+redis
+boto3

@@ -1,7 +1,22 @@
 alertmanager:
-  ## Deploy alertmanager
-  ##
-  enabled: false
+  ingress:
+    enabled: true
+    annotations:
+      #kubernetes.io/ingress.class: nginx
+      nginx.ingress.kubernetes.io/rewrite-target: /$2
+    hosts: ['alertmanager.kubernetes.local.cttc.es']
+    paths: ['/']
+    tls:
+    - secretName: tls-credential
+      hosts:
+      - alertmanager.kubernetes.local.cttc.es
+    spec:
+      ingressClassName: nginx
+  alertmanagerSpec:
+    externalUrl: "https://alertmanager.kubernetes.local.cttc.es/"
+    routePrefix: "/" # does not need alertmanager suffix
+    #service:
+    #type: NodePort
 grafana:
   # username is 'admin'
   adminPassword: prom-operator
@@ -10,12 +25,12 @@ grafana:
     annotations:
       #kubernetes.io/ingress.class: nginx
       nginx.ingress.kubernetes.io/rewrite-target: /$2
-    hosts: ['grafana.kubernetes.local']
+    hosts: ['grafana.kubernetes.local.cttc.es']
     path: "/"
     tls:
     - secretName: tls-credential
       hosts:
-      - grafana.kubernetes.local
+      - grafana.kubernetes.local.cttc.es
     spec:
       ingressClassName: nginx
       #service:
@@ -25,7 +40,7 @@ prometheus:
     enabled: true
     #annotations:
       #      kubernetes.io/ingress.class: nginx
-    hosts: ['prometheus.kubernetes.local']
+    hosts: ['prometheus.kubernetes.local.cttc.es']
     paths: ['/'] # does not need regex capture like others
     tls:
     - secretName: tls-credential
@@ -36,11 +51,7 @@ prometheus:
   prometheusSpec:
     podMonitorSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
-    externalUrl: "https://prometheus.kubernetes.local/prometheus"
+    externalUrl: "https://prometheus.kubernetes.local.cttc.es/prometheus"
     routePrefix: /
-# TODO - finish Thanos configuration
-# thanos:
-## Thanos configuration allows configuring various aspects of a Prometheus server in a Thanos environment.
-## This section is experimental, it may change significantly without deprecation notice in any release.
-## This is experimental and may change significantly without backward compatibility in any release.
-## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#thanosspec
+    #service:
+    #type: NodePort
