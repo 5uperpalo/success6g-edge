@@ -11,7 +11,7 @@ I implemented the services mostly by Helm charts.
 | ----------- | ----------- 
 | Grafana GUI | grafana.kubernetes.local.cttc.es | 
 | Grafana GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring`<br>http://localhost:3000  |
-| Prometheus GUI(port-forward, some issues with GUI) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-kube-prometheus-prometheus 3000:9090 -n monitoring`<br>http://localhost:3000  |
+| Prometheus GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-kube-prometheus-prometheus 3000:9090 -n monitoring`<br>http://localhost:3000/graph  |
 | Alermanager GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 3000:9093 -n monitoring`<br>http://localhost:3000  |
 | MLflow GUI(Nodeport) | http://10.1.24.50:30580 |
 | MLflow GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/mlflow 3000:5000 -n mlflow`<br>http://localhost:3000  |
