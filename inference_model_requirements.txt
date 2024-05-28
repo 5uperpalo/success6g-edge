@@ -13,3 +13,7 @@ mlflow
 prometheus-client
 redis
 boto3
+mypy
+black[jupyter]
+flake8
+isort
