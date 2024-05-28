@@ -1,9 +1,9 @@
 from typing import Literal
 
-import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import seaborn as sns
+import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
 
@@ -95,7 +95,9 @@ def distributions(
                 orient="h",
                 data=data,
             )
-        ax[i].set_xlim(data[col].quantile(low_per_cut), data[col].quantile(high_per_cut))
+        ax[i].set_xlim(
+            data[col].quantile(low_per_cut), data[col].quantile(high_per_cut)
+        )
         ax[i].get_yaxis().set_visible(False)
     plt.subplots_adjust(hspace=0.9)
     return fig

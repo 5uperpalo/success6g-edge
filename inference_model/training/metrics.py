@@ -1,14 +1,14 @@
-from typing import Optional, Tuple, Union
+from typing import Tuple, Union, Optional
 
 import numpy as np
 from scipy.stats import rankdata
 from sklearn.metrics import (
-    accuracy_score,
     f1_score,
-    mean_squared_error,
     ndcg_score,
-    precision_score,
     recall_score,
+    accuracy_score,
+    precision_score,
+    mean_squared_error,
 )
 
 

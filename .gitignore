@@ -13,3 +13,4 @@ Untitled*.ipynb
 
 # success6g
 success6g/
+*/.mypy_cache/*

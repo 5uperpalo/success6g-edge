@@ -1,4 +1,4 @@
-from typing import List, Optional, Tuple
+from typing import List, Tuple, Optional
 
 from sklearn.base import TransformerMixin
 from sklearn_pandas import DataFrameMapper, gen_features

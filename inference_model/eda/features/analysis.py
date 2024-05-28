@@ -1,11 +1,11 @@
-from typing import Literal, Optional, Tuple
+from typing import Tuple, Literal, Optional
 
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
-from inference_model.eda.general_utils import entropy_calc, intsec
 from inference_model.eda.plotting import bar_plot
+from inference_model.eda.general_utils import intsec, entropy_calc
 
 
 def init_check(
@@ -211,7 +211,9 @@ def entropy(
 
     if plot:
         fig, ax = plt.subplots(figsize=(10, 5))
-        bar_plot(col_entropies.dropna(), ax, title="Features entropies (NA are dropped)")
+        bar_plot(
+            col_entropies.dropna(), ax, title="Features entropies (NA are dropped)"
+        )
     else:
         fig = None
     ax.set_yscale(scale)

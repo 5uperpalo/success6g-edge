@@ -1,11 +1,11 @@
-from typing import List, Literal, Optional, Tuple
-
-import lightgbm as lgb
-import numpy as np
-import pandas as pd
-from lightgbm import Dataset as lgbDataset
+from typing import Any, List, Tuple, Literal, Optional
 from collections.abc import MutableMapping
+
+import numpy as np
 import mlflow
+import pandas as pd
+import lightgbm as lgb
+from lightgbm import Dataset as lgbDataset
 
 
 def get_or_create_experiment(experiment_name):
@@ -181,11 +181,13 @@ def get_feature_importance(model: lgb.basic.Booster) -> pd.DataFrame:
     return feature_imp
 
 
-def flatten_dict(d: MutableMapping, parent_key: str = '', sep: str ='_') -> MutableMapping:
+def flatten_dict(
+    d: MutableMapping, parent_key: str = "", sep: str = "_"
+) -> MutableMapping:
     """
     fastest according to https://www.freecodecamp.org/news/how-to-flatten-a-dictionary-in-python-in-4-different-ways/
     """
-    items = []
+    items: List[Any] = []
     for k, v in d.items():
         new_key = parent_key + sep + k if parent_key else k
         if isinstance(v, MutableMapping):

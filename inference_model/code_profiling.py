@@ -1,7 +1,7 @@
 import json
 import logging
-from functools import wraps
 from time import time
+from functools import wraps
 
 import numpy as np
 from memory_profiler import memory_usage

@@ -1,13 +1,13 @@
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import Any, Dict, List, Union, Literal, Optional
 
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 from inference_model.utils import intsec
-from inference_model.training._base import BaseOptimizer, BaseTrainer
-from inference_model.training._lgb_train_function import lgb_train_function
+from inference_model.training._base import BaseTrainer, BaseOptimizer
 from inference_model.training.utils import to_lgbdataset
 from inference_model.preprocessing.preprocess import PreprocessData
-from sklearn.model_selection import train_test_split
+from inference_model.training._lgb_train_function import lgb_train_function
 
 
 class Trainer(BaseTrainer):
@@ -31,12 +31,12 @@ class Trainer(BaseTrainer):
             optimizer (BaseOptimizer): parameter optimizer object
         """
         super(Trainer, self).__init__(
-        cat_cols=cat_cols,
-        target_col=target_col,
-        id_cols=id_cols,
-        objective=objective,
-        n_class=n_class,
-        preprocessors=preprocessors,
+            cat_cols=cat_cols,
+            target_col=target_col,
+            id_cols=id_cols,
+            objective=objective,
+            n_class=n_class,
+            preprocessors=preprocessors,
         )
         if optimizer is not None:
             if not hasattr(optimizer, "optimize"):
@@ -71,7 +71,9 @@ class Trainer(BaseTrainer):
             if self.objective in ["binary"]:
                 df_train_prep[self.target_col] = df_train[self.target_col].astype(int)
                 if df_valid is not None:
-                    df_valid_prep[self.target_col] = df_valid[self.target_col].astype(int)
+                    df_valid_prep[self.target_col] = df_valid[self.target_col].astype(
+                        int
+                    )
             else:
                 raise NotImplementedError
         else:
@@ -118,7 +120,7 @@ class Trainer(BaseTrainer):
         df_train: pd.DataFrame,
         df_valid: pd.DataFrame,
         df_test: pd.DataFrame,
-        random_state: int=1,
+        random_state: int = 1,
     ) -> pd.DataFrame:
         """Train the model and optimize the parameters.
 
@@ -130,7 +132,7 @@ class Trainer(BaseTrainer):
             model (lgb.basic.Booster): trained mdoel
         """
         if self.preprocessors:
-            # this should be 
+            # this should be
             # df_train_prep = prep.transform(df_train_prep.drop(columns=[self.target_col]))
             for prep in self.preprocessors:
                 df_train_prep = prep.transform(df_train.drop(columns=[self.target_col]))

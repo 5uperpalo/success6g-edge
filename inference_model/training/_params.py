@@ -1,4 +1,4 @@
-from typing import Any, Callable, Dict, List, Literal, Optional
+from typing import Any, Dict, List, Literal, Callable, Optional
 
 # lightgbm default config used in optuna
 # https://lightgbm.readthedocs.io/en/latest/Parameters.html

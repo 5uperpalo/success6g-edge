@@ -1,24 +1,27 @@
 import warnings
-from typing import Any, Callable, Dict, List, Literal, Optional, Tuple, Union
+from typing import Any, Dict, List, Tuple, Union, Literal, Callable, Optional
 
-import lightgbm as lgb
 import numpy as np
+import mlflow
 import pandas as pd
-from inference_model.preprocessing.preprocess import PreprocessData
+import lightgbm as lgb
 from lightgbm import Dataset as lgbDataset
 from sklearn.metrics import (
-    classification_report,
-    confusion_matrix,
     f1_score,
-    mean_absolute_error,
-    precision_recall_curve,
     r2_score,
+    confusion_matrix,
+    mean_absolute_error,
+    classification_report,
+    precision_recall_curve,
 )
 
+from inference_model.training.utils import (
+    predict_cls_lgbm_from_raw,
+    predict_proba_lgbm_from_raw,
+)
 from inference_model.training._params import set_base_params
-from inference_model.training.metrics import aiqc, nacil, rmse
-from inference_model.training.utils import predict_cls_lgbm_from_raw, predict_proba_lgbm_from_raw
-import mlflow
+from inference_model.training.metrics import aiqc, rmse, nacil
+from inference_model.preprocessing.preprocess import PreprocessData
 
 
 class Base(object):
@@ -105,17 +108,30 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         """
         raise NotImplementedError("Trainer must implement a 'train' method")
 
-    def fit(self, df: pd.DataFrame) -> pd.DataFrame:
+    def fit(
+        self,
+        df_train: pd.DataFrame,
+        df_valid: pd.DataFrame,
+        df_test: pd.DataFrame,
+        random_state: int = 1,
+    ) -> pd.DataFrame:
         """Train the model and optimize the parameters.
 
         Args:
-            df (pd.DataFrame): fitting dataset
+            df_train (pd.DataFrame): training dataset
+            df_valid (pd.DataFrame): validation dataset
+            df_test (pd.DataFrame): testing dataset
         Returns:
             model (lgb.basic.Booster): trained mdoel
         """
         raise NotImplementedError("Trainer must implement a 'fit' method")
 
-    def predict(self, context: Optional[dict], df: Union[pd.DataFrame, dict], raw_score: bool = True) -> pd.DataFrame:
+    def predict(
+        self,
+        context: Optional[dict],
+        df: Union[pd.DataFrame, dict],
+        raw_score: bool = True,
+    ) -> pd.DataFrame:
         """Predict.
 
         Args:
@@ -127,26 +143,28 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         """
         # for mlflow inference service testing
         if type(df) is dict:
-            df = pd.DataFrame.from_dict(df, orient='index').transpose()        
+            df = pd.DataFrame.from_dict(df, orient="index").transpose()
         if self.preprocessors:
             for prep in self.preprocessors:
                 df = prep.transform(df)
                 if hasattr(self, "optimizer"):
                     if hasattr(self.optimizer, "best_to_drop"):  # type: ignore
-                        df.drop(
+                        df.drop(  # type: ignore
                             columns=self.optimizer.best_to_drop,  # type: ignore
                             inplace=True,
                         )
 
         preds_raw = self.model.predict(  # type: ignore
-            df.drop(columns=self.id_cols), raw_score=raw_score
+            df.drop(columns=self.id_cols),  # type: ignore
+            raw_score=raw_score,
+            context=None,
         )
         if type(self.n_class) is int and self.n_class > 2:
             n_class_list_str = list(map(str, range(self.n_class)))
             cols_names = [self.target_col + "_" + cl for cl in n_class_list_str]
         else:
             cols_names = [self.target_col]
-        
+
         return pd.DataFrame(data=preds_raw, columns=cols_names)
 
     def predict_proba(self, df: pd.DataFrame, binary2d: bool = False) -> pd.DataFrame:
@@ -242,7 +260,9 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         metrics_dict: Dict = {}
 
         if self.objective == "binary":
-            preds_prob = self.predict_proba(df=df.drop(columns=[self.target_col])).values
+            preds_prob = self.predict_proba(
+                df=df.drop(columns=[self.target_col])
+            ).values
             if with_dynamic_binary_threshold:
                 self.threshold_scores = self._find_binary_threshold(
                     labels,
@@ -255,7 +275,9 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         elif self.objective == "multiclass":
             preds = self.predict_cls(df=df.drop(columns=[self.target_col]))
         elif self.objective == "regression":
-            preds = self.predict(df=df.drop(columns=[self.target_col]), raw_score=True)
+            preds = self.predict(
+                df=df.drop(columns=[self.target_col]), raw_score=True, context=None
+            )
             metrics_dict["sample_count"] = len(df)
             metrics_dict["mean_target_col"] = df[self.target_col].mean()
             metrics_dict["rmse"] = rmse(labels, preds)

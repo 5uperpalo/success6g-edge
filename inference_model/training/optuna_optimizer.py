@@ -2,12 +2,14 @@ import warnings
 from copy import deepcopy
 from typing import List, Literal, Optional
 
-import lightgbm as lgb
 import pandas as pd
+import lightgbm as lgb
 from lightgbm import Dataset as lgbDataset
-from optuna.integration.lightgbm import LightGBMTuner, LightGBMTunerCV
 from optuna.study import create_study
+from optuna.integration.lightgbm import LightGBMTuner, LightGBMTunerCV
+
 from inference_model.training._base import BaseOptimizer
+
 warnings.filterwarnings("ignore")
 
 
@@ -28,10 +30,8 @@ class LGBOptunaOptimizer(BaseOptimizer):
         # is possible to get the binarry classfier with focal_loss(any custom loss)
         # running but the multiclass requires changes to Optuna code, eg. this post:
         # https://lightrun.com/answers/optuna-optuna-error-when-using-custom-metrics-in-optunaintegrationlightgbm  # noqa
-        loss = None
-        super(LGBOptunaOptimizer, self).__init__(
-            objective, n_class
-        )
+        # loss = None
+        super(LGBOptunaOptimizer, self).__init__(objective, n_class)
         self.params = self.base_params
 
     def optimize(self, dtrain: lgbDataset, deval: lgbDataset):
@@ -44,7 +44,7 @@ class LGBOptunaOptimizer(BaseOptimizer):
         dtrain_copy = deepcopy(dtrain)
         deval_copy = deepcopy(deval) if deval is not None else None
         study = create_study(study_name="LightGBMTuner")
-        
+
         tuner = LightGBMTuner(
             params=self.params,
             train_set=dtrain_copy,

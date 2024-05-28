@@ -62,7 +62,9 @@ def drop_high_uq_cat_cols(
         verbose (bool): whether the output should be verbose
     """
     nunique_per_col = df[cat_cols].apply(lambda x: x.nunique(), axis=0)
-    high_uq_value_cat_cols = nunique_per_col[nunique_per_col > uq_val_count].index.values
+    high_uq_value_cat_cols = nunique_per_col[
+        nunique_per_col > uq_val_count
+    ].index.values
     df = df.drop(high_uq_value_cat_cols, axis=1)
     if verbose:
         print(
@@ -77,7 +79,10 @@ def drop_high_uq_cat_cols(
 
 
 def drop_highly_correlated_columns(
-    df: pd.DataFrame, cont_cols: list, crosscorr_val: float = 0.95, verbose: bool = False
+    df: pd.DataFrame,
+    cont_cols: list,
+    crosscorr_val: float = 0.95,
+    verbose: bool = False,
 ) -> pd.DataFrame:
     """Returns dataframe without highly correlated columns, cross correlation is
     evaluated with crosscorr_val.
@@ -143,7 +148,10 @@ def nan_with_unknown_imputer(
 
 
 def nan_with_number_imputer(
-    df: pd.DataFrame, columns: List[str], fill_number: float = -1.0, verbose: bool = False
+    df: pd.DataFrame,
+    columns: List[str],
+    fill_number: float = -1.0,
+    verbose: bool = False,
 ) -> pd.DataFrame:
     """Fills NAs with surrogate float, -1 is default value used, it can be customized.
 
@@ -255,7 +263,8 @@ def replace_rare_categories_with_str_other(
             [len(replace_dict_per_col[col]) for col in replace_dict_per_col]
         )
         rare_cats_per_col = [
-            (col, list(replace_dict_per_col[col].keys())) for col in replace_dict_per_col
+            (col, list(replace_dict_per_col[col].keys()))
+            for col in replace_dict_per_col
         ]
         print(
             """

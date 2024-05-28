@@ -1,20 +1,20 @@
 import os
-from typing import List, Optional, Tuple
+from typing import List, Tuple, Optional
 
 import numpy as np
-
 import pandas as pd
+from sklearn.exceptions import NotFittedError
 
+from inference_model.utils import intsec
 from inference_model.preprocessing.label_encoder import LabelEncoder
 from inference_model.preprocessing.preprocess_data import (
     drop_constant_cols,
     drop_high_nan_cols,
-    drop_highly_correlated_columns,
     nan_with_number_imputer,
     nan_with_unknown_imputer,
+    drop_highly_correlated_columns,
 )
-from sklearn.exceptions import NotFittedError
-from inference_model.utils import intsec
+
 
 class PreprocessData:
     """Object to preprocess the dataset.
@@ -46,7 +46,7 @@ class PreprocessData:
 
         dfc = dfc.pipe(drop_constant_cols)
 
-        self.cat_cols: list = intsec(list(dfc), self.cat_cols)
+        self.cat_cols = intsec(list(dfc), self.cat_cols)
 
         if self.cat_cols is None:
             self.cat_cols = self._infere_cat_cols(dfc)
@@ -104,7 +104,7 @@ class PreprocessData:
 
         dfc = df.drop(columns=self.id_cols).copy()
 
-        # added as mlflow inference is receiving all the data as objects 
+        # added as mlflow inference is receiving all the data as objects
         dfc[self.cat_cols] = dfc[self.cat_cols].astype(str)
         dfc[self.final_cont_cols] = dfc[self.final_cont_cols].astype(float)
 
@@ -128,7 +128,7 @@ class PreprocessData:
         dfc_le = self._change_int_float_types(dfc_le)
 
         dfc_le[self.id_cols] = df[self.id_cols]
-        
+
         return dfc_le
 
     def fit(self, df: pd.DataFrame) -> pd.DataFrame:
@@ -170,17 +170,13 @@ class PreprocessData:
         and target_col and including only int or float."""
 
         if cat_cols is not None:
-            cont_cols = [
-                c
-                for c in df.columns
-                if c not in cat_cols + [self.target_col]
-            ]
+            cont_cols = [c for c in df.columns if c not in cat_cols + [self.target_col]]
         else:
             cont_cols = []
             for col in df.columns:
-                if (
-                    df[col].dtype == "int" or df[col].dtype == "float"
-                ) and col not in [self.target_col]:
+                if (df[col].dtype == "int" or df[col].dtype == "float") and col not in [
+                    self.target_col
+                ]:
                     cont_cols.append(col)
 
         return cont_cols

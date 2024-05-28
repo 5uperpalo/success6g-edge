@@ -1,7 +1,7 @@
-from typing import Literal, Tuple
+from typing import Tuple, Literal
 
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 
 from inference_model.eda.plotting import bar_plot
