@@ -15,9 +15,11 @@ Description of the components:
 * Ingress - expose services to the operator
 * Prometheus - gather pod metrics
 * MinIO - store models and training/testing data
-* Jupyter Notebook - develop new models
+* JupyterHub - develop new models
 * [optional]Kubeflow CI/CD pipelines
 * Kserve - serve inference models to predefined pods
+* Istio - to ensure optimal traffic flow between microservices
+* Knative - to ensure autoscaling of inference service pods
 * Kepler - gather energy consumption data
 * Redis - API for transfer of OBU measurements to Kubernetes
 
