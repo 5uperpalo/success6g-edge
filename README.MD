@@ -16,7 +16,7 @@ Description of the components:
 * Prometheus - gather pod metrics
 * MinIO - store models and training/testing data
 * JupyterHub - develop new models
-* [optional]Kubeflow CI/CD pipelines
+* [optional] Kubeflow - CI/CD pipelines
 * Kserve - serve inference models to predefined pods
 * Istio - to ensure optimal traffic flow between microservices
 * Knative - to ensure autoscaling of inference service pods
@@ -29,10 +29,10 @@ Description of the components:
 * test and prepare the Redis helm chart
 * deploy it
 
-### Edge pod \#2
+<!-- ## Edge pod \#2
 * save measurements and predictions
 * deploy Kserve model
-* deploy Kserve model only on [specific nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/), i.e. [solved github issue](https://github.com/kserve/kserve/issues/730)
+* deploy Kserve model only on [specific nodes](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/), i.e. [solved github issue](https://github.com/kserve/kserve/issues/730) -->
 
 ### Prometheus-stack
 * finish Thanos [configuration](/configs/prometheus_stack.yaml)
