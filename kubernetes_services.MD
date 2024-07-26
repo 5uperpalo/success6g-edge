@@ -1,42 +1,37 @@
 # CTTC development architecture and implementation steps
 
-As opposed to the initial design in [development_steps.md](development_steps.md) I[^1] used a pre-existing [SUPERCOMs Zero-to-JupyterHub service](https://supercom.cttc.es/index.php/supercom-solutions/distributed-computational-environment) and implemented additional MLflow(+ MySQL for Backend store and Minio for Artifact store) and Kserve(+Istio and Knative) in the [SUPERCOMs](https://supercom.cttc.es/index.php) Kubernetes cluster. This is for the possibility to productionalize the solution.
-I implemented the services mostly by Helm charts.
+## Summary
 
-**DISCLAIMER**: as of 22.5.2024 the Kserve is not spawning the pod correctly and I am focusing on a custom Service Helm chart for now.
+| Key                                    | Value                                                                                                                                                                        |
+| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Grafana GUI                            | grafana.kubernetes.local.cttc.es                                                                                                                                             |
+| Grafana GUI(port-forward)              | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring`<br>http://localhost:3000                            |
+| Prometheus GUI(port-forward)           | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-kube-prometheus-prometheus 3000:9090 -n monitoring`<br>http://localhost:3000/graph |
+| Alermanager GUI(port-forward)          | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 3000:9093 -n monitoring`<br>http://localhost:3000     |
+| MLflow GUI(Nodeport)                   | http://10.1.24.50:30580                                                                                                                                                      |
+| MLflow GUI(port-forward)               | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/mlflow 3000:5000 -n mlflow`<br>http://localhost:3000                                          |
+| MLflow host(cluster)                   | 10.152.183.54                                                                                                                                                                |
+| MLflow host url(cluster)               | mlflow.mlflow.svc.cluster.local                                                                                                                                              |
+| MLflow port                            | 5000                                                                                                                                                                         |
+| Minio GUI(Nodeport - but not working?) | http://10.1.24.50:31747                                                                                                                                                      |
+| Minio GUI(port-forward)                | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/minio 3000:9001 -n minio`<br>http://localhost:3000                                            |
+| Minio host(cluster)                    | 10.152.183.135                                                                                                                                                               |
+| Minio host url(cluster)                | minio-operator.microk8s-console.svc.cluster.local                                                                                                                            |
+| Minio port                             | 9090                                                                                                                                                                         |
+| Minio awsAccessKeyId                   | minioadmin                                                                                                                                                                   |
+| Minio awsSecretAccessKey               | minioadmin                                                                                                                                                                   |
+| Minio bucket                           | mlflow                                                                                                                                                                       |
+| MySQL CMD                              | `mysql -h 10.152.183.77 --user mlflow --password mlflow`<br>`status`                                                                                                         |
+| MySQL host(cluster)                    | 10.152.183.77                                                                                                                                                                |
+| MySQL host url(cluster)                | mysql.mysql.svc.cluster.local                                                                                                                                                |
+| MySQL port                             | 3306                                                                                                                                                                         |
+| MySQL user                             | mlflow                                                                                                                                                                       |
+| MySQL password                         | mlflow                                                                                                                                                                       |
+| MySQL database                         | mlflow                                                                                                                                                                       |
 
-# Summary
+## Core services
 
-| Key      | Value |
-| ----------- | ----------- 
-| Grafana GUI | grafana.kubernetes.local.cttc.es | 
-| Grafana GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring`<br>http://localhost:3000  |
-| Prometheus GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-kube-prometheus-prometheus 3000:9090 -n monitoring`<br>http://localhost:3000/graph  |
-| Alermanager GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 3000:9093 -n monitoring`<br>http://localhost:3000  |
-| MLflow GUI(Nodeport) | http://10.1.24.50:30580 |
-| MLflow GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/mlflow 3000:5000 -n mlflow`<br>http://localhost:3000  |
-| MLflow host(cluster) | 10.152.183.54 |
-| MLflow host url(cluster) | mlflow.mlflow.svc.cluster.local |
-| MLflow port | 5000 |
-| Minio GUI(Nodeport - but not working?) | http://10.1.24.50:31747  |
-| Minio GUI(port-forward) | `ssh -L 3000:localhost:3000 pmulinka@10.1.24.200`<br>`kubectl port-forward svc/minio 3000:9001 -n minio`<br>http://localhost:3000  |
-| Minio host(cluster) | 10.152.183.135 |
-| Minio host url(cluster) | minio-operator.microk8s-console.svc.cluster.local |
-| Minio port | 9090 |
-| Minio awsAccessKeyId | minioadmin |
-| Minio awsSecretAccessKey | minioadmin |
-| Minio bucket | mlflow |
-| MySQL CMD | `mysql -h 10.152.183.77 --user mlflow --password mlflow`<br>`status` |
-| MySQL host(cluster) | 10.152.183.77 |
-| MySQL host url(cluster) | mysql.mysql.svc.cluster.local |
-| MySQL port | 3306 |
-| MySQL user | mlflow |
-| MySQL password | mlflow |
-| MySQL database | mlflow |
-
-# Core services
-
-## Prometheus stack
+### Prometheus stack
 Prometheus, Grafana, Alertmanager, Thanos-?
 
 <details><summary>add Helm repo</summary>
@@ -61,7 +56,7 @@ kubectl apply -f configs/ingress_prometheus_stack.yaml
 </details>
 
 
-## Kepler
+### Kepler
 
 <details><summary>add Helm repo</summary>
 
@@ -89,8 +84,8 @@ kubectl apply -f configs/prometheus_kepler_service_monitor.yaml
 [Kepler dashboard](/configs/Kepler_Exporter_dashboard.json) dashboard
 </details>
 
-# Inference Services
-## MLflow
+## Inference Services
+### MLflow
 
 * implemented - not the most up to date solution, but works and the mlflow pod was spawned without issues as opposed to bitnami mlflow package
 
@@ -140,7 +135,7 @@ NOTES:
 * [Bitnami MLflow package](https://github.com/bitnami/charts/tree/main/bitnami/mlflow/) - at the time of the implementation the spawned mlflow pod was crashing with unhelpful logs(no logs saved, sorry)
 
 
-### Minio
+#### Minio
 
 * Implemented
 
@@ -322,7 +317,7 @@ Minio addon is not working anymore in microk8s - [git issue](https://github.com/
 
 </details>
 
-### MySQL
+#### MySQL
 
 * Implemented
 
@@ -402,15 +397,16 @@ helm install my-mysql-operator mysql-operator/mysql-operator    --namespace mysq
 ```
 </details>
 
-## **[TBD]** Custom Service Helm chart
+## Custom Service Helm chart
 E.g. [Building a Kubernetes-Native IoT Edge Computing Platform](https://overcast.blog/building-a-kubernetes-native-iot-edge-computing-platform-839ebf7606cd)
+Adjusted Kserve Inference service for a helm chart, e.g. [inference_model_helm_chart_installation.MD](inference_model_helm_chart_installation.MD)
 
-## Kserve
+### Kserve
 
 I chose [Serverless](https://kserve.github.io/website/master/admin/serverless/serverless/) implementation as it supports `Scale down and from Zero` and I do not need [Mesh](https://kserve.github.io/website/master/admin/modelmesh/) implementation with multiple models in a pod.
 Kserve supports [node selector, node affinity and tolerations](https://kserve.github.io/website/0.8/modelserving/nodescheduling/inferenceservicenodescheduling/) to select edge nodes for deployment of the model. I could not find the sam capabilities for [Seldom Core](https://docs.seldon.io/projects/seldon-core/en/latest/index.html)
 
-### Knative
+#### Knative
 [Kserve installation guide](https://knative.dev/docs/install/yaml-install/serving/install-serving-with-yaml/)
 
 <details><summary>image verification did not work so I skipped it - cosign was not working</summary>
@@ -422,7 +418,7 @@ go install github.com/sigstore/cosign/v2/cmd/cosign@latest
 ```
 </details>
 
-#### Istio (for Knative and Kserve)
+##### Istio (for Knative and Kserve)
 [Istio is recommended for Kserve](https://kserve.github.io/website/master/admin/serverless/serverless/#2-install-networking-layer)
 
 <details><summary>Installation</summary>
@@ -600,7 +596,7 @@ webhook                      ClusterIP   10.152.183.241   <none>        9090/TCP
 ```
 </details>
 
-### Cert Manager
+#### Cert Manager
 
 Using [Microk8s addon](https://microk8s.io/docs/addon-cert-manager).
 
@@ -700,7 +696,7 @@ $ microk8s kubectl create ingress my-ingress \
 ```
 </details>
 
-### Kserve
+#### Kserve
 
 <details><summary>install Kserve</summary>
 
@@ -756,7 +752,7 @@ clusterstoragecontainer.serving.kserve.io/default created
 ```
 </details>
 
-## Redis DB for possible testing
+### Redis DB for possible testing
 
 <details><summary>install</summary>
 
@@ -820,7 +816,7 @@ WARNING: There are "resources" sections in the chart not set. Using "resourcesPr
 ```
 </details>
 
-# APPENDIX:
+## APPENDIX:
 
 <details><summary>Get requirements and limits of the services/pods, e.g. for Redis</summary>
 

@@ -23,8 +23,8 @@ Description of traffic flow for simple(no Istio) Single cluster traffic flow.
     * If there is no local Pod for Kserve inference service, the packet is dropped
   * or ML prediction service pod periodically queries local Redis DB in Vehicle API service – as Vehicle API service is also configured with `internalTrafficPolicy: Local`
     * If there is no local Pod for Vehicle API service, the queries/requests are dropped
-3. Kserve inference service pushes the data into Prometheus
-4. Grafana periodically queries data from Prometheus
+3. Kserve inference service pushes the data into InfluxDB
+4. Grafana periodically queries data from InfluxDB
 
 </details>
 
@@ -70,9 +70,11 @@ Description of traffic flow for simple(no Istio) Single cluster traffic flow.
 <details>
 <summary>Traffic flow:</summary>
 
-1. User enters Kubeflow FQDN in the web browser and is forwarded to the Ingress controller
-2. Ingress controller translates the FQDN to the appropriate service and forwards it
-3. Kubeflow GUI comes up in the Users web browser and user can spawn a Jupyter Notebook  in the Kubeflow to develop a new ML inference model
+1. User enters MLflow FQDN in the web browser and is forwarded to the Ingress controller
+2. Ingress controller translates the FQDN to the appropriate service and forwards it to Mlflow GUI where user can check current models
+3. User updates the model locally or in cloud and uploads it to MLflow API
+4. Mlflow API forwards the model to the backend database - Minio
+
 
 </details>
 
@@ -86,7 +88,7 @@ Description of traffic flow for simple(no Istio) Single cluster traffic flow.
 <details>
 <summary>Traffic flow:</summary>
 
-1. Kubeflow instructs Kserve to deploy a model
+1. Admin user instructs Kserve to deploy a model
 2. Kserve queries the model from Minio storage
 3. Kserve updates/”serves” the model in all Kserver inference Pods
 

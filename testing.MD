@@ -1,13 +1,17 @@
 
-# WORK IN PROGRESS: Real-world testing and data gathering - Parcmotor Castellolí 
+# Real-world testing and data gathering - Parcmotor Castellolí 
 
-| ![Work_in_progress_architecture](img/success6g_edge_architecture_parcmotor_castelloli.png "Work in progress architecture") |
-| :------------------------------------------------------------------------------------------------------------------------: |
-|                                             *Real-world Testing Architecture*                                              |
+| ![Testing_architecture_overview](img/Architecture_Overview–Parcmotor_Castelloli.png "Testing architecture overview") |
+| :------------------------------------------------------------------------------------------------------------------: |
+|                                          *Castellolí testing architecture*                                           |
+
+| ![Testing_architecture_services](img/Architecture_Overview–Parcmotor_Castelloli_services.png "Testing architecture services") |
+| :---------------------------------------------------------------------------------------------------------------------------: |
+|                                               *Castellolí testing architecture*                                               |
 
 legend: 
-* mandatory
-* <span style="color:blue">Optional</span>
+* white - mandatory
+* <span style="color:grey">grey pattern - optional</span>
 
 <details>
 <summary>steps:</summary>
