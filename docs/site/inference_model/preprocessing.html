@@ -1,0 +1,2965 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>preprocessing - success6g-edge</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="bluegrey">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#preprocess-data" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="success6g-edge" class="md-header__button md-logo" aria-label="success6g-edge" data-md-component="logo">
+      
+  <img src="../assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            success6g-edge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              preprocessing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="bluegrey"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="white" data-md-color-accent="bluegrey"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/5uperpalo/success6g-edge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    success6g-edge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../index.html" class="md-tabs__link">
+      home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../use_cases.html" class="md-tabs__link">
+      use cases
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../architecture_overview.html" class="md-tabs__link">
+      architecture overview
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../networking.html" class="md-tabs__link">
+      networking
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../development.html" class="md-tabs__link">
+      development
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../testing.html" class="md-tabs__link">
+      testing
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../idneo/vehicle_injector_tool.html" class="md-tabs__link">
+        idneo
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="eda.html" class="md-tabs__link md-tabs__link--active">
+        inference_model
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../notebooks/01_feature_analysis.html" class="md-tabs__link">
+        notebooks
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../code_profiling.html" class="md-tabs__link">
+      code profiling
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../contributing.html" class="md-tabs__link">
+      contributing
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="success6g-edge" class="md-nav__button md-logo" aria-label="success6g-edge" data-md-component="logo">
+      
+  <img src="../assets/images/logo.png" alt="logo">
+
+    </a>
+    success6g-edge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/5uperpalo/success6g-edge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    success6g-edge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../use_cases.html" class="md-nav__link">
+        use cases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture_overview.html" class="md-nav__link">
+        architecture overview
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../networking.html" class="md-nav__link">
+        networking
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development.html" class="md-nav__link">
+        development
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../testing.html" class="md-nav__link">
+        testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          idneo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="idneo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          idneo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../idneo/vehicle_injector_tool.html" class="md-nav__link">
+        vehicle injector tool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../idneo/datasets.html" class="md-nav__link">
+        datasets
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_8" type="checkbox" id="__nav_8" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_8">
+          inference_model
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="inference_model" data-md-level="1">
+        <label class="md-nav__title" for="__nav_8">
+          <span class="md-nav__icon md-icon"></span>
+          inference_model
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="eda.html" class="md-nav__link">
+        eda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          preprocessing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="preprocessing.html" class="md-nav__link md-nav__link--active">
+        preprocessing
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#inference_model.preprocessing.label_encoder" class="md-nav__link">
+    label_encoder
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inference_model.preprocessing.preprocess_data" class="md-nav__link">
+    preprocess_data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inference_model.preprocessing.preprocess" class="md-nav__link">
+    preprocess
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inference_model.preprocessing.scaler" class="md-nav__link">
+    scaler
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="training.html" class="md-nav__link">
+        training
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="utils.html" class="md-nav__link">
+        utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_9" type="checkbox" id="__nav_9" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_9">
+          notebooks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="notebooks" data-md-level="1">
+        <label class="md-nav__title" for="__nav_9">
+          <span class="md-nav__icon md-icon"></span>
+          notebooks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/01_feature_analysis.html" class="md-nav__link">
+        01_feature_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/02_target_analysis.html" class="md-nav__link">
+        02_target_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/03_models.html" class="md-nav__link">
+        03_models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/04_model_training_pipeline.html" class="md-nav__link">
+        04_model_training_pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/05_model_analysis.html" class="md-nav__link">
+        05_model_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notebooks/success6g-edge.html" class="md-nav__link">
+        success6g-edge
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../code_profiling.html" class="md-nav__link">
+        code profiling
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing.html" class="md-nav__link">
+        contributing
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/5uperpalo/success6g-edge/edit/main/docs/sources/inference_model/preprocessing.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="preprocess-data">Preprocess data<a class="headerlink" href="#preprocess-data" title="Permanent link">&para;</a></h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="inference_model.preprocessing.label_encoder" class="doc doc-heading">
+          <span class="doc doc-object-name doc-module-name">label_encoder</span>
+
+
+<a href="#inference_model.preprocessing.label_encoder" class="headerlink" title="Permanent link">&para;</a></h2>
+
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="inference_model.preprocessing.label_encoder.LabelEncoder" class="doc doc-heading">
+        <span class="doc doc-object-name doc-class-name">LabelEncoder</span>
+
+
+<a href="#inference_model.preprocessing.label_encoder.LabelEncoder" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">LabelEncoder</span><span class="p">(</span><span class="n">columns_to_encode</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+      <p class="doc doc-class-bases">
+        Bases: <code>object</code></p>
+
+  
+      <p>Label Encode categorical values for multiple columns at once</p>
+<p><img alt="ℹ️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/2139.png" title=":information_source:" /> <strong>NOTE</strong>:
+Shamlessly copied from <a href="https://github.com/jrzaurin/pytorch-widedeep">https://github.com/jrzaurin/pytorch-widedeep</a></p>
+<p><img alt="ℹ️" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/2139.png" title=":information_source:" /> <strong>NOTE</strong>:
+LabelEncoder reserves 0 for <code>unseen</code> new categories. This is convenient
+when defining the embedding layers, since we can just set padding idx to 0.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>columns_to_encode</b>
+            (<code>list, Optional, default = None</code>)
+        – <p>List of strings containing
+the names of the columns to encode. If <code>None</code> all columns of type <code>object</code>
+in the dataframe will be label encoded.</p>
+      </li>
+  </ul>
+
+  <p>Attributes:</p>
+  <ul>
+      <li class="field-body">
+        <b>encoding_dict</b>
+            (<code>Dict</code>)
+        – <p>Dictionary containing the encoding mappings in the format,
+e.g. : <br/> <code>{'colname1': {'cat1': 1, 'cat2': 2, ...}, 'colname2': {'cat1': 1, 'cat2': 2, ...}, ...}</code>  # noqa</p>
+      </li>
+      <li class="field-body">
+        <b>inverse_encoding_dict(Dict)</b>
+            (<code>Dict</code>)
+        – <p>Dictionary containing the inverse encoding mappings
+in the format, e.g. : <br/> <code>{'colname1': {1: 'cat1', 2: 'cat2', ...}, 'colname2': {1: 'cat1', 2: 'cat2', ...}, ...}</code>  # noqa</p>
+      </li>
+  </ul>
+
+
+          <details class="quote">
+            <summary>Source code in <code>inference_model/preprocessing/label_encoder.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">columns_to_encode</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">columns_to_encode</span> <span class="o">=</span> <span class="n">columns_to_encode</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="inference_model.preprocessing.label_encoder.LabelEncoder.fit" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">fit</span>
+
+
+<a href="#inference_model.preprocessing.label_encoder.LabelEncoder.fit" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Creates encoding attributes</p>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b>LabelEncoder</b>(            <code><a class="autorefs autorefs-internal" title="inference_model.preprocessing.label_encoder.LabelEncoder" href="#inference_model.preprocessing.label_encoder.LabelEncoder">LabelEncoder</a></code>
+)        – <p><code>LabelEncoder</code> fitted object</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/label_encoder.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;LabelEncoder&quot;</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Creates encoding attributes</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        LabelEncoder: `LabelEncoder` fitted object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">df_inp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns_to_encode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">columns_to_encode</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="n">df_inp</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># sanity check to make sure all categorical columns are in an adequate</span>
+        <span class="c1"># format</span>
+        <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns_to_encode</span><span class="p">:</span>
+            <span class="n">df_inp</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_inp</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
+
+    <span class="n">unique_column_vals</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns_to_encode</span><span class="p">:</span>
+        <span class="n">unique_column_vals</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_inp</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">encoding_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+
+    <span class="c1"># leave 0 for padding/&quot;unseen&quot; categories</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">unique_column_vals</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding_dict</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">o</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">idx</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_column_vals</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+        <span class="p">}</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">inverse_encoding_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding_dict</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inverse_encoding_dict</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding_dict</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inverse_encoding_dict</span><span class="p">[</span><span class="n">c</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;unseen&quot;</span>
+
+    <span class="k">return</span> <span class="bp">self</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="inference_model.preprocessing.label_encoder.LabelEncoder.transform" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">transform</span>
+
+
+<a href="#inference_model.preprocessing.label_encoder.LabelEncoder.transform" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Label Encoded the categories in <code>columns_to_encode</code></p>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+        – <p>pd.DataFrame: label-encoded dataframe</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/label_encoder.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Label Encoded the categories in `columns_to_encode`</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: label-encoded dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">encoding_dict</span>
+    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotFittedError</span><span class="p">(</span>
+            <span class="s2">&quot;This LabelEncoder instance is not fitted yet. &quot;</span>
+            <span class="s2">&quot;Call &#39;fit&#39; with appropriate arguments before using this LabelEncoder.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">df_inp</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="c1"># sanity check to make sure all categorical columns are in an adequate</span>
+    <span class="c1"># format</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">columns_to_encode</span><span class="p">:</span>  <span class="c1"># type: ignore</span>
+        <span class="n">df_inp</span><span class="p">[</span><span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_inp</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;O&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoding_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">df_inp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_inp</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">v</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">df_inp</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="inference_model.preprocessing.label_encoder.LabelEncoder.fit_transform" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">fit_transform</span>
+
+
+<a href="#inference_model.preprocessing.label_encoder.LabelEncoder.fit_transform" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Combines <code>fit</code> and <code>transform</code></p>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+        – <p>pd.DataFrame: label-encoded dataframe</p>
+      </li>
+  </ul>
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">data_preparation.label_encoder</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;col1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;col2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="s1">&#39;you&#39;</span><span class="p">,</span> <span class="s1">&#39;him&#39;</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">columns_to_encode</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">(</span><span class="n">columns_to_encode</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="go">   col1  col2</span>
+<span class="go">0     1     1</span>
+<span class="go">1     2     2</span>
+<span class="go">2     3     3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">encoding_dict</span>
+<span class="go">{&#39;col2&#39;: {&#39;me&#39;: 1, &#39;you&#39;: 2, &#39;him&#39;: 3}}</span>
+</code></pre></div>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/label_encoder.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Combines `fit` and `transform`</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: label-encoded dataframe</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; from data_preparation.label_encoder import LabelEncoder</span>
+<span class="sd">        &gt;&gt;&gt; df = pd.DataFrame({&#39;col1&#39;: [1,2,3], &#39;col2&#39;: [&#39;me&#39;, &#39;you&#39;, &#39;him&#39;]})</span>
+<span class="sd">        &gt;&gt;&gt; columns_to_encode = [&#39;col2&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; encoder = LabelEncoder(columns_to_encode)</span>
+<span class="sd">        &gt;&gt;&gt; encoder.fit_transform(df)</span>
+<span class="sd">           col1  col2</span>
+<span class="sd">        0     1     1</span>
+<span class="sd">        1     2     2</span>
+<span class="sd">        2     3     3</span>
+<span class="sd">        &gt;&gt;&gt; encoder.encoding_dict</span>
+<span class="sd">        {&#39;col2&#39;: {&#39;me&#39;: 1, &#39;you&#39;: 2, &#39;him&#39;: 3}}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="inference_model.preprocessing.label_encoder.LabelEncoder.inverse_transform" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">inverse_transform</span>
+
+
+<a href="#inference_model.preprocessing.label_encoder.LabelEncoder.inverse_transform" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">inverse_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns the original categories</p>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>
+        – <p>pd.DataFrame: label-encoded dataframe</p>
+      </li>
+  </ul>
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">data_preparation.label_encoder</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;col1&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="s1">&#39;col2&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;me&#39;</span><span class="p">,</span> <span class="s1">&#39;you&#39;</span><span class="p">,</span> <span class="s1">&#39;him&#39;</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">columns_to_encode</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;col2&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">(</span><span class="n">columns_to_encode</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df_enc</span> <span class="o">=</span> <span class="n">encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoder</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">df_enc</span><span class="p">)</span>
+<span class="go">   col1 col2</span>
+<span class="go">0     1   me</span>
+<span class="go">1     2  you</span>
+<span class="go">2     3  him</span>
+</code></pre></div>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/label_encoder.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">inverse_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Returns the original categories</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        pd.DataFrame: label-encoded dataframe</span>
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt; import pandas as pd</span>
+<span class="sd">        &gt;&gt;&gt; from data_preparation.label_encoder import LabelEncoder</span>
+<span class="sd">        &gt;&gt;&gt; df = pd.DataFrame({&#39;col1&#39;: [1,2,3], &#39;col2&#39;: [&#39;me&#39;, &#39;you&#39;, &#39;him&#39;]})</span>
+<span class="sd">        &gt;&gt;&gt; columns_to_encode = [&#39;col2&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; encoder = LabelEncoder(columns_to_encode)</span>
+<span class="sd">        &gt;&gt;&gt; df_enc = encoder.fit_transform(df)</span>
+<span class="sd">        &gt;&gt;&gt; encoder.inverse_transform(df_enc)</span>
+<span class="sd">           col1 col2</span>
+<span class="sd">        0     1   me</span>
+<span class="sd">        1     2  you</span>
+<span class="sd">        2     3  him</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">inverse_encoding_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">v</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="inference_model.preprocessing.preprocess_data" class="doc doc-heading">
+          <span class="doc doc-object-name doc-module-name">preprocess_data</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data" class="headerlink" title="Permanent link">&para;</a></h2>
+
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.drop_high_nan_cols" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">drop_high_nan_cols</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.drop_high_nan_cols" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">drop_high_nan_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns dataframe without columns that have ratio of missingness above threshold.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>df</b>
+            (<code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>)
+        – <p>input dataframe</p>
+      </li>
+      <li class="field-body">
+        <b>threshold</b>
+            (<code>float = 0.8</code>)
+        – <p>ratio of missingness applied per column</p>
+      </li>
+      <li class="field-body">
+        <b>verbose</b>
+            (<code>bool</code>)
+        – <p>whether the output should be verbose</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">drop_high_nan_cols</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Returns dataframe without columns that have ratio of missingness above threshold.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): input dataframe</span>
+<span class="sd">        threshold (float = 0.8): ratio of missingness applied per column</span>
+<span class="sd">        verbose (bool): whether the output should be verbose</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">n_rows</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">nan_fraction_per_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">n_rows</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">high_nan_percentage_cols</span> <span class="o">=</span> <span class="n">nan_fraction_per_col</span><span class="p">[</span>
+        <span class="n">nan_fraction_per_col</span> <span class="o">&gt;</span> <span class="n">threshold</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">high_nan_percentage_cols</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Dropped {} columns with fraction of NaN above threshold = {}.</span>
+<span class="sd">            Affected columns: {}</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">high_nan_percentage_cols</span><span class="p">),</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">high_nan_percentage_cols</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.drop_constant_cols" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">drop_constant_cols</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.drop_constant_cols" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">drop_constant_cols</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns dataframe without constant columns, i.e. those with just 1 unique
+value for all rows.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">drop_constant_cols</span><span class="p">(</span><span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Returns dataframe without constant columns, i.e. those with just 1 unique</span>
+<span class="sd">    value for all rows.&quot;&quot;&quot;</span>
+    <span class="n">nunique_per_col</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">const_cols</span> <span class="o">=</span> <span class="n">nunique_per_col</span><span class="p">[</span><span class="n">nunique_per_col</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">const_cols</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Dropped {} constant columns.</span>
+<span class="sd">            Affected columns: {}</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">const_cols</span><span class="p">),</span> <span class="n">const_cols</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.drop_high_uq_cat_cols" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">drop_high_uq_cat_cols</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.drop_high_uq_cat_cols" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">drop_high_uq_cat_cols</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">cat_cols</span><span class="p">,</span> <span class="n">uq_val_count</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns dataframe without categorical columns that have too many unique values</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>df</b>
+            (<code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>)
+        – <p>input dataframe</p>
+      </li>
+      <li class="field-body">
+        <b>cat_cols</b>
+            (<code>list</code>)
+        – <p>list of categorical columns</p>
+      </li>
+      <li class="field-body">
+        <b>uq_val_count</b>
+            (<code>int</code>)
+        – <p>unique value count</p>
+      </li>
+      <li class="field-body">
+        <b>verbose</b>
+            (<code>bool</code>)
+        – <p>whether the output should be verbose</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">drop_high_uq_cat_cols</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">cat_cols</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">uq_val_count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Returns dataframe without categorical columns that have too many unique values</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): input dataframe</span>
+<span class="sd">        cat_cols (list): list of categorical columns</span>
+<span class="sd">        uq_val_count (int): unique value count</span>
+<span class="sd">        verbose (bool): whether the output should be verbose</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">nunique_per_col</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cat_cols</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">nunique</span><span class="p">(),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">high_uq_value_cat_cols</span> <span class="o">=</span> <span class="n">nunique_per_col</span><span class="p">[</span>
+        <span class="n">nunique_per_col</span> <span class="o">&gt;</span> <span class="n">uq_val_count</span>
+    <span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">high_uq_value_cat_cols</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Dropped {} high unique value columns.</span>
+<span class="sd">            Affected columns: {}</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">high_uq_value_cat_cols</span><span class="p">),</span> <span class="n">high_uq_value_cat_cols</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.drop_highly_correlated_columns" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">drop_highly_correlated_columns</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.drop_highly_correlated_columns" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">drop_highly_correlated_columns</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">cont_cols</span><span class="p">,</span> <span class="n">crosscorr_val</span><span class="o">=</span><span class="mf">0.95</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns dataframe without highly correlated columns, cross correlation is
+evaluated with crosscorr_val.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>df</b>
+            (<code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>)
+        – <p>input dataframe</p>
+      </li>
+      <li class="field-body">
+        <b>cont_cols</b>
+            (<code>list</code>)
+        – <p>list of columns to evaluate correlation for</p>
+      </li>
+      <li class="field-body">
+        <b>crosscorr_val</b>
+            (<code>float = 0.95</code>)
+        – <p>threshold value of correlation</p>
+      </li>
+      <li class="field-body">
+        <b>verbose</b>
+            (<code>bool</code>)
+        – <p>whether the output should be verbose</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">drop_highly_correlated_columns</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">cont_cols</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span>
+    <span class="n">crosscorr_val</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Returns dataframe without highly correlated columns, cross correlation is</span>
+<span class="sd">    evaluated with crosscorr_val.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): input dataframe</span>
+<span class="sd">        cont_cols (list): list of columns to evaluate correlation for</span>
+<span class="sd">        crosscorr_val (float = 0.95): threshold value of correlation</span>
+<span class="sd">        verbose (bool): whether the output should be verbose</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">corr_matrix</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cont_cols</span><span class="p">]</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span>
+    <span class="n">upper</span> <span class="o">=</span> <span class="n">corr_matrix</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">corr_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;bool&quot;</span><span class="p">))</span>
+    <span class="n">upper_above</span> <span class="o">=</span> <span class="n">upper</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">any</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">crosscorr_val</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">to_drop</span> <span class="o">=</span> <span class="n">upper_above</span><span class="p">[</span><span class="n">upper_above</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Dropped {} highly correlated columns.</span>
+<span class="sd">            Affected columns: {}</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="nb">len</span><span class="p">(</span><span class="n">to_drop</span><span class="p">),</span> <span class="n">to_drop</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.nan_with_unknown_imputer" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">nan_with_unknown_imputer</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.nan_with_unknown_imputer" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">nan_with_unknown_imputer</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">fill_token</span><span class="o">=</span><span class="s2">&quot;unknown&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Fills NAs with surrogate string, 'unknown' is default value used, it can be customized.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>df</b>
+            (<code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>)
+        – <p>input dataframe</p>
+      </li>
+      <li class="field-body">
+        <b>columns</b>
+            (<code><span title="typing.List">List</span>[str]</code>)
+        – <p>ist of columns that will be filled</p>
+      </li>
+      <li class="field-body">
+        <b>fillna_token</b>
+            (<code>str = &#34;unknown&#34;</code>)
+        – <p>string used to replace NAs</p>
+      </li>
+      <li class="field-body">
+        <b>verbose</b>
+            (<code>bool</code>)
+        – <p>whether the output should be verbose</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">nan_with_unknown_imputer</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">columns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">fill_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Fills NAs with surrogate string, &#39;unknown&#39; is default value used, it can be customized.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): input dataframe</span>
+<span class="sd">        columns (List[str]): ist of columns that will be filled</span>
+<span class="sd">        fillna_token (str = &quot;unknown&quot;): string used to replace NAs</span>
+<span class="sd">        verbose (bool): whether the output should be verbose</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">sum_nan_vals</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">nans_cols</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="n">nans_cols</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">c</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">fill_token</span><span class="p">)</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">dfc</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfc</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">object</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">fill_token</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Imputed {} NaN values with {}.</span>
+<span class="sd">            Affected columns (col, num_NaNs): {}</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">sum_nan_vals</span><span class="p">,</span> <span class="n">fill_token</span><span class="p">,</span> <span class="n">nans_cols</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.nan_with_number_imputer" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">nan_with_number_imputer</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.nan_with_number_imputer" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">nan_with_number_imputer</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">fill_number</span><span class="o">=-</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Fills NAs with surrogate float, -1 is default value used, it can be customized.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>df</b>
+            (<code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>)
+        – <p>input dataframe</p>
+      </li>
+      <li class="field-body">
+        <b>columns</b>
+            (<code><span title="typing.List">List</span>[str]</code>)
+        – <p>list of columns that will be filled</p>
+      </li>
+      <li class="field-body">
+        <b>fill_number</b>
+            (<code>float = -1</code>)
+        – <p>number used to replace NAs. Defaults to</p>
+      </li>
+      <li class="field-body">
+        <b>verbose</b>
+            (<code>bool</code>)
+        – <p>whether the output should be verbose</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">nan_with_number_imputer</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">columns</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">fill_number</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Fills NAs with surrogate float, -1 is default value used, it can be customized.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): input dataframe</span>
+<span class="sd">        columns (List[str]): list of columns that will be filled</span>
+<span class="sd">        fill_number (float = -1): number used to replace NAs. Defaults to</span>
+<span class="sd">        verbose (bool): whether the output should be verbose</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">sum_nan_vals</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">nans_cols</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="n">nans_cols</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">c</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="n">c</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()))</span>
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">dfc</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfc</span><span class="p">[</span><span class="n">columns</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">fill_number</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Imputed {} NaN values with {}.</span>
+<span class="sd">            Affected columns (col, num_NaNs): {}</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">sum_nan_vals</span><span class="p">,</span> <span class="n">fill_number</span><span class="p">,</span> <span class="n">nans_cols</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">dfc</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.nuq_in_list_col" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">nuq_in_list_col</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.nuq_in_list_col" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">nuq_in_list_col</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns pd.Series with the number of unique values in the lists.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>dfs</b>
+            (<code><span title="pandas">pd</span>.<span title="pandas.Series">Series</span></code>)
+        – <p>input pandas series containing string list values</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">nuq_in_list_col</span><span class="p">(</span><span class="n">dfs</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns pd.Series with the number of unique values in the lists.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dfs (pd.Series): input pandas series containing string list values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dfsc</span> <span class="o">=</span> <span class="n">dfs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">dfsc</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">string</span><span class="p">:</span> <span class="n">_nunique</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">else</span> <span class="n">string</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">dfsc</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.most_frequent_in_list_col" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">most_frequent_in_list_col</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.most_frequent_in_list_col" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">most_frequent_in_list_col</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Returns pd.Series with the most frequent values in the lists.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>dfs</b>
+            (<code><span title="pandas">pd</span>.<span title="pandas.Series">Series</span></code>)
+        – <p>input pandas series containing string list values</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">most_frequent_in_list_col</span><span class="p">(</span><span class="n">dfs</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns pd.Series with the most frequent values in the lists.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        dfs (pd.Series): input pandas series containing string list values</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">dfsc</span> <span class="o">=</span> <span class="n">dfs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">dfsc</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span>
+        <span class="k">lambda</span> <span class="n">string</span><span class="p">:</span> <span class="n">_most_frequent</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;[&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;]&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;, &quot;</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+        <span class="k">else</span> <span class="n">string</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">dfsc</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess_data.replace_rare_categories_with_str_other" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">replace_rare_categories_with_str_other</span>
+
+
+<a href="#inference_model.preprocessing.preprocess_data.replace_rare_categories_with_str_other" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">replace_rare_categories_with_str_other</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">,</span>
+    <span class="n">categorical_cols</span><span class="p">,</span>
+    <span class="n">quantile</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">surrogate_value</span><span class="o">=</span><span class="s2">&quot;other&quot;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Replaces rare category value with surrogate string.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>df</b>
+            (<code><span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span></code>)
+        – <p>input dataframe</p>
+      </li>
+      <li class="field-body">
+        <b>categorical_cols</b>
+            (<code><span title="typing.List">List</span>[str]</code>)
+        – <p>list of columns in dataframe to process.</p>
+      </li>
+      <li class="field-body">
+        <b>quantile</b>
+            (<code>float = 0.05</code>)
+        – <p>determines what values are considered as rare</p>
+      </li>
+      <li class="field-body">
+        <b>surrogate_value</b>
+            (<code>str = &#34;other&#34;</code>)
+        – <p>string used to replace rare values</p>
+      </li>
+  </ul>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+            <code><span title="typing.Tuple">Tuple</span>[<span title="pandas">pd</span>.<span title="pandas.DataFrame">DataFrame</span>, <span title="typing.Dict">Dict</span>]</code>
+        – <p>Tuple[pd.DataFrame, Dict]:
+New dataframe and a dict. with mapping between orig. and surrogate values.</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess_data.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">replace_rare_categories_with_str_other</span><span class="p">(</span>
+    <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span>
+    <span class="n">categorical_cols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">quantile</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
+    <span class="n">surrogate_value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;other&quot;</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Replaces rare category value with surrogate string.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        df (pd.DataFrame): input dataframe</span>
+<span class="sd">        categorical_cols (List[str]): list of columns in dataframe to process.</span>
+<span class="sd">        quantile (float = 0.05): determines what values are considered as rare</span>
+<span class="sd">        surrogate_value (str = &quot;other&quot;): string used to replace rare values</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Tuple[pd.DataFrame, Dict]:</span>
+<span class="sd">            New dataframe and a dict. with mapping between orig. and surrogate values.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">surrogate_value</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">categorical_cols</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Surrogate string - &quot;</span>
+            <span class="o">+</span> <span class="n">surrogate_value</span>
+            <span class="o">+</span> <span class="s2">&quot; - is already present, choose another one.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+    <span class="n">replace_dict_per_col</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">df</span><span class="p">[</span><span class="n">categorical_cols</span><span class="p">]</span>
+        <span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">_replace_rare_dict</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">[</span><span class="n">surrogate_value</span><span class="p">,</span> <span class="n">quantile</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+    <span class="p">)</span>
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">dfc</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">replace_dict_per_col</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">sum_rare_cats</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span>
+            <span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">replace_dict_per_col</span><span class="p">[</span><span class="n">col</span><span class="p">])</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">replace_dict_per_col</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">rare_cats_per_col</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">col</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">replace_dict_per_col</span><span class="p">[</span><span class="n">col</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">replace_dict_per_col</span>
+        <span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">            Replaced {} rare categories (val_count &lt; {}) with {}.</span>
+<span class="sd">            Affected columns (List[(col, rare_cats)]): {}</span>
+<span class="sd">            &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">sum_rare_cats</span><span class="p">,</span>
+                <span class="n">quantile</span><span class="p">,</span>
+                <span class="n">surrogate_value</span><span class="p">,</span>
+                <span class="n">rare_cats_per_col</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">dfc</span><span class="p">,</span> <span class="n">replace_dict_per_col</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="inference_model.preprocessing.preprocess" class="doc doc-heading">
+          <span class="doc doc-object-name doc-module-name">preprocess</span>
+
+
+<a href="#inference_model.preprocessing.preprocess" class="headerlink" title="Permanent link">&para;</a></h2>
+
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="inference_model.preprocessing.preprocess.PreprocessData" class="doc doc-heading">
+        <span class="doc doc-object-name doc-class-name">PreprocessData</span>
+
+
+<a href="#inference_model.preprocessing.preprocess.PreprocessData" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">PreprocessData</span><span class="p">(</span>
+    <span class="n">target_col</span><span class="p">,</span> <span class="n">id_cols</span><span class="p">,</span> <span class="n">cat_cols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">cont_cols</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+
+  
+      <p>Object to preprocess the dataset.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>target_col</b>
+            (<code>str</code>)
+        – <p>target column name</p>
+      </li>
+      <li class="field-body">
+        <b>id_cols</b>
+            (<code><span title="typing.List">List</span>[str]</code>)
+        – <p>id columns</p>
+      </li>
+      <li class="field-body">
+        <b>cat_cols</b>
+            (<code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>)
+        – <p>list of categorical column names</p>
+      </li>
+      <li class="field-body">
+        <b>cont_cols</b>
+            (<code><span title="typing.Optional">Optional</span>[<span title="typing.List">List</span>[str]]</code>)
+        – <p>list of continuous column names</p>
+      </li>
+  </ul>
+
+
+          <details class="quote">
+            <summary>Source code in <code>inference_model/preprocessing/preprocess.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">target_col</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">id_cols</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">cat_cols</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">cont_cols</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">target_col</span> <span class="o">=</span> <span class="n">target_col</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">id_cols</span> <span class="o">=</span> <span class="n">id_cols</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span> <span class="o">=</span> <span class="n">cat_cols</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cont_cols</span> <span class="o">=</span> <span class="n">cont_cols</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted</span> <span class="o">=</span> <span class="kc">False</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="inference_model.preprocessing.preprocess.PreprocessData.fit_transform" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">fit_transform</span>
+
+
+<a href="#inference_model.preprocessing.preprocess.PreprocessData.fit_transform" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Fit peprocessor and transform dataset in training step.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">fit_transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Fit peprocessor and transform dataset in training step.&quot;&quot;&quot;</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id_cols</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">dfc</span><span class="o">.</span><span class="n">pipe</span><span class="p">(</span><span class="n">drop_constant_cols</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span> <span class="o">=</span> <span class="n">intsec</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">dfc</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_infere_cat_cols</span><span class="p">(</span><span class="n">dfc</span><span class="p">)</span>
+        <span class="n">dfc_cat_cols</span> <span class="o">=</span> <span class="n">drop_high_nan_cols</span><span class="p">(</span><span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">])</span>
+        <span class="n">dfc</span> <span class="o">=</span> <span class="n">dfc</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">)</span>
+        <span class="n">dfc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">dfc</span><span class="p">,</span> <span class="n">dfc_cat_cols</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span> <span class="o">=</span> <span class="n">dfc_cat_cols</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cont_cols</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_cont_cols</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_infere_cont_cols</span><span class="p">(</span><span class="n">dfc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">)</span>
+        <span class="n">dfc_init_cont_cols</span> <span class="o">=</span> <span class="n">drop_high_nan_cols</span><span class="p">(</span><span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">init_cont_cols</span><span class="p">])</span>
+        <span class="n">dfc</span> <span class="o">=</span> <span class="n">dfc</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">init_cont_cols</span><span class="p">)</span>
+        <span class="n">dfc</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">dfc</span><span class="p">,</span> <span class="n">dfc_init_cont_cols</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_cont_cols</span> <span class="o">=</span> <span class="n">dfc_init_cont_cols</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+        <span class="n">dfc</span> <span class="o">=</span> <span class="n">nan_with_number_imputer</span><span class="p">(</span><span class="n">dfc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_cont_cols</span><span class="p">,</span> <span class="o">-</span><span class="mf">9999.0</span><span class="p">)</span>
+
+        <span class="p">(</span>
+            <span class="n">dfc</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_drop_highly_corr_cols_and_get_final_cont_cols</span><span class="p">(</span>
+            <span class="n">dfc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">init_cont_cols</span>
+        <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cont_cols</span><span class="p">)</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">dfc</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">values</span><span class="p">))</span>
+        <span class="p">)</span>
+
+        <span class="n">dfc</span> <span class="o">=</span> <span class="n">nan_with_number_imputer</span><span class="p">(</span><span class="n">dfc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span><span class="p">,</span> <span class="o">-</span><span class="mf">9999.0</span><span class="p">)</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">nan_with_unknown_imputer</span><span class="p">(</span><span class="n">dfc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">)</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">target_col</span><span class="p">]]</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">)</span>
+    <span class="n">dfc_le</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">dfc</span><span class="p">)</span>
+
+    <span class="n">dfc_le</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_change_int_float_types</span><span class="p">(</span><span class="n">dfc_le</span><span class="p">)</span>
+
+    <span class="n">dfc_le</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">id_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">id_cols</span><span class="p">]</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="n">dfc_le</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="inference_model.preprocessing.preprocess.PreprocessData.transform" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">transform</span>
+
+
+<a href="#inference_model.preprocessing.preprocess.PreprocessData.transform" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Transform dataset in inference step.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">transform</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Transform dataset in inference step.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">NotFittedError</span><span class="p">(</span>
+            <span class="sd">&quot;&quot;&quot;This instance of &#39;PreprocessData&#39; has not been fitted yet.</span>
+<span class="sd">            Please, run &#39;fit&#39; first&quot;&quot;&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">id_cols</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="c1"># added as mlflow inference is receiving all the data as objects</span>
+    <span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+    <span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">dfc</span> <span class="o">=</span> <span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span> <span class="o">+</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">target_col</span><span class="p">]]</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="n">dfc</span> <span class="o">=</span> <span class="n">dfc</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span><span class="p">]</span>
+
+    <span class="c1"># dfc = dfc.replace(self.replace_rare_categories_dict)</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">nan_with_unknown_imputer</span><span class="p">(</span><span class="n">dfc</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cat_cols</span><span class="p">)</span>
+
+    <span class="n">dfc</span> <span class="o">=</span> <span class="n">nan_with_number_imputer</span><span class="p">(</span>
+        <span class="n">dfc</span><span class="p">,</span>
+        <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">final_cont_cols</span><span class="p">)),</span>
+        <span class="o">-</span><span class="mf">9999.0</span><span class="p">,</span>  <span class="c1"># noqa</span>
+    <span class="p">)</span>
+
+    <span class="n">dfc_le</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">dfc</span><span class="p">)</span>
+
+    <span class="n">dfc_le</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_change_int_float_types</span><span class="p">(</span><span class="n">dfc_le</span><span class="p">)</span>
+
+    <span class="n">dfc_le</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">id_cols</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">id_cols</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">dfc_le</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h4 id="inference_model.preprocessing.preprocess.PreprocessData.fit" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">fit</span>
+
+
+<a href="#inference_model.preprocessing.preprocess.PreprocessData.fit" class="headerlink" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Just to keep familiar naming convention with sklearn.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/preprocess.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Just to keep familiar naming convention with sklearn.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-module">
+
+
+
+<h2 id="inference_model.preprocessing.scaler" class="doc doc-heading">
+          <span class="doc doc-object-name doc-module-name">scaler</span>
+
+
+<a href="#inference_model.preprocessing.scaler" class="headerlink" title="Permanent link">&para;</a></h2>
+
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="inference_model.preprocessing.scaler.scaler_mapper" class="doc doc-heading">
+        <span class="doc doc-object-name doc-function-name">scaler_mapper</span>
+
+
+<a href="#inference_model.preprocessing.scaler.scaler_mapper" class="headerlink" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">scaler_mapper</span><span class="p">(</span>
+    <span class="n">cont_cols</span><span class="p">,</span> <span class="n">cat_cols</span><span class="p">,</span> <span class="n">id_cols</span><span class="p">,</span> <span class="n">scaler_mapper_def</span><span class="o">=</span><span class="kc">None</span>
+<span class="p">)</span>
+</code></pre></div>
+
+  <div class="doc doc-contents ">
+  
+      <p>Function that maps scaler functions to appropriate columns.</p>
+<p>By default does not assign any scaler to continuous, categorical or
+identifier columns. The scalers must be set in scaler_mapper_def. Use sklearn scalers.
+Only columns defined in mapper object will be present in the transformed dataset.</p>
+
+  <p>Parameters:</p>
+  <ul>
+      <li class="field-body">
+        <b>cont_cols</b>
+            (<code>list</code>)
+        – <p>list of continuous feature columns in the dataset</p>
+      </li>
+      <li class="field-body">
+        <b>cat_cols</b>
+            (<code>list</code>)
+        – <p>list of categorical feature columns in the dataset</p>
+      </li>
+      <li class="field-body">
+        <b>id_cols</b>
+            (<code>list</code>)
+        – <p>identifier columns</p>
+      </li>
+      <li class="field-body">
+        <b>scaler_mapper_def</b>
+            (<code>dict</code>)
+        – <p>optional dictionary that contains keys
+['cont_cols', 'cat_cols', 'id_cols'] with their corresponding
+scalers (defined by names, not instantiated) from sklearn library</p>
+      </li>
+  </ul>
+
+  <p>Returns:</p>
+  <ul>
+      <li class="field-body">
+<b>scaler</b>(            <code><span title="sklearn_pandas.DataFrameMapper">DataFrameMapper</span></code>
+)        – <p>scaler object mapping sklearn scalers to columns in
+pandas dataframe</p>
+      </li>
+  </ul>
+
+      <details class="quote">
+        <summary>Source code in <code>inference_model/preprocessing/scaler.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">scaler_mapper</span><span class="p">(</span>
+    <span class="n">cont_cols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">cat_cols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">id_cols</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
+    <span class="n">scaler_mapper_def</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DataFrameMapper</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Function that maps scaler functions to appropriate columns.</span>
+
+<span class="sd">    By default does not assign any scaler to continuous, categorical or</span>
+<span class="sd">    identifier columns. The scalers must be set in scaler_mapper_def. Use sklearn scalers.</span>
+<span class="sd">    Only columns defined in mapper object will be present in the transformed dataset.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        cont_cols (list): list of continuous feature columns in the dataset</span>
+<span class="sd">        cat_cols (list): list of categorical feature columns in the dataset</span>
+<span class="sd">        id_cols (list): identifier columns</span>
+<span class="sd">        scaler_mapper_def (dict): optional dictionary that contains keys</span>
+<span class="sd">            [&#39;cont_cols&#39;, &#39;cat_cols&#39;, &#39;id_cols&#39;] with their corresponding</span>
+<span class="sd">            scalers (defined by names, not instantiated) from sklearn library</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        scaler (DataFrameMapper): scaler object mapping sklearn scalers to columns in</span>
+<span class="sd">            pandas dataframe</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">scaler_mapper_def</span><span class="p">:</span>
+        <span class="n">cont_cols_def</span> <span class="o">=</span> <span class="n">gen_features</span><span class="p">(</span>
+            <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">cont_cols</span><span class="p">)),</span>
+            <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="n">scaler_mapper_def</span><span class="p">[</span><span class="s2">&quot;cont_cols&quot;</span><span class="p">]],</span>
+        <span class="p">)</span>
+
+        <span class="n">cat_cols_def</span> <span class="o">=</span> <span class="n">gen_features</span><span class="p">(</span>
+            <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">cat_cols</span><span class="p">)),</span>
+            <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="n">scaler_mapper_def</span><span class="p">[</span><span class="s2">&quot;cat_cols&quot;</span><span class="p">]],</span>
+        <span class="p">)</span>
+
+        <span class="n">id_cols_def</span> <span class="o">=</span> <span class="n">gen_features</span><span class="p">(</span>
+            <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">id_cols</span><span class="p">)),</span>
+            <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="n">scaler_mapper_def</span><span class="p">[</span><span class="s2">&quot;id_cols&quot;</span><span class="p">]],</span>
+        <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">cont_cols_def</span> <span class="o">=</span> <span class="n">gen_features</span><span class="p">(</span>
+            <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">cont_cols</span><span class="p">)),</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">cat_cols_def</span> <span class="o">=</span> <span class="n">gen_features</span><span class="p">(</span>
+            <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">cat_cols</span><span class="p">)),</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="n">id_cols_def</span> <span class="o">=</span> <span class="n">gen_features</span><span class="p">(</span>
+            <span class="n">columns</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">[</span><span class="n">x</span><span class="p">],</span> <span class="n">id_cols</span><span class="p">)),</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="kc">None</span><span class="p">]</span>
+        <span class="p">)</span>
+
+    <span class="n">scaler</span> <span class="o">=</span> <span class="n">DataFrameMapper</span><span class="p">(</span><span class="n">cont_cols_def</span> <span class="o">+</span> <span class="n">cat_cols_def</span> <span class="o">+</span> <span class="n">id_cols_def</span><span class="p">,</span> <span class="n">df_out</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">scaler</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="eda.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: eda" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              eda
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="training.html" class="md-footer__link md-footer__link--next" aria-label="Next: training" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              training
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Pavol Mulinka
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.expand", "toc.integrate"], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="../stylesheets/extra.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

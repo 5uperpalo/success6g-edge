@@ -1,13 +1,15 @@
 
-# Real-world testing and data gathering - Parcmotor Castellolí 
+# Real-world testing and data gathering - Parcmotor Castellolí administered by [Cellnex](https://www.cellnex.com/news/noticia-105/)
 
-| ![Testing_architecture_overview](img/Architecture_Overview–Parcmotor_Castelloli.png "Testing architecture overview") |
-| :------------------------------------------------------------------------------------------------------------------: |
-|                                          *Castellolí testing architecture*                                           |
+![parcmotor_castelloli](docs/sources/assets/images/parcmotor_castelloli.jpeg "Parcmotor Castelloli")
 
-| ![Testing_architecture_services](img/Architecture_Overview–Parcmotor_Castelloli_services.png "Testing architecture services") |
-| :---------------------------------------------------------------------------------------------------------------------------: |
-|                                               *Castellolí testing architecture*                                               |
+| ![Testing_architecture_overview](docs/sources/assets/images/Architecture_Overview–Parcmotor_Castelloli.png "Testing architecture overview") |
+| :-----------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                      *Castellolí testing architecture*                                                      |
+
+| ![Testing_architecture_services](docs/sources/assets/images/Architecture_Overview–Parcmotor_Castelloli_services.png "Testing architecture services") |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                          *Castellolí testing architecture*                                                           |
 
 legend: 
 * white - mandatory

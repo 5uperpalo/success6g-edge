@@ -4,9 +4,9 @@ Description of traffic flow for simple(no Istio) Single cluster traffic flow.
 
 ## Vehicle data processing
 
-| ![Architecture_Overview–Networking–Vehicle_data_processing](img/Architecture_Overview–Networking–Vehicle_data_processing.png "Vehicle data processing") |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                                *Vehicle data processing*                                                                |
+| ![Architecture_Overview–Networking–Vehicle_data_processing](docs/sources/assets/images/Architecture_Overview–Networking–Vehicle_data_processing.png "Vehicle data processing") |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                           *Vehicle data processing*                                                                            |
 
 
 <details>
@@ -30,9 +30,9 @@ Description of traffic flow for simple(no Istio) Single cluster traffic flow.
 
 ## Energy consumption monitoring
 
-| ![Architecture_Overview–Networking–Energy_consumption_monitoring](img/Architecture_Overview–Networking–Energy_consumption_monitoring.png "Energy consumption monitoring") |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                                      *Energy consumption monitoring*                                                                      |
+| ![Architecture_Overview–Networking–Energy_consumption_monitoring](docs/sources/assets/images/Architecture_Overview–Networking–Energy_consumption_monitoring.png "Energy consumption monitoring") |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                 *Energy consumption monitoring*                                                                                  |
 
 
 <details>
@@ -46,9 +46,9 @@ Description of traffic flow for simple(no Istio) Single cluster traffic flow.
 
 ## Vehicle data and energy consumption monitoring
 
-| ![Architecture_Overview–Networking–Vehicle_data_and_energy_consumption_monitoring](img/Architecture_Overview–Networking–Vehicle_data_and_energy_consumption_monitoring.png "Vehicle data and energy consumption monitoring") |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                                                       *Vehicle data and energy consumption monitoring*                                                                                       |
+| ![Architecture_Overview–Networking–Vehicle_data_and_energy_consumption_monitoring](docs/sources/assets/images/Architecture_Overview–Networking–Vehicle_data_and_energy_consumption_monitoring.png "Vehicle data and energy consumption monitoring") |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                                                  *Vehicle data and energy consumption monitoring*                                                                                                   |
 
 
 <details>
@@ -62,9 +62,9 @@ Description of traffic flow for simple(no Istio) Single cluster traffic flow.
 
 ## ML model development/update
 
-| ![Architecture_Overview–Networking–ML_model_development_update](img/Architecture_Overview–Networking–ML_model_development_update.png "ML model development/update") |
-| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                                    *ML model development/update*                                                                    |
+| ![Architecture_Overview–Networking–ML_model_development_update](docs/sources/assets/images/Architecture_Overview–Networking–ML_model_development_update.png "ML model development/update") |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                                               *ML model development/update*                                                                                |
 
 
 <details>
@@ -80,9 +80,9 @@ Description of traffic flow for simple(no Istio) Single cluster traffic flow.
 
 ## ML model deployment
 
-| ![Work_in_progress_architecture](img/Architecture_Overview–Networking–ML_model_deployment.png "ML model deployment") |
-| :------------------------------------------------------------------------------------------------------------------: |
-|                                                *ML model deployment*                                                 |
+| ![Work_in_progress_architecture](docs/sources/assets/images/Architecture_Overview–Networking–ML_model_deployment.png "ML model deployment") |
+| :-----------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                            *ML model deployment*                                                            |
 
 
 <details>

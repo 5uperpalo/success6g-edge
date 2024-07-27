@@ -1,0 +1,162 @@
+site_name: success6g-edge
+repo_name: success6g-edge
+repo_url: https://github.com/5uperpalo/success6g-edge
+copyright: Pavol Mulinka
+docs_dir: sources
+site_url: 
+edit_uri: edit/main/docs/sources
+
+# Navigation
+# There is no 'nav' in this config because we use mkdocs-awesome-pages-plugin
+# The ordering of pages in the docs folder are now in a `.pages` file instead
+nav:
+    - home: index.md
+    - use cases: use_cases.md
+    - architecture overview: architecture_overview.md
+    - networking: networking.md
+    - development: development.md
+    - testing: testing.md
+    - idneo:
+        - vehicle injector tool: idneo/vehicle_injector_tool.md
+        - datasets: idneo/datasets.md
+    - inference_model:
+        - eda: inference_model/eda.md
+        - preprocessing: inference_model/preprocessing.md
+        - training: inference_model/training.md
+        - utils: inference_model/utils.md
+    - notebooks:
+        - 01_feature_analysis: notebooks/01_feature_analysis.ipynb  
+        - 02_target_analysis: notebooks/02_target_analysis.ipynb
+        - 03_models: notebooks/03_models.ipynb
+        - 04_model_training_pipeline: notebooks/04_model_training_pipeline.ipynb
+        - 05_model_analysis: notebooks/05_model_analysis.ipynb
+        - success6g-edge: notebooks/success6g-edge.ipynb
+    - code profiling: code_profiling.md
+    - contributing: contributing.md
+
+theme:
+    logo: assets/images/logo.png
+    name: material
+    custom_dir: sources/overrides
+
+    features:
+        - navigation.tabs
+        - navigation.tabs.sticky
+        - navigation.indexes
+        - navigation.expand
+        - toc.integrate
+
+    palette:
+    - scheme: default
+      primary: white
+      accent: blueGrey
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: white
+      accent: blueGrey
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+    # palette:
+    #     # scheme: preference uses dark or light mode based on user (OS) preference
+    #     scheme: preference
+    #     primary: red
+    #     accent: red
+    icon:
+        logo: fontawesome/solid/code
+    # favicon: 'assets/images/favicon.ico'
+    language: 'en'
+
+
+use_directory_urls: false
+
+plugins:
+    - search
+    - autolinks
+    - git-authors:
+        show_contribution: True
+    - mkdocs-jupyter:
+        ignore_h1_titles: True
+        include_source: True
+    - mkdocstrings:
+        default_handler: python
+        handlers:
+            python:
+                setup_commands:
+                    - import sys
+                    # - import os
+                    - sys.path.insert(0, "..")
+                rendering:
+                    members_order: source
+                    show_source: True
+                    show_submodules: True
+                    merge_init_into_class: True
+                    separate_signature: True
+                    show_root_full_path: False
+                    show_root_heading: True
+                    docstring_section_style: list
+                    show_root_toc_entry: False
+                    # show_root_heading: True
+                    # show_object_full_path: False
+                    # separate_signature: True
+                    # merge_init_into_class: True
+                    # heading_level: 2
+                    # show_source: True
+                    # show_category_heading: true
+                    # docstring_section_style: table
+                selection:
+                    docstring_style: google
+                    # filters:
+                    #    - "!^_"  # exclude all members starting with _
+## Custom theme additions
+extra_javascript:
+    - stylesheets/extra.js
+    - javascripts/mathjax.js
+    - https://polyfill.io/v3/polyfill.min.js?features=es6
+    - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+    - stylesheets/extra.css
+
+## Extensions
+markdown_extensions:
+    - markdown.extensions.admonition
+    - markdown.extensions.attr_list
+    - markdown.extensions.def_list
+    - markdown.extensions.footnotes
+    - markdown.extensions.meta
+    - markdown.extensions.md_in_html
+    - pymdownx.superfences:
+        custom_fences:
+            - name: mermaid
+              class: mermaid
+              format: !!python/name:pymdownx.superfences.fence_code_format
+    - markdown.extensions.toc:
+        baselevel: 1
+        permalink: true
+        toc_depth: 2
+    - pymdownx.arithmatex:
+        generic: true
+    - pymdownx.betterem:
+        smart_enable: all
+    - pymdownx.caret
+    - pymdownx.critic
+    - pymdownx.details
+    - pymdownx.emoji
+    - pymdownx.highlight
+    - pymdownx.inlinehilite
+    - pymdownx.keys
+    - pymdownx.magiclink:
+    - pymdownx.mark
+    - pymdownx.smartsymbols
+    - pymdownx.snippets:
+        check_paths: true
+    - pymdownx.superfences
+    - pymdownx.tabbed:
+        alternate_style: true
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.tilde

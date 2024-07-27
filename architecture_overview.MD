@@ -2,16 +2,16 @@
 
 ## Basic Architecture
 
-| ![Basic_architecture](img/Architecture_Overview_Basic.png "Basic architecture") |
-| :-----------------------------------------------------------------------------: |
-|                              *Basic Architecture*                               |
+| ![Basic_architecture](docs/sources/assets/images/Architecture_Overview_Basic.png "Basic architecture") |
+| :----------------------------------------------------------------------------------------------------: |
+|                                          *Basic Architecture*                                          |
 
 
 ## Single cluster architecture
 
-| ![single_cluster_architecture](img/Architecture_Overview_Single_cluster.png "Single cluster architecture") |
-| :--------------------------------------------------------------------------------------------------------: |
-|                                       *Single cluster architecture*                                        |
+| ![single_cluster_architecture](docs/sources/assets/images/Architecture_Overview_Single_cluster.png "Single cluster architecture") |
+| :-------------------------------------------------------------------------------------------------------------------------------: |
+|                                                   *Single cluster architecture*                                                   |
 
 Advantages:
 * Simplified Management:
@@ -40,17 +40,17 @@ Disadvantages:
 
 ## Single cluster architecture (advanced)
 
-| ![single_cluster_architecture_advanced](img/Architecture_Overview_Single_cluster_advanced.png "Single cluster architecture(advanced)") |
-| :------------------------------------------------------------------------------------------------------------------------------------: |
-|                                                *Single cluster architecture(advanced)*                                                 |
+| ![single_cluster_architecture_advanced](docs/sources/assets/images/Architecture_Overview_Single_cluster_advanced.png "Single cluster architecture(advanced)") |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                                                            *Single cluster architecture(advanced)*                                                            |
 
 Architecture improved by involving service mesh for optimal micro service traffic routing. For more info see [istio documentation](https://istio.io/latest/docs/ops/deployment/architecture/)
 
 ## Multi cluster architecture
 
-| ![multi_cluster_architecture](img/Architecture_Overview_Multi_cluster.png "Multi cluster architecture") |
-| :-----------------------------------------------------------------------------------------------------: |
-|                                      *Multi cluster architecture*                                       |
+| ![multi_cluster_architecture](docs/sources/assets/images/Architecture_Overview_Multi_cluster.png "Multi cluster architecture") |
+| :----------------------------------------------------------------------------------------------------------------------------: |
+|                                                  *Multi cluster architecture*                                                  |
 
 Multi cluster deployment that can utilize dUPF metrics (e.g. number of connected users) to decide if the application should be deployed in a neighboring micro cluster
 

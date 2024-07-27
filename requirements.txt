@@ -1,0 +1,13 @@
+prometheus-client
+lightgbm
+redis
+mlflow
+sklearn
+pandas
+dill
+plotly
+seaborn
+sklearn_pandas
+optuna
+shap
+optuna_integration
