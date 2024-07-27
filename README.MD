@@ -1,5 +1,7 @@
 # <img src="docs/sources/assets/images/logo.png" style="height:1em; vertical-align: middle;">
 
+Documentation: https://5uperpalo.github.io/success6g-edge/
+
 | ![Architecture_Overview_Basic](docs/sources/assets/images/Architecture_Overview_Basic.png "Basic architecture")  |
 | :--------------------------------------------------------------------------------------------------------------: |
 | *Basic Architecture Overview, more detailed information in [architecture_overview.MD](architecture_overview.MD)* |
