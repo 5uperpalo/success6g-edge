@@ -1,5 +1,5 @@
 ,STAMP,Vehicle speed,STAMP,Time since engine start,STAMP,Normed load value,STAMP,Accelerator pedal position,STAMP,Engine torque,STAMP,Oil fill level,STAMP,Engine oil temperature,STAMP,Fuel level,STAMP,Fuel consumption,STAMP,Brake pressure,STAMP,Engaged gear: raw signal-Bits 0-7,STAMP,Efficiency of the SCR catalytic converter,
-,, km/h,, s,, %,, %,, Nm,, mm,, °C,, l,, l/h,, MPa,, ,, ,
+,, km/h,, s,, %,, %,, Nm,, mm,, C,, l,, l/h,, MPa,, ,, ,
 ,1.02,0,1.14,68,1.25,31.0,1.35,14.5,1.46,44.6,0.10,30.604,0.25,11.6,0.37,9.00,0.51,0.95,0.64,-0.03,0.78,0,0.92,0.00000,
 ,2.48,0,2.58,69,2.68,31.0,2.77,14.5,2.88,44.7,1.59,30.724,1.72,11.6,1.85,9.00,1.99,0.94,2.10,-0.03,2.25,0,2.36,0.00287,
 ,3.95,0,4.06,71,4.17,31.4,4.28,14.5,4.40,45.6,3.01,30.724,3.14,11.6,3.27,9.00,3.41,0.94,3.55,-0.03,3.70,0,3.84,0.01270,

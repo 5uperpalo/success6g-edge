@@ -31,6 +31,51 @@
 
 ## Core services
 
+### InfluxDB
+
+<details><summary>add Helm repo</summary>
+
+```
+helm repo add influxdata https://helm.influxdata.com/
+helm repo update
+```
+</details>
+<details><summary>install InfluxDB</summary>
+
+[influxdb](https://github.com/influxdata/helm-charts/tree/master/charts/influxdb) with defined values
+```
+helm install influx influxdata/influxdb2 \
+--namespace influx --create-namespace
+
+helm install influx influxdata/influxdb2 --set service.type=NodePort \
+--set adminUser.user="admin" \
+--set adminUser.password="admin_pass" \
+--set adminUser.token="admin_token" \
+--namespace influx --create-namespace
+```
+</details>
+<details><summary>log</summary>
+
+```
+NAME: influx
+LAST DEPLOYED: Mon Jul 29 14:52:16 2024
+NAMESPACE: influx
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+InfluxDB 2 is deployed as a StatefulSet on your cluster.
+
+You can access it by using the service name: influx-influxdb2
+
+To retrieve the password for the 'admin' user:
+
+  echo $(kubectl get secret influx-influxdb2-auth -o "jsonpath={.data['admin-password']}" --namespace influx | base64 --decode)
+
+Note: with enabled persistence, admin password is only set once during the initial deployment. The password is not changed when InfluxDB 2 is re-deployed with different password.
+```
+</details>
+
 ### Prometheus stack
 Prometheus, Grafana, Alertmanager, Thanos-?
 
@@ -41,7 +86,7 @@ helm repo add prometheus-community https://prometheus-community.github.io/helm-c
 helm repo update
 ```
 </details>
-<details><summary>install Prometheus, Kepler</summary>
+<details><summary>install Prometheus</summary>
 
 [prometheus-stack](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/README.md) with defined values
 ```

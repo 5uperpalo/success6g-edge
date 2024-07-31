@@ -1,3 +1,11 @@
 InferenceService:
   name: "mlflow-wine-classifier"
   storageUri: "s3://mlflow/5/988f6db2906641b8bcc1494c36619f9d/artifacts/model"
+  INFLUXDB_IP: "localhost"
+  INFLUXDB_PORT: 8086
+  INFLUXDB_USER: "admin"
+  INFLUXDB_PASS: "admin"
+  REDIS_IP: "localhost"
+  REDIS_PORT: 6379
+  REDIS_USER: "default"
+  REDIS_PASS: "Success6G&Idneo"

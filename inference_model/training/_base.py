@@ -1,6 +1,6 @@
 import warnings
 from typing import Any, Dict, List, Tuple, Union, Literal, Callable, Optional
-
+import os
 import numpy as np
 import mlflow
 import pandas as pd
@@ -22,6 +22,14 @@ from inference_model.training.utils import (
 from inference_model.training._params import set_base_params
 from inference_model.training.metrics import aiqc, rmse, nacil
 from inference_model.preprocessing.preprocess import PreprocessData
+
+# Get the env value and if not present, set default
+INFLUXDB_IP = os.getenv("INFLUXDB_IP", "localhost")
+INFLUXDB_PORT = os.getenv("INFLUXDB_PORT", "default_value")
+INFLUXDB_USER = os.getenv("INFLUXDB_USER", "default_value")
+INFLUXDB_PASS = os.getenv("INFLUXDB_PASS", "default_value")
+REDIS_IP = os.getenv("INFLUXDB_IP", "localhost")
+REDIS_PORT = os.getenv("INFLUXDB_PORT", "default_value")
 
 
 class Base(object):
@@ -165,7 +173,28 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         else:
             cols_names = [self.target_col]
 
-        return pd.DataFrame(data=preds_raw, columns=cols_names)
+        preds = pd.DataFrame(data=preds_raw, columns=cols_names)
+
+        # Forward predictions to the database
+        self.forward_predictions_to_db(preds)
+
+        return preds
+
+
+    def forward_predictions_to_db(preds: pd.DataFrame):
+        # Open a new session
+        session = Session()
+        try:
+            # Create records to insert
+            records = [{'input_data': str(input_data), 'prediction': str(pred)} for pred in predictions]
+            # Insert into the table
+            session.execute(predictions_table.insert(), records)
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            print(f"Error inserting records: {e}")
+        finally:
+            session.close()
 
     def predict_proba(self, df: pd.DataFrame, binary2d: bool = False) -> pd.DataFrame:
         """Predict class probabilities.

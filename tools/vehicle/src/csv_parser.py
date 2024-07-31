@@ -1,5 +1,5 @@
 import csv
-from src.data_handler import order_by_sensor
+from .data_handler import order_by_sensor
 
 
 def process_line_sensors_name(line):

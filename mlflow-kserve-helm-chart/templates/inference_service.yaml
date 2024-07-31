@@ -10,3 +10,20 @@ spec:
         name: mlflow
       protocolVersion: v2
       storageUri: {{ .Values.InferenceService.storageUri }}
+    containers:
+      - name: kserve-container
+        env:
+          - name: INFLUXDB_IP
+            value: {{ .Values.InferenceService.INFLUXDB_IP }}
+          - name: INFLUXDB_PORT
+            value: {{ .Values.InferenceService.INFLUXDB_PORT }}
+          - name: INFLUXDB_USER
+            value: {{ .Values.InferenceService.INFLUXDB_USER }}
+          - name: INFLUXDB_PASS
+            value: {{ .Values.InferenceService.INFLUXDB_PASS }}
+          - name: REDIS_IP
+            value: {{ .Values.InferenceService.REDIS_IP }}
+          - name: REDIS_PORT
+            value: {{ .Values.InferenceService.REDIS_PORT }}
+          - name: REDIS_PASS
+            value: {{ .Values.InferenceService.REDIS_PASS }}
