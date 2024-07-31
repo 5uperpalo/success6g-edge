@@ -10,6 +10,8 @@ This repository is for the edge pod implementation, monitoring, and analysis in 
 
 Table of contents
 * [detailed description of the use cases](use_cases.MD)
+* [description of the data management and database choices](data_management.MD)
+* [description of the ml model choices](ml_model_development.MD)
 * [explanation of the communication between the services](networking.MD)
 * [description of Research&Development setup](development.MD)
 * [description of Testing setup](testing.MD)

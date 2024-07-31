@@ -13,10 +13,12 @@ nav:
     - home: index.md
     - use cases: use_cases.md
     - architecture overview: architecture_overview.md
+    - data management: data_management.md
+    - ML model dev: ml_model_development.md
     - networking: networking.md
     - development: development.md
     - testing: testing.md
-    - idneo:
+    - Idneo:
         - vehicle injector tool: idneo/vehicle_injector_tool.md
         - datasets: idneo/datasets.md
     - inference_model:

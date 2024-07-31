@@ -5,9 +5,9 @@
 The project is focused on developing a production-ready solution. At the time of writing the documentation, we do not have vehicular measurements that would include labels with vehicle faults. We focus on exploring the best possible overall/engineering solutions as opposed to finding the best-performing model. Centralized training is therefore first choice for implementation.
 
 * advantages:
-  * simplified data management - having all data in one place can simplify data management, preprocessing, and cleaning
+    * simplified data management - having all data in one place can simplify data management, preprocessing, and cleaning
 * disadvantages:
-  * privacy concerns - ggregating data from multiple sources can lead to significant privacy issues, especially with sensitive information
+    * privacy concerns - ggregating data from multiple sources can lead to significant privacy issues, especially with sensitive information
     
 ### Online/stream vs batch
 
@@ -22,15 +22,15 @@ As we are dealing with strictly tabular data we focus on the tree-based model so
 We implement a federated learning model to address concerns of privacy and data management in case of multi-cluster solution.
 
 * advantages:
-  * enhanced privacy - raw data never leaves the local devices, reducing privacy risks
-  * reduced data transfer - only model updates (rather than raw data) are transmitted, which can be more bandwidth-efficient
-  * compliance - easier to comply with data sovereignty and privacy regulations since data remains local
-  * fault tolerance - the system can be more resilient to individual server failures since the data and computation are distributed
+    * enhanced privacy - raw data never leaves the local devices, reducing privacy risks
+    * reduced data transfer - only model updates (rather than raw data) are transmitted, which can be more bandwidth-efficient
+    * compliance - easier to comply with data sovereignty and privacy regulations since data remains local
+    * fault tolerance - the system can be more resilient to individual server failures since the data and computation are distributed
 * disadvantages:
-  * complexity - implementing federated learning is more complex due to the need to manage distributed training, aggregation, and synchronization
-  * heterogeneity - variability in data quality and distribution across devices can impact model performance
-  * limited computational resources - Local devices may have limited computational power compared to centralized data centers
-  * communication overhead - while raw data isn't transferred, frequent model updates can still generate significant communication overhead, especially in large-scale systems
+    * complexity - implementing federated learning is more complex due to the need to manage distributed training, aggregation, and synchronization
+    * heterogeneity - variability in data quality and distribution across devices can impact model performance
+    * limited computational resources - Local devices may have limited computational power compared to centralized data centers
+    * communication overhead - while raw data isn't transferred, frequent model updates can still generate significant communication overhead, especially in large-scale systems
 
 ```mermaid
 graph TB
@@ -60,9 +60,9 @@ graph TB
 ```
 
 * **[PySyft [PREFERRED]](https://github.com/OpenMined/PySyft/tree/dev)**
-  * focuses on strong privacy-preserving techniques, offering advanced security features for sensitive data
-  * easy to [deploy workers/clients](https://github.com/OpenMined/PySyft/blob/dev/notebooks/tutorials/deployments/00-deployment-types.ipynb)
+    * focuses on strong privacy-preserving techniques, offering advanced security features for sensitive data
+    * easy to [deploy workers/clients](https://github.com/OpenMined/PySyft/blob/dev/notebooks/tutorials/deployments/00-deployment-types.ipynb)
 * [Flower](https://github.com/adap/flower)
-  * emphasizes flexibility and ease of integration with existing machine learning frameworks, suitable for rapid prototyping and deployment
-  * more focused on [iOS and Android deployment](https://flower.ai/docs/)
+    * emphasizes flexibility and ease of integration with existing machine learning frameworks, suitable for rapid prototyping and deployment
+    * more focused on [iOS and Android deployment](https://flower.ai/docs/)
 * [KubeFATE](https://github.com/FederatedAI/KubeFATE) - focused towards secure, scalable enterprise applications with advanced privacy-preserving techniques
