@@ -24,44 +24,6 @@ Description of the components:
 * [Kepler](https://sustainable-computing.io/) - gather energy consumption data
 * [Redis](https://redis.io/) - API for transfer of OBU measurements to Kubernetes
 
-## TODO
-
-```mermaid
-graph TB
-    subgraph Cluster1
-        direction TB
-        Worker1[PySyft Worker Node 1]
-    end
-
-    subgraph Cluster2
-        direction TB
-        Worker2[PySyft Worker Node 2]
-    end
-
-    subgraph Cluster3
-        direction TB
-        Worker3[PySyft Worker Node 3]
-    end
-
-    subgraph CentralCluster
-        direction TB
-        CentralServer[PySyft Central Server]
-    end
-
-    Worker1 <--> CentralServer
-    Worker2 <--> CentralServer
-    Worker3 <--> CentralServer
-```
-
-* federated learning/training in Kubernetes:
-  * **[PySyft [PREFERRED]](https://github.com/OpenMined/PySyft/tree/dev)**
-    * focuses on strong privacy-preserving techniques, offering advanced security features for sensitive data
-    * easy to [deploy workers/clients](https://github.com/OpenMined/PySyft/blob/dev/notebooks/tutorials/deployments/00-deployment-types.ipynb)
-  * [Flower](https://github.com/adap/flower)
-    * emphasizes flexibility and ease of integration with existing machine learning frameworks, suitable for rapid prototyping and deployment
-    * more focused on [iOS and Android deployment](https://flower.ai/docs/)
-  * [KubeFATE](https://github.com/FederatedAI/KubeFATE) - focused towards secure, scalable enterprise applications with advanced privacy-preserving techniques
-
 ## Additional ideas 
 
 * KubeEdge deployment - same as Microk8s except with KubeEdge and Kubeflow/Kserver is swapped for Sedna

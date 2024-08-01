@@ -1,7 +1,6 @@
 from typing import Any, Dict, List, Union, Literal, Optional
 
 import pandas as pd
-from sklearn.model_selection import train_test_split
 
 from inference_model.utils import intsec
 from inference_model.training._base import BaseTrainer, BaseOptimizer

@@ -1,11 +1,14 @@
-import warnings
-from typing import Any, Dict, List, Tuple, Union, Literal, Callable, Optional
 import os
+import logging
+from typing import Any, Dict, List, Tuple, Union, Literal, Callable, Optional
+
 import numpy as np
+import redis
 import mlflow
 import pandas as pd
 import lightgbm as lgb
 from lightgbm import Dataset as lgbDataset
+from influxdb_client import Point, InfluxDBClient
 from sklearn.metrics import (
     f1_score,
     r2_score,
@@ -14,7 +17,9 @@ from sklearn.metrics import (
     classification_report,
     precision_recall_curve,
 )
+from influxdb_client.client.write_api import SYNCHRONOUS
 
+from inference_model.config import LOGGING_CONFIG
 from inference_model.training.utils import (
     predict_cls_lgbm_from_raw,
     predict_proba_lgbm_from_raw,
@@ -24,12 +29,15 @@ from inference_model.training.metrics import aiqc, rmse, nacil
 from inference_model.preprocessing.preprocess import PreprocessData
 
 # Get the env value and if not present, set default
-INFLUXDB_IP = os.getenv("INFLUXDB_IP", "localhost")
-INFLUXDB_PORT = os.getenv("INFLUXDB_PORT", "default_value")
+INFLUXDB_HOST = os.getenv("INFLUXDB_HOST", "localhost")
+INFLUXDB_PORT = os.getenv("INFLUXDB_PORT", 80)
 INFLUXDB_USER = os.getenv("INFLUXDB_USER", "default_value")
 INFLUXDB_PASS = os.getenv("INFLUXDB_PASS", "default_value")
-REDIS_IP = os.getenv("INFLUXDB_IP", "localhost")
-REDIS_PORT = os.getenv("INFLUXDB_PORT", "default_value")
+REDIS_HOST = os.getenv("INFLUXDB_HOST", "localhost")
+REDIS_PORT = os.getenv("INFLUXDB_PORT", 6379)
+REDIS_PASS = os.getenv("INFLUXDB_HOST", "redis")
+
+logging.config.dictConfig(LOGGING_CONFIG)
 
 
 class Base(object):
@@ -72,6 +80,7 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         objective: Literal["binary", "multiclass", "regression"],
         n_class: Optional[int] = None,
         preprocessors: Optional[List[Union[Any, PreprocessData]]] = None,
+        local_dev: bool = True,
     ):
         """Object that governs optimization, training and prediction of the lgbm model.
 
@@ -84,6 +93,8 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
             preprocessors (List[Union[Any, PreprocessData]]):
                 ordered list of objects to preprocess dataset before optimization
                 and training
+            local_dev (bool): if the model is locally developed no redis,
+                influxdb service APIs are being used
         """
         super(BaseTrainer, self).__init__(objective, n_class)
 
@@ -91,6 +102,7 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         self.target_col = target_col
         self.id_cols = id_cols
         self.model: Union[lgb.basic.Booster, dict, None] = None
+        self.local_dev = local_dev
         if preprocessors is not None:
             for prep in preprocessors:
                 if not hasattr(prep, "transform"):
@@ -98,6 +110,53 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
                         "{} preprocessor must have {} method".format(prep, "transform")
                     )
         self.preprocessors = preprocessors
+
+        if not self.local_dev:
+            try:
+                redisClient = redis.Redis(
+                    host=REDIS_HOST, password=REDIS_PASS, port=REDIS_PORT
+                )
+
+                # create influxdb API object
+                influxdbClient = InfluxDBClient(
+                    url=f"http://{INFLUXDB_HOST}:{str(INFLUXDB_PORT)}",
+                    username=INFLUXDB_USER,
+                    password=INFLUXDB_PASS,
+                )
+                self.write_api = influxdbClient.write_api(write_options=SYNCHRONOUS)
+
+                # Subscribe to the "idneo_v2x" channel
+                pubsub = redisClient.pubsub()
+                pubsub.subscribe(**{"idneo_v2x": self._handle_redis_message})
+
+                # Wait for messages
+                pubsub.run_in_thread(sleep_time=1)
+            except Exception:
+                logging.error("An error occurred", exc_info=True)
+
+    def _handle_redis_message(self, message):
+        """Handle Redis channel messages:
+        1. decode messages from Redis channel
+        2. make a prediction
+        3. convert pandas rows to influxdb points
+        4. write into the influxdb
+        """
+        # Convert the message data (bytes) to string
+        json_data = message["data"].decode("utf-8")
+
+        # Convert JSON string to DataFrame
+        df = pd.read_json(json_data, orient="split")
+
+        self.predict(df.drop(columns=["class", "timestamp", "vehicle_id"]))
+
+    def _df_row_to_influxdb_point(self, row) -> Point:
+        """Function to convert a DataFrame row to an InfluxDB Point"""
+        return (
+            Point("prediction")
+            .tag("vehicle_id", row["vehicle_id"])
+            .field("value", row["prediction"])
+            .time(row["timestamp"])
+        )
 
     def train(
         self,
@@ -175,26 +234,16 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
 
         preds = pd.DataFrame(data=preds_raw, columns=cols_names)
 
-        # Forward predictions to the database
-        self.forward_predictions_to_db(preds)
+        if not self.local_dev:
+            # Convert DataFrame to InfluxDB Points and write
+            points = [
+                self._df_row_to_influxdb_point(row) for index, row in preds.iterrows()
+            ]
 
-        return preds
-
-
-    def forward_predictions_to_db(preds: pd.DataFrame):
-        # Open a new session
-        session = Session()
-        try:
-            # Create records to insert
-            records = [{'input_data': str(input_data), 'prediction': str(pred)} for pred in predictions]
-            # Insert into the table
-            session.execute(predictions_table.insert(), records)
-            session.commit()
-        except Exception as e:
-            session.rollback()
-            print(f"Error inserting records: {e}")
-        finally:
-            session.close()
+            # Write points to InfluxDB
+            self.write_api.write(bucket="default", record=points)
+        else:
+            return preds
 
     def predict_proba(self, df: pd.DataFrame, binary2d: bool = False) -> pd.DataFrame:
         """Predict class probabilities.

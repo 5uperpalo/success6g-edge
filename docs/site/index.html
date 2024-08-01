@@ -457,13 +457,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#todo" class="md-nav__link">
-    TODO
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#additional-ideas" class="md-nav__link">
     Additional ideas
   </a>
@@ -961,45 +954,6 @@
 <li><a href="https://knative.dev">Knative</a> - to ensure autoscaling of inference service pods</li>
 <li><a href="https://sustainable-computing.io/">Kepler</a> - gather energy consumption data</li>
 <li><a href="https://redis.io/">Redis</a> - API for transfer of OBU measurements to Kubernetes</li>
-</ul>
-<h2 id="todo">TODO<a class="headerlink" href="#todo" title="Permanent link">&para;</a></h2>
-<pre class="mermaid"><code>graph TB
-    subgraph Cluster1
-        direction TB
-        Worker1[PySyft Worker Node 1]
-    end
-
-    subgraph Cluster2
-        direction TB
-        Worker2[PySyft Worker Node 2]
-    end
-
-    subgraph Cluster3
-        direction TB
-        Worker3[PySyft Worker Node 3]
-    end
-
-    subgraph CentralCluster
-        direction TB
-        CentralServer[PySyft Central Server]
-    end
-
-    Worker1 &lt;--&gt; CentralServer
-    Worker2 &lt;--&gt; CentralServer
-    Worker3 &lt;--&gt; CentralServer</code></pre>
-<ul>
-<li>federated learning/training in Kubernetes:</li>
-<li><strong><a href="https://github.com/OpenMined/PySyft/tree/dev">PySyft [PREFERRED]</a></strong><ul>
-<li>focuses on strong privacy-preserving techniques, offering advanced security features for sensitive data</li>
-<li>easy to <a href="https://github.com/OpenMined/PySyft/blob/dev/notebooks/tutorials/deployments/00-deployment-types.ipynb">deploy workers/clients</a></li>
-</ul>
-</li>
-<li><a href="https://github.com/adap/flower">Flower</a><ul>
-<li>emphasizes flexibility and ease of integration with existing machine learning frameworks, suitable for rapid prototyping and deployment</li>
-<li>more focused on <a href="https://flower.ai/docs/">iOS and Android deployment</a></li>
-</ul>
-</li>
-<li><a href="https://github.com/FederatedAI/KubeFATE">KubeFATE</a> - focused towards secure, scalable enterprise applications with advanced privacy-preserving techniques</li>
 </ul>
 <h2 id="additional-ideas">Additional ideas<a class="headerlink" href="#additional-ideas" title="Permanent link">&para;</a></h2>
 <ul>
