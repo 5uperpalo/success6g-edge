@@ -10,7 +10,7 @@ def requirements(fname):
         line.strip() for line in open(os.path.join(os.path.dirname(__file__), fname))
     ]
 
-
+"""
 pwd = os.path.dirname(__file__)
 
 
@@ -27,14 +27,16 @@ extras["quality"] = [
     "flake8",
 ]
 extras["all"] = extras["docs"] + extras["quality"]
+"""
+
 reqs = requirements("requirements.txt")
 
 # main setup kw args
 setup_kwargs = {
     "name": "success6g-edge",
-    "version": version,
+    #"version": version,
     "description": "SUCCESS-6G",
-    "long_description": open("README.MD", "r", encoding="utf-8").read(),
+    #"long_description": open("README.MD", "r", encoding="utf-8").read(),
     "long_description_content_type": "text/markdown",
     # "long_description": long_description,
     "author": "Pavol Mulinka",
@@ -42,7 +44,7 @@ setup_kwargs = {
     "url": "https://github.com/5uperpalo/success6g-edge",
     "license": "MIT",
     "install_requires": reqs,
-    "extras_require": extras,
+    #"extras_require": extras,
     "python_requires": ">=3.8.0",
     "classifiers": [
         "Environment :: Other Environment",

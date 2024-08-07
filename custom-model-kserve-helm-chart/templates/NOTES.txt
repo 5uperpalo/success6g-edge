@@ -1,0 +1,5 @@
+you may check the inference service by:
+kubectl get inferenceservice {{ .Values.InferenceService.name }} -n {{ .Release.Namespace }}
+
+you may test the prediction service by following mlflow guide:
+https://mlflow.org/docs/latest/deployment/deploy-model-to-kubernetes/tutorial.html#test-the-deployment

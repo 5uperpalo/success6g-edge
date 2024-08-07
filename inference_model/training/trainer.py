@@ -12,15 +12,7 @@ import os
 import redis
 from influxdb_client import Point, InfluxDBClient
 from influxdb_client.client.write_api import SYNCHRONOUS
-
-# Get the env value and if not present, set default
-INFLUXDB_HOST = os.getenv("INFLUXDB_HOST", "localhost")
-INFLUXDB_PORT = os.getenv("INFLUXDB_PORT", "80")
-INFLUXDB_USER = os.getenv("INFLUXDB_USER", "default_value")
-INFLUXDB_PASS = os.getenv("INFLUXDB_PASS", "default_value")
-REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
-REDIS_PORT = os.getenv("REDIS_PORT", "6379")
-REDIS_PASS = os.getenv("REDIS_PASS", "redis")
+import logging
 
 
 class Trainer(BaseTrainer):
@@ -234,10 +226,19 @@ class S6GTrainer(Trainer, kserve.Model):
             optimizer=optimizer,
             preprocessors=preprocessors,
         )
+        self.name = name
         self._set_production_env()
 
     def _set_production_env(self):
         try:
+            INFLUXDB_HOST = os.getenv("INFLUXDB_HOST", "localhost")
+            INFLUXDB_PORT = os.getenv("INFLUXDB_PORT", "80")
+            INFLUXDB_USER = os.getenv("INFLUXDB_USER", "default_value")
+            INFLUXDB_PASS = os.getenv("INFLUXDB_PASS", "default_value")
+            REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
+            REDIS_PORT = os.getenv("REDIS_PORT", "6379")
+            REDIS_PASS = os.getenv("REDIS_PASS", "redis")
+
             redisClient = redis.Redis(
                 host=REDIS_HOST, password=REDIS_PASS, port=int(REDIS_PORT)
             )

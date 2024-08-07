@@ -1,0 +1,25 @@
+apiVersion: "serving.kserve.io/v1beta1"
+kind: "InferenceService"
+metadata:
+  name: {{ .Values.InferenceService.name }}
+spec:
+  predictor:
+    minReplicas: 1
+    containers:
+      - name: custom-model-container
+        image: 5uperpalo/success6g_custom_kserve:latest
+        env:
+          - name: INFLUXDB_HOST
+            value: {{ .Values.InferenceService.INFLUXDB_HOST }}
+          - name: INFLUXDB_PORT
+            value: "{{ .Values.InferenceService.INFLUXDB_PORT }}"
+          - name: INFLUXDB_USER
+            value: {{ .Values.InferenceService.INFLUXDB_USER }}
+          - name: INFLUXDB_PASS
+            value: {{ .Values.InferenceService.INFLUXDB_PASS }}
+          - name: REDIS_HOST
+            value: {{ .Values.InferenceService.REDIS_HOST }}
+          - name: REDIS_PORT
+            value: "{{ .Values.InferenceService.REDIS_PORT }}"
+          - name: REDIS_PASS
+            value: {{ .Values.InferenceService.REDIS_PASS }}

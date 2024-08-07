@@ -2,7 +2,7 @@ prometheus-client
 lightgbm
 redis
 mlflow
-sklearn
+scikit-learn
 pandas
 dill
 plotly

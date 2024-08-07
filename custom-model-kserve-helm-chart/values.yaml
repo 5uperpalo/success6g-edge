@@ -1,0 +1,9 @@
+InferenceService:
+  name: "custom-kserve-model"
+  INFLUXDB_HOST: "10.152.183.219"
+  INFLUXDB_PORT: "80"
+  INFLUXDB_USER: "admin"
+  INFLUXDB_PASS: "admin_pass"
+  REDIS_HOST: "10.152.183.169"
+  REDIS_PORT: "6379"
+  REDIS_PASS: "redis"
