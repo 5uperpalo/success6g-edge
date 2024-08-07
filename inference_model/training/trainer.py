@@ -227,9 +227,9 @@ class S6GTrainer(Trainer, kserve.Model):
             preprocessors=preprocessors,
         )
         self.name = name
-        self._set_production_env()
+        self.ready = False
 
-    def _set_production_env(self):
+    def set_production_env(self):
         try:
             INFLUXDB_HOST = os.getenv("INFLUXDB_HOST", "localhost")
             INFLUXDB_PORT = os.getenv("INFLUXDB_PORT", "80")
