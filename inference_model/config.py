@@ -1,5 +1,10 @@
 import logging
+import os
 
+log_directory = "logs"
+if not os.path.exists(log_directory):
+    os.makedirs(log_directory)
+    
 LOGGING_CONFIG = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -14,7 +19,7 @@ LOGGING_CONFIG = {
         },
         "file": {
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": "/logs/classifier.log",
+            "filename": os.path.join(log_directory, "classifier.log"),
             "mode": "a",
             "maxBytes": 100000,
             "backupCount": 5,

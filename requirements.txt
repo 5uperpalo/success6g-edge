@@ -12,3 +12,4 @@ optuna
 shap
 optuna_integration
 influxdb_client
+kserve

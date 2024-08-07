@@ -43,3 +43,4 @@ Description of the components:
 * KubeEdge deployment - same as Microk8s except with KubeEdge and Kubeflow/Kserver is swapped for Sedna
 * implement multimodel pods e.g. by [ModelMesh](https://github.com/kserve/modelmesh-serving), or alpha feature of [Kserve](https://github.com/kserve/kserve/blob/master/docs/MULTIMODELSERVING_GUIDE.md)
 * use [Rancher](https://www.rancher.com/) to manage multi cluster Kubernetes
+* implement [Kserve inference service as gRPC](https://kserve.github.io/website/master/modelserving/v1beta1/custom/custom_model/#create-and-deploy-custom-grpc-servingruntime) for high-performance/low latency production implementation

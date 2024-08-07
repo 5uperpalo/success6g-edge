@@ -1,14 +1,12 @@
-import os
 import logging
 from typing import Any, Dict, List, Tuple, Union, Literal, Callable, Optional
 
 import numpy as np
-import redis
 import mlflow
 import pandas as pd
 import lightgbm as lgb
 from lightgbm import Dataset as lgbDataset
-from influxdb_client import Point, InfluxDBClient
+
 from sklearn.metrics import (
     f1_score,
     r2_score,
@@ -17,8 +15,6 @@ from sklearn.metrics import (
     classification_report,
     precision_recall_curve,
 )
-from influxdb_client.client.write_api import SYNCHRONOUS
-
 from inference_model.config import LOGGING_CONFIG
 from inference_model.training.utils import (
     predict_cls_lgbm_from_raw,
@@ -27,15 +23,6 @@ from inference_model.training.utils import (
 from inference_model.training._params import set_base_params
 from inference_model.training.metrics import aiqc, rmse, nacil
 from inference_model.preprocessing.preprocess import PreprocessData
-
-# Get the env value and if not present, set default
-INFLUXDB_HOST = os.getenv("INFLUXDB_HOST", "localhost")
-INFLUXDB_PORT = os.getenv("INFLUXDB_PORT", 80)
-INFLUXDB_USER = os.getenv("INFLUXDB_USER", "default_value")
-INFLUXDB_PASS = os.getenv("INFLUXDB_PASS", "default_value")
-REDIS_HOST = os.getenv("INFLUXDB_HOST", "localhost")
-REDIS_PORT = os.getenv("INFLUXDB_PORT", 6379)
-REDIS_PASS = os.getenv("INFLUXDB_HOST", "redis")
 
 logging.config.dictConfig(LOGGING_CONFIG)
 
@@ -93,8 +80,6 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
             preprocessors (List[Union[Any, PreprocessData]]):
                 ordered list of objects to preprocess dataset before optimization
                 and training
-            local_dev (bool): if the model is locally developed no redis,
-                influxdb service APIs are being used
         """
         super(BaseTrainer, self).__init__(objective, n_class)
 
@@ -102,7 +87,7 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         self.target_col = target_col
         self.id_cols = id_cols
         self.model: Union[lgb.basic.Booster, dict, None] = None
-        self.local_dev = local_dev
+
         if preprocessors is not None:
             for prep in preprocessors:
                 if not hasattr(prep, "transform"):
@@ -110,53 +95,6 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
                         "{} preprocessor must have {} method".format(prep, "transform")
                     )
         self.preprocessors = preprocessors
-
-        if not self.local_dev:
-            try:
-                redisClient = redis.Redis(
-                    host=REDIS_HOST, password=REDIS_PASS, port=REDIS_PORT
-                )
-
-                # create influxdb API object
-                influxdbClient = InfluxDBClient(
-                    url=f"http://{INFLUXDB_HOST}:{str(INFLUXDB_PORT)}",
-                    username=INFLUXDB_USER,
-                    password=INFLUXDB_PASS,
-                )
-                self.write_api = influxdbClient.write_api(write_options=SYNCHRONOUS)
-
-                # Subscribe to the "idneo_v2x" channel
-                pubsub = redisClient.pubsub()
-                pubsub.subscribe(**{"idneo_v2x": self._handle_redis_message})
-
-                # Wait for messages
-                pubsub.run_in_thread(sleep_time=1)
-            except Exception:
-                logging.error("An error occurred", exc_info=True)
-
-    def _handle_redis_message(self, message):
-        """Handle Redis channel messages:
-        1. decode messages from Redis channel
-        2. make a prediction
-        3. convert pandas rows to influxdb points
-        4. write into the influxdb
-        """
-        # Convert the message data (bytes) to string
-        json_data = message["data"].decode("utf-8")
-
-        # Convert JSON string to DataFrame
-        df = pd.read_json(json_data, orient="split")
-
-        self.predict(df.drop(columns=["class", "timestamp", "vehicle_id"]))
-
-    def _df_row_to_influxdb_point(self, row) -> Point:
-        """Function to convert a DataFrame row to an InfluxDB Point"""
-        return (
-            Point("prediction")
-            .tag("vehicle_id", row["vehicle_id"])
-            .field("value", row["prediction"])
-            .time(row["timestamp"])
-        )
 
     def train(
         self,
@@ -193,24 +131,22 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         """
         raise NotImplementedError("Trainer must implement a 'fit' method")
 
-    def predict(
+    def predict_default(
         self,
-        context: Optional[dict],
         df: Union[pd.DataFrame, dict],
-        raw_score: bool = True,
+        raw_score: bool = False,
     ) -> pd.DataFrame:
         """Predict.
 
         Args:
-            context (dict):
             df (pd.DataFrame): dataset
             raw_score (bool): whether to return raw output
         Returns:
             preds_raw (np.ndarray):
         """
-        # for mlflow inference service testing
         if type(df) is dict:
             df = pd.DataFrame.from_dict(df, orient="index").transpose()
+        df = df.reset_index(drop=True)
         if self.preprocessors:
             for prep in self.preprocessors:
                 df = prep.transform(df)
@@ -224,26 +160,18 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         preds_raw = self.model.predict(  # type: ignore
             df.drop(columns=self.id_cols),  # type: ignore
             raw_score=raw_score,
-            context=None,
         )
         if type(self.n_class) is int and self.n_class > 2:
             n_class_list_str = list(map(str, range(self.n_class)))
+            # TODO - include this case in influxdb
             cols_names = [self.target_col + "_" + cl for cl in n_class_list_str]
         else:
             cols_names = [self.target_col]
 
         preds = pd.DataFrame(data=preds_raw, columns=cols_names)
+        preds[self.id_cols] = df[self.id_cols]
 
-        if not self.local_dev:
-            # Convert DataFrame to InfluxDB Points and write
-            points = [
-                self._df_row_to_influxdb_point(row) for index, row in preds.iterrows()
-            ]
-
-            # Write points to InfluxDB
-            self.write_api.write(bucket="default", record=points)
-        else:
-            return preds
+        return preds
 
     def predict_proba(self, df: pd.DataFrame, binary2d: bool = False) -> pd.DataFrame:
         """Predict class probabilities.
@@ -353,7 +281,7 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         elif self.objective == "multiclass":
             preds = self.predict_cls(df=df.drop(columns=[self.target_col]))
         elif self.objective == "regression":
-            preds = self.predict(
+            preds = self.predict_default(
                 df=df.drop(columns=[self.target_col]), raw_score=True, context=None
             )
             metrics_dict["sample_count"] = len(df)
