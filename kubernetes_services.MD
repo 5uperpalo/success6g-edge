@@ -801,8 +801,10 @@ clusterstoragecontainer.serving.kserve.io/default created
 
 <details><summary>install</summary>
 
+[helm chat values](https://github.com/bitnami/charts/tree/main/bitnami/redis/#installing-the-chart)
+
 ```
-helm install redis oci://registry-1.docker.io/bitnamicharts/redis --set auth.password=redis --namespace redis --create-namespace
+helm install redis oci://registry-1.docker.io/bitnamicharts/redis --set auth.password=redis --set master.service.type=NodePort --namespace redis --create-namespace
 ```
 </details>
 <details><summary>output</summary>

@@ -131,9 +131,10 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         """
         raise NotImplementedError("Trainer must implement a 'fit' method")
 
-    def predict_default(
+    def predict(
         self,
         df: Union[pd.DataFrame, dict],
+        context: Optional[dict] = None,
         raw_score: bool = False,
     ) -> pd.DataFrame:
         """Predict.
@@ -281,8 +282,8 @@ class BaseTrainer(Base, mlflow.pyfunc.PythonModel):
         elif self.objective == "multiclass":
             preds = self.predict_cls(df=df.drop(columns=[self.target_col]))
         elif self.objective == "regression":
-            preds = self.predict_default(
-                df=df.drop(columns=[self.target_col]), raw_score=True, context=None
+            preds = self.predict(
+                df=df.drop(columns=[self.target_col]), raw_score=True,
             )
             metrics_dict["sample_count"] = len(df)
             metrics_dict["mean_target_col"] = df[self.target_col].mean()

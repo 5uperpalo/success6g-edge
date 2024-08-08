@@ -11,7 +11,7 @@ COPY setup.py /app/setup.py
 
 # for testing purposes
 ENV REDIS_PASSWORD redis
-ENV REDIS_HOST 10.152.183.169
+ENV REDIS_HOST 10.152.183.250
 ENV REDIS_PORT 6379
 ENV INFLUXDB_HOST 10.152.183.219
 ENV INFLUXDB_PORT 80
@@ -21,7 +21,7 @@ ENV INFLUXDB_PASS admin_pass
 #WORKDIR /app
 
 RUN pip install -r /app/requirements.txt
-RUN pip install /app/. 
+RUN pip install /app/.
 
 
-CMD ["python", "/app/inference_model/custom_model_server.py"]
+CMD ["python", "/app/inference_model/dummy_script.py"]

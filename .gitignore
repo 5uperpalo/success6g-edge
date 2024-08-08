@@ -1,6 +1,7 @@
 #python
 build/
 dist/
+logs/
 __pycache__*
 *.pyc
 *.pyo
