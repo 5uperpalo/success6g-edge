@@ -3,14 +3,15 @@
 ## Using Helm
 
 Repository includes two helm charts:
+
 1. `custom-model-kserve-helm-chart` inference Kserve service that waits for input with possible scaling extension by Knative and Istio
-   * easy to scale, Knative listens to number of requests and scales up/down the number of pods
-   * esy to troubleshoot, monitor and deploy(uses MLflow and Minio database for experiment tracking)
-   * easy to extend to forward predictions to central InfluxDB by concept of pre/postprocessing [Transformers in Kserve](https://kserve.github.io/website/0.13/modelserving/v1beta1/transformer/collocation/)
+    * easy to scale, Knative listens to number of requests and scales up/down the number of pods
+    * esy to troubleshoot, monitor and deploy(uses MLflow and Minio database for experiment tracking)
+    * easy to extend to forward predictions to central InfluxDB by concept of pre/postprocessing [Transformers in Kserve](https://kserve.github.io/website/0.13/modelserving/v1beta1/transformer/collocation/)
 2. `simple-helm-chart` a model deployed as Kubernetes-deployment that listens to Redis channel, makes predictions and forwards them to central InfluxdbDB
-   * simple to deploy and understand
-   * no scaling, troubleshooting, monitoring, etc. capabilities
-   * as the deployment listens to Redis channel (and not expects the input from client/Redis) the only way to scale the solution is replace Redis [publish/subscribe channel](https://redis.io/docs/latest/develop/interact/pubsub/) for Redis [stream](https://redis.io/docs/latest/develop/data-types/streams/) and [consumer groups](https://redis.io/docs/latest/develop/data-types/streams/#consumer-groups) to allow multiple consumers share the load of processing 
+    * simple to deploy and understand
+    * no scaling, troubleshooting, monitoring, etc. capabilities
+    * as the deployment listens to Redis channel (and not expects the input from client/Redis) the only way to scale the solution is replace Redis [publish/subscribe channel](https://redis.io/docs/latest/develop/interact/pubsub/) for Redis [stream](https://redis.io/docs/latest/develop/data-types/streams/) and [consumer groups](https://redis.io/docs/latest/develop/data-types/streams/#consumer-groups) to allow multiple consumers share the load of processing 
 
 ### Configuration parameters
 

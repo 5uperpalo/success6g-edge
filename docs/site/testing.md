@@ -34,7 +34,7 @@ legend:
 | :---------------------------------------------------------------------------------------------: |
 |                              *Castellolí testing without vehicle*                               |
 
-Testing of the [simple-helm-chart](https://github.com/5uperpalo/success6g-edge/tree/main/inference_model_helm_charts) deployed on dUPF1 by running a [test_script.py](https://github.com/5uperpalo/success6g-edge/tree/main/inference_model_helm_charts/test_script.py) from dUPF2.
+Testing of the [simple-helm-chart](https://5uperpalo.github.io/success6g-edge/inference_model_deployment.html) deployed on dUPF1 by running a [test_script.py](https://github.com/5uperpalo/success6g-edge/tree/main/inference_model_helm_charts/test_script.py) from dUPF2.
 
 To access Influx db in browser(admin/admin_pass): http://localhost:3000/
 ```

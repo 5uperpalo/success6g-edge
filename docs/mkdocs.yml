@@ -35,7 +35,8 @@ nav:
             - 01_feature_analysis: notebooks/01_feature_analysis.ipynb  
             - 02_target_analysis: notebooks/02_target_analysis.ipynb
             - 03_models: notebooks/03_models.ipynb
-            - 04_model_training_pipeline: notebooks/04_model_training_pipeline.ipynb
+            - 04a_model_training_pipeline: notebooks/04_model_training_pipeline.ipynb
+            - 04b_send_data_to_Redis: notebooks/04b_send_data_to_Redis.ipynb
             - 05_model_analysis: notebooks/05_model_analysis.ipynb
             - success6g-edge: notebooks/success6g-edge.ipynb
     - code profiling: code_profiling.md

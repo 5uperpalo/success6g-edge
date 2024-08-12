@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#get-the-data-into-pandas" class="md-skip">
+        <a href="#idneo-code" class="md-skip">
           Skip to content
         </a>
       
@@ -831,6 +831,8 @@
         
           
         
+          
+        
       
       
         <label class="md-nav__link" for="__nav_7_2">
@@ -893,8 +895,22 @@
   
   
     <li class="md-nav__item">
-      <a href="04_model_training_pipeline.html" class="md-nav__link">
-        04_model_training_pipeline
+      <a href="04_model_training_pipeline.ipynb" class="md-nav__link">
+        04a_model_training_pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="04b_send_data_to_Redis.html" class="md-nav__link">
+        04b_send_data_to_Redis
       </a>
     </li>
   
@@ -930,9 +946,101 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          success6g-edge
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="success6g-edge.html" class="md-nav__link md-nav__link--active">
         success6g-edge
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#check-if-the-timestamp-values-are-not-overlapping" class="md-nav__link">
+    Check if the timestamp values are not overlapping
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#model" class="md-nav__link">
+    Model
+  </a>
+  
+    <nav class="md-nav" aria-label="Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#add-some-class-to-train-the-model" class="md-nav__link">
+    Add some class to train the model
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#train-the-model" class="md-nav__link">
+    Train the model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#querycollect-data-from-redis-and-send-it-to-influxdb" class="md-nav__link">
+    Query/collect data from redis and send it to influxdb
+  </a>
+  
+    <nav class="md-nav" aria-label="Query/collect data from redis and send it to influxdb">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#subcsribe-to-channel-and-define-actions" class="md-nav__link">
+    Subcsribe to channel and define actions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publish-the-data-into-the-channel-and-make-predictions" class="md-nav__link">
+    Publish the data into the channel and make predictions
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#send-predictions-to-influxdb" class="md-nav__link">
+    Send predictions to InfluxDB
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -2029,7 +2137,18 @@ Licensed under the Apache License, Version 2.0.
     }
     init_mathjax();
     </script>
-    <!-- End of mathjax configuration --><div class="jupyter-wrapper"><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+    <!-- End of mathjax configuration --><div class="jupyter-wrapper">
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h1 id="idneo-code">Idneo code<a class="anchor-link" href="#idneo-code">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -2050,17 +2169,11 @@ Licensed under the Apache License, Version 2.0.
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">ast</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">redis</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 
 <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="s2">&quot;..&quot;</span><span class="p">)</span>
 </pre></div>
-<div id="cell-1" class="clipboard-copy-txt">import pandas as pd
-import ast
-import os
-import redis
+<div id="cell-1" class="clipboard-copy-txt">import os
 
 os.chdir("..")</div>
     
@@ -2071,19 +2184,8 @@ os.chdir("..")</div>
 </div>
 
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="get-the-data-into-pandas">Get the data into pandas<a class="anchor-link" href="#get-the-data-into-pandas">&#182;</a></h1>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2103,59 +2205,9 @@ os.chdir("..")</div>
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;data/log_tiguan_27_mar_dac.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">ast</span><span class="o">.</span><span class="n">literal_eval</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
-
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">data_value</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
-    <span class="n">temp_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_value</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="n">data_value</span><span class="p">)[</span><span class="mi">0</span><span class="p">]])</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span>
-        <span class="n">by</span><span class="o">=</span><span class="s2">&quot;ts_millis:&quot;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)[</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
-    <span class="n">temp_df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">data_value</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">temp_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="o">%</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">tools</span><span class="o">/</span><span class="n">vehicle</span><span class="o">/</span><span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
-<div id="cell-2" class="clipboard-copy-txt">with open("data/log_tiguan_27_mar_dac.txt") as f:
-    data = ast.literal_eval(f.read())
-
-df = pd.DataFrame()
-for data_value in data:
-    temp_df = pd.DataFrame(data_value[list(data_value)[0]]).sort_values(
-        by="ts_millis:", ascending=True
-    )["value"]
-    temp_df.rename(list(data_value)[0], inplace=True)
-    df = pd.concat([df, temp_df], axis=1)</div>
-    
-        </div>
-    </div>
-
-</div>
-</div>
-
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-        
-        
-        <div class="CodeMirror cm-s-jupyter">
-        <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-3">
-            <div>
-                <span class="notice" hidden>Copied!</span>
-                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
-                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
-                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
-                </svg>
-                </div>
-            </clipboard-copy>
-        </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span>
-</pre></div>
-<div id="cell-3" class="clipboard-copy-txt">df</div>
+<div id="cell-2" class="clipboard-copy-txt">%pip install -r tools/vehicle/requirements.txt</div>
     
         </div>
     </div>
@@ -2173,191 +2225,16 @@ for data_value in data:
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 
 
-
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>engine_load</th>
-      <th>engine_coolant_temp</th>
-      <th>engine_speed</th>
-      <th>vehicle_speed</th>
-      <th>intake_air_temp</th>
-      <th>maf</th>
-      <th>throttle_position</th>
-      <th>fuel_rg_pressure</th>
-      <th>barometric_pressure</th>
-      <th>control_voltage</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>37.25</td>
-      <td>17.0</td>
-      <td>904.5</td>
-      <td>0.0</td>
-      <td>10.0</td>
-      <td>12.55</td>
-      <td>83.14</td>
-      <td>37270.0</td>
-      <td>101.0</td>
-      <td>0.06</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>37.25</td>
-      <td>17.0</td>
-      <td>906.0</td>
-      <td>0.0</td>
-      <td>11.0</td>
-      <td>12.36</td>
-      <td>83.14</td>
-      <td>37800.0</td>
-      <td>101.0</td>
-      <td>14.56</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>36.86</td>
-      <td>17.0</td>
-      <td>905.0</td>
-      <td>0.0</td>
-      <td>10.0</td>
-      <td>12.36</td>
-      <td>83.53</td>
-      <td>37800.0</td>
-      <td>101.0</td>
-      <td>14.68</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>36.86</td>
-      <td>18.0</td>
-      <td>905.5</td>
-      <td>0.0</td>
-      <td>11.0</td>
-      <td>12.30</td>
-      <td>83.53</td>
-      <td>37800.0</td>
-      <td>101.0</td>
-      <td>14.72</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>36.86</td>
-      <td>18.0</td>
-      <td>907.0</td>
-      <td>0.0</td>
-      <td>11.0</td>
-      <td>12.47</td>
-      <td>83.14</td>
-      <td>36740.0</td>
-      <td>101.0</td>
-      <td>14.72</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>32740</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>9.41</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>32741</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>9.44</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>32742</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>9.49</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>32743</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>9.41</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-    <tr>
-      <th>32744</th>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>9.52</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
-    </tr>
-  </tbody>
-</table>
-<p>32745 rows × 10 columns</p>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>Requirement already satisfied: async-timeout==4.0.3 in /opt/conda/lib/python3.10/site-packages (from -r tools/vehicle/requirements.txt (line 1)) (4.0.3)
+Requirement already satisfied: redis==5.0.0 in /opt/conda/lib/python3.10/site-packages (from -r tools/vehicle/requirements.txt (line 2)) (5.0.0)
+<span class="ansi-yellow-fg">WARNING: Running pip as the &#39;root&#39; user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv</span><span class="ansi-yellow-fg">
+</span>Note: you may need to restart the kernel to use updated packages.
+</pre>
 </div>
-</div>
-
 </div>
 
 </div>
@@ -2367,6 +2244,64 @@ for data_value in data:
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[81]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-3">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">tools.vehicle.src.csv_parser</span> <span class="kn">import</span> <span class="n">proccess_csv</span>
+<span class="kn">from</span> <span class="nn">tools.vehicle.src.data_handler</span> <span class="kn">import</span> <span class="n">order_by_ts_relative</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">argparse</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">redis</span>
+<span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMClassifier</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">ast</span>
+<span class="kn">import</span> <span class="nn">redis</span>
+<span class="kn">from</span> <span class="nn">influxdb_client</span> <span class="kn">import</span> <span class="n">InfluxDBClient</span><span class="p">,</span> <span class="n">BucketsApi</span><span class="p">,</span> <span class="n">Point</span>
+<span class="kn">from</span> <span class="nn">influxdb_client.client.organizations_api</span> <span class="kn">import</span> <span class="n">OrganizationsApi</span>
+<span class="kn">from</span> <span class="nn">influxdb_client.client.write_api</span> <span class="kn">import</span> <span class="n">SYNCHRONOUS</span>
+</pre></div>
+<div id="cell-3" class="clipboard-copy-txt">import pandas as pd
+from tools.vehicle.src.csv_parser import proccess_csv
+from tools.vehicle.src.data_handler import order_by_ts_relative
+import matplotlib.pyplot as plt
+import argparse
+import time
+import redis
+from lightgbm import LGBMClassifier
+import pandas as pd
+import ast
+import redis
+from influxdb_client import InfluxDBClient, BucketsApi, Point
+from influxdb_client.client.organizations_api import OrganizationsApi
+from influxdb_client.client.write_api import SYNCHRONOUS</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2386,9 +2321,39 @@ for data_value in data:
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">data_sets</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;DS1_stopped_with_ignition_on_22Feb24_115812.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DS1_stopped_with_ignition_on_25Jan24_124019.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DS1_stopped_with_ignition_on_25Jan24_151531.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DS1_stopped_with_ignition_on_25Mar24_153740.CSV&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DS2_national_road_90km_h_max_25Jan24_153019.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DS2_national_road_90km_h_max_25Mar24_133516.CSV&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DS3_highway_120km_h_max_22Feb24_121145.csv&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;DS3_highway_120km_h_max_25Mar24_154857.csv&quot;</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;tools/vehicle/datasets/ateca_R4_2.0l_TDI/&quot;</span> <span class="o">+</span> <span class="n">data_sets</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># Pre-process csv dataset</span>
+<span class="n">data_ordered_by_sensor</span> <span class="o">=</span> <span class="n">proccess_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+
+<span class="c1"># Timestamp sorting</span>
+<span class="n">data_ordered_by_time</span> <span class="o">=</span> <span class="n">order_by_ts_relative</span><span class="p">(</span><span class="n">data_ordered_by_sensor</span><span class="p">)</span>
 </pre></div>
-<div id="cell-4" class="clipboard-copy-txt">df.dropna(inplace=True)</div>
+<div id="cell-4" class="clipboard-copy-txt">data_sets = [
+    "DS1_stopped_with_ignition_on_22Feb24_115812.csv",
+    "DS1_stopped_with_ignition_on_25Jan24_124019.csv",
+    "DS1_stopped_with_ignition_on_25Jan24_151531.csv",
+    "DS1_stopped_with_ignition_on_25Mar24_153740.CSV",
+    "DS2_national_road_90km_h_max_25Jan24_153019.csv",
+    "DS2_national_road_90km_h_max_25Mar24_133516.CSV",
+    "DS3_highway_120km_h_max_22Feb24_121145.csv",
+    "DS3_highway_120km_h_max_25Mar24_154857.csv",
+]
+file = "tools/vehicle/datasets/ateca_R4_2.0l_TDI/" + data_sets[0]
+# Pre-process csv dataset
+data_ordered_by_sensor = proccess_csv(file)
+
+# Timestamp sorting
+data_ordered_by_time = order_by_ts_relative(data_ordered_by_sensor)</div>
     
         </div>
     </div>
@@ -2396,9 +2361,33 @@ for data_value in data:
 </div>
 </div>
 
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
+<pre>[&#39;Vehicle speed&#39;, &#39;Time since engine start&#39;, &#39;Normed load value&#39;, &#39;Accelerator pedal position&#39;, &#39;Engine torque&#39;, &#39;Oil fill level&#39;, &#39;Engine oil temperature&#39;, &#39;Fuel level&#39;, &#39;Fuel consumption&#39;, &#39;Brake pressure&#39;, &#39;Engaged gear: raw signal-Bits 0-7&#39;, &#39;Efficiency of the SCR catalytic converter&#39;]
+Dataset has begun after  0 seconds...
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -2418,18 +2407,39 @@ for data_value in data:
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;engine_load&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">100</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">data_ordered_by_sensor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
 </pre></div>
-<div id="cell-5" class="clipboard-copy-txt">df["class"] = 0
-df.loc[:100, ["class"]] = 1
-df.loc[:100, ["engine_load"]] = 100</div>
+<div id="cell-5" class="clipboard-copy-txt">data_ordered_by_sensor[0].keys()</div>
     
         </div>
     </div>
 
 </div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>dict_keys([&#39;sensor&#39;, &#39;unit&#39;, &#39;values&#39;])</pre>
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 </div>
@@ -2454,15 +2464,865 @@ df.loc[:100, ["engine_load"]] = 100</div>
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">lightgbm</span> <span class="kn">import</span> <span class="n">LGBMClassifier</span>
-
-<span class="n">model</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]),</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">])</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">data_ordered_by_sensor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;sensor&quot;</span><span class="p">],</span> <span class="n">data_ordered_by_sensor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span>
+    <span class="s2">&quot;unit&quot;</span>
+<span class="p">],</span> <span class="n">data_ordered_by_sensor</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s2">&quot;values&quot;</span><span class="p">][:</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
-<div id="cell-6" class="clipboard-copy-txt">from lightgbm import LGBMClassifier
+<div id="cell-6" class="clipboard-copy-txt">data_ordered_by_sensor[0]["sensor"], data_ordered_by_sensor[0][
+    "unit"
+], data_ordered_by_sensor[0]["values"][:5]</div>
+    
+        </div>
+    </div>
 
-model = LGBMClassifier()
-model.fit(df.drop(columns=["class"]), df["class"])</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>(&#39;Vehicle_speed&#39;,
+ &#39; km/h&#39;,
+ [{&#39;ts_relative&#39;: 1.74, &#39;value&#39;: 0.0},
+  {&#39;ts_relative&#39;: 3.19, &#39;value&#39;: 0.0},
+  {&#39;ts_relative&#39;: 4.69, &#39;value&#39;: 0.0},
+  {&#39;ts_relative&#39;: 6.17, &#39;value&#39;: 0.0},
+  {&#39;ts_relative&#39;: 7.61, &#39;value&#39;: 0.0}])</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-7">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">data_ordered_by_time</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+<div id="cell-7" class="clipboard-copy-txt">data_ordered_by_time[:5]</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>[{0.14: {&#39;sensor&#39;: &#39;Efficiency_of_the_SCR_catalytic_converter&#39;, &#39;value&#39;: 0.0}},
+ {0.36: {&#39;sensor&#39;: &#39;Time_since_engine_start&#39;, &#39;value&#39;: 0.0}},
+ {0.46: {&#39;sensor&#39;: &#39;Normed_load_value&#39;, &#39;value&#39;: 23.1}},
+ {0.57: {&#39;sensor&#39;: &#39;Accelerator_pedal_position&#39;, &#39;value&#39;: 14.5}},
+ {0.69: {&#39;sensor&#39;: &#39;Engine_torque&#39;, &#39;value&#39;: 48.4}}]</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-8">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+</pre></div>
+<div id="cell-8" class="clipboard-copy-txt">df = pd.read_csv(file)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-9">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+<div id="cell-9" class="clipboard-copy-txt">df.head()</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[33]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>STAMP</th>
+      <th>Vehicle speed</th>
+      <th>STAMP.1</th>
+      <th>Time since engine start</th>
+      <th>STAMP.2</th>
+      <th>Normed load value</th>
+      <th>STAMP.3</th>
+      <th>Accelerator pedal position</th>
+      <th>STAMP.4</th>
+      <th>...</th>
+      <th>Fuel level</th>
+      <th>STAMP.8</th>
+      <th>Fuel consumption</th>
+      <th>STAMP.9</th>
+      <th>Brake pressure</th>
+      <th>STAMP.10</th>
+      <th>Engaged gear: raw signal-Bits 0-7</th>
+      <th>STAMP.11</th>
+      <th>Efficiency of the SCR catalytic converter</th>
+      <th>Unnamed: 25</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>km/h</td>
+      <td>NaN</td>
+      <td>s</td>
+      <td>NaN</td>
+      <td>%</td>
+      <td>NaN</td>
+      <td>%</td>
+      <td>NaN</td>
+      <td>...</td>
+      <td>l</td>
+      <td>NaN</td>
+      <td>l/h</td>
+      <td>NaN</td>
+      <td>MPa</td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+      <td></td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>0.24</td>
+      <td>0</td>
+      <td>0.36</td>
+      <td>0</td>
+      <td>0.46</td>
+      <td>23.1</td>
+      <td>0.57</td>
+      <td>14.5</td>
+      <td>0.69</td>
+      <td>...</td>
+      <td>24.00</td>
+      <td>1.23</td>
+      <td>1.15</td>
+      <td>1.35</td>
+      <td>3.63</td>
+      <td>1.49</td>
+      <td>0</td>
+      <td>0.14</td>
+      <td>0.00000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>1.74</td>
+      <td>0</td>
+      <td>1.86</td>
+      <td>1</td>
+      <td>1.95</td>
+      <td>32.5</td>
+      <td>2.07</td>
+      <td>14.5</td>
+      <td>2.19</td>
+      <td>...</td>
+      <td>24.00</td>
+      <td>2.69</td>
+      <td>1.19</td>
+      <td>2.81</td>
+      <td>3.63</td>
+      <td>2.95</td>
+      <td>0</td>
+      <td>1.64</td>
+      <td>0.00000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>3.19</td>
+      <td>0</td>
+      <td>3.28</td>
+      <td>3</td>
+      <td>3.39</td>
+      <td>41.2</td>
+      <td>3.50</td>
+      <td>14.5</td>
+      <td>3.62</td>
+      <td>...</td>
+      <td>24.00</td>
+      <td>4.16</td>
+      <td>1.15</td>
+      <td>4.30</td>
+      <td>3.54</td>
+      <td>4.43</td>
+      <td>0</td>
+      <td>3.09</td>
+      <td>0.00000</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>NaN</td>
+      <td>4.69</td>
+      <td>0</td>
+      <td>4.80</td>
+      <td>4</td>
+      <td>4.91</td>
+      <td>34.9</td>
+      <td>5.02</td>
+      <td>14.5</td>
+      <td>5.15</td>
+      <td>...</td>
+      <td>24.00</td>
+      <td>5.68</td>
+      <td>1.07</td>
+      <td>5.80</td>
+      <td>3.51</td>
+      <td>5.93</td>
+      <td>0</td>
+      <td>4.58</td>
+      <td>0.00363</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 26 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[34]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-10">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Unnamed: 0&quot;</span><span class="p">,</span> <span class="s2">&quot;Unnamed: 25&quot;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+<div id="cell-10" class="clipboard-copy-txt">df.drop(columns=["Unnamed: 0", "Unnamed: 25"], inplace=True)
+df.drop(index=0, inplace=True)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[35]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-11">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">timestamp_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">col</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;STAMP&quot;</span><span class="p">)]</span>
+</pre></div>
+<div id="cell-11" class="clipboard-copy-txt">timestamp_columns = [col for col in df.columns if col.startswith("STAMP")]</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[36]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-12">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="n">timestamp_columns</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s2">&quot;Distribution of time stmap differences between samples from each sensor&quot;</span><span class="p">);</span>
+</pre></div>
+<div id="cell-12" class="clipboard-copy-txt">df[timestamp_columns].diff().hist()
+plt.suptitle("Distribution of time stmap differences between samples from each sensor");</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output ">
+<img src="data:image/png;base64,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+aa0aNFC3N3dxdfXV9q2bSvz58+vsI8qOya1723btk1GjRolAQEBAkAKCgqkpKREZs+erfsMGzRoIM8++6xcvHhRb/01HesqkpubKxMnTpSmTZuKq6urhISEyD//+U/Jz8/Xq7dw4ULp0aOHNGjQQDw9PSUiIkJmz54tt2/fNljnl19+Kb179xYfHx/x8PCQVq1aycyZM3XvjxgxQry8vOSXX36RmJgY8fLykkaNGklSUpIUFhZW2ebKchGt2j42bt68qesntVot9evXl44dO8rKlSv16n3xxRfy0EMPiYeHh9SrV0+ioqJk//79enUqy4eqUqvJX35+vjg7O0ufPn0MGqd17tw5cXd3l759+8qGDRtk165dsmLFCnn22WclJydHCgsL5auvvhIAMmbMGDlw4IAcOHBAzp49q7e+Jk2ayKuvviqZmZmyYcMGo9sSufOBhIaGSuPGjWXp0qWydetWGTp0qACQt99+22Dfqkr+Tpw4Id26dZOgoCBd2w4cOPB/HVou+Tt9+rR4e3tLeHi4LF++XLZs2SLPPPOM7suy/HaaNm0qQ4cOlS1btsiqVaukcePG0rx5cykuLq70s9m1a5e4urpKx44dZc2aNbJhwwaJjo4WlUolq1evFhGRixcvyrp16wSAvPjii3LgwIEKE47c3Fxdn0yfPl23n9qBpKK+btSokURERMiqVatk69at0rlzZ3F1dZV//etf0q1bN1m3bp2sX79eWrRoIYGBgXLr1i3d8jt27BA3Nzfp0aOHrFmzRr766isZOXKk0YG3vFWrVun2KyMjQ7Zv3y7vv/++vPTSSyJy50tl5syZAkAWLVqk2x/tARwZGSn+/v66g3Xbtm26L9iUlBRp27atbp8eeughUavVeknJ7t27ZeLEibJ27VrZvXu3rF+/Xh5//HHx8PDQS961n3NYWJg89thjsmnTJvnkk0/knnvuER8fH/n1118r3c8TJ06Ip6en3HvvvbJq1Sr54osvpF+/ftK4ceNKk7/c3Fw5cOCABAUFSbdu3XT7f+XKFTlw4IAAkLi4OL14zsrKkrCwMGnSpIn897//le3bt8ubb74parVaRo4cqduO9ssxNDRUevXqJWvXrpWMjAw5d+6cyZ+pNtbuvvtuefHFF2Xbtm3y4YcfSv369aVXr156ffD6668LABk8eLB89tlnkpGRIXPnzpXX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qFQqk/aN6hav/ClEVlYWgoODDcpPnToFAAgJCTFpPdu2bcOlS5cwfvx4xMXFGbw/YcIELF++HDNnzjR6Z1toaCgmT56M06dPY8SIEWbuBSkJY5YchVJiOT09HWPHjsWwYcPw4YcfMvGzYUz+FKJfv35o1KgRBgwYgFatWqG0tBRHjx7Fu+++i3r16uGf//ynSetJS0uDi4sLXnvtNaMDVkJCAl566SVs2bIFjz32mNF1pKam1mhfSBkcLWaXL1+O0aNHY+nSpRg+fLiufPfu3fjrr78AACUlJbhw4QLWrl0LAIiMjORdwg5ACbH82WefYcyYMWjfvj0SEhJw6NAhvWU6dOgAtVpd421T7eDPvgoxffp01K9fH/PmzcPAgQMRExOD9957D1FRUTh06BDatm1b5TquXr2KTZs2ITY2tsIz1WeffRYeHh5VPnGeqCqOFrOlpaUoKSlBaWmpXvmMGTPw5JNP4sknn0RhYSF27dqle629M5PsmxJiecuWLSgtLcX333+Pbt26oUuXLnp/WVlZFm0TmUclImLtRhARERFR3eCVPyIiIiIFYfJHREREpCBM/oiIiIgUhMkfERERkYIw+SMiIiJSECZ/RERERArChzzXQGlpKS5fvgxvb28+yZwqJCLIy8tDSEgInJxs83yLsUymYCyTo7CHWLYkJn81cPnyZYSFhVm7GWQnLl68iEaNGlm7GUYxlskcjGVyFLYcy5bE5K8GvL29AdwJHh8fn2qvR6PRICMjA9HR0XB1da2t5imKLffhjRs3EBYWposXW1STWLblvrc3tt6XjhbLtt7f9soe+tUeYtmSmPzVgPYnBR8fnxonf56envDx8bHZA8XW2UMf2vJPUDWJZXvoe3thL33pKLFsL/1tb+ypX205li2JyR9VqumULWYvcz61vwVaQlQzjGWyVYxNqmvKm+VIREREpGBM/oiIiIgUhMkfERERkYIw+SMiIiJSECZ/RERERArC5I+IiIhIQZj8ERERESkIkz8iIiIiBWHyR0RERKQgTP6IiIiIFITJHxEREZGCMPkjIiIiUhAmf0REREQKwuSPiIiISEGY/BEREREpCJM/IiIiIgVh8kdERESkIEz+iIiIiBSEyR8RERGRgjD5IyIiIlIQJn9ERERECsLkj4iIiEhBmPwREVGN7dmzBwMGDEBISAhUKhU2bNig976I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"
+class="
+"
+>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="check-if-the-timestamp-values-are-not-overlapping">Check if the timestamp values are not overlapping<a class="anchor-link" href="#check-if-the-timestamp-values-are-not-overlapping">&#182;</a></h2><p>Chce if the data format is correct and the data could be used in "tabular chunks" for prediction in the model, i.e. if the maximum timestamp in each row is lower than the minimum timestamp in the following row</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[37]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-13">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">timestamp_columns</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span>
+    <span class="n">timestamp_columns</span>
+<span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+<div id="cell-13" class="clipboard-copy-txt">temp = df[timestamp_columns].min(axis=1)[1:].reset_index(drop=True) - df[
+    timestamp_columns
+].max(axis=1)[:-1].reset_index(drop=True)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-14">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="p">(</span><span class="n">temp</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+<div id="cell-14" class="clipboard-copy-txt">(temp > 0).sum()</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[38]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>428</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[39]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-15">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="p">(</span><span class="n">temp</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+<div id="cell-15" class="clipboard-copy-txt">(temp <= 0).sum()</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[39]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>0</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="model">Model<a class="anchor-link" href="#model">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="add-some-class-to-train-the-model">Add some class to train the model<a class="anchor-link" href="#add-some-class-to-train-the-model">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[40]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-16">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df_train</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">timestamp_columns</span><span class="p">)</span>
+<span class="c1"># keep only the first timestamp column</span>
+<span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;STAMP&quot;</span><span class="p">]</span>
+<span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">loc</span><span class="p">[:</span><span class="mi">100</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Normed load value&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="mi">100</span>
+</pre></div>
+<div id="cell-16" class="clipboard-copy-txt">df_train = df.drop(columns=timestamp_columns)
+# keep only the first timestamp column
+df_train["timestamp"] = df["STAMP"]
+df_train["class"] = 0
+df_train.loc[:100, ["class"]] = 1
+df_train.loc[:100, ["Normed load value"]] = 100</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-17">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df_train</span><span class="p">[</span><span class="n">df_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_train</span><span class="p">[</span>
+    <span class="n">df_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+<div id="cell-17" class="clipboard-copy-txt">df_train[df_train.drop(columns=["class"]).columns] = df_train[
+    df_train.drop(columns=["class"]).columns
+].astype(float)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-18">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Remove special characters from column names</span>
+<span class="n">df_train</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;[^A-Za-z0-9]+&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="n">regex</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+<div id="cell-18" class="clipboard-copy-txt"># Remove special characters from column names
+df_train.columns = df_train.columns.str.replace("[^A-Za-z0-9]+", "_", regex=True)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[51]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-19">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># add some vehicle id</span>
+<span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;vehicle_id&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;abc123&quot;</span>
+</pre></div>
+<div id="cell-19" class="clipboard-copy-txt"># add some vehicle id
+df_train["vehicle_id"] = "abc123"</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="train-the-model">Train the model<a class="anchor-link" href="#train-the-model">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[52]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-20">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LGBMClassifier</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">df_train</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;vehicle_id&quot;</span><span class="p">]),</span> <span class="n">df_train</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+<div id="cell-20" class="clipboard-copy-txt">model = LGBMClassifier()
+model.fit(
+    df_train.drop(columns=["class", "timestamp", "vehicle_id"]), df_train["class"]
+)</div>
     
         </div>
     </div>
@@ -2484,13 +3344,13 @@ model.fit(df.drop(columns=["class"]), df["class"])</div>
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[LightGBM] [Info] Number of positive: 101, number of negative: 934
-[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.000276 seconds.
+<pre>[LightGBM] [Info] Number of positive: 100, number of negative: 329
+[LightGBM] [Info] Auto-choosing col-wise multi-threading, the overhead of testing was 0.000439 seconds.
 You can set `force_col_wise=true` to remove the overhead.
-[LightGBM] [Info] Total Bins 508
-[LightGBM] [Info] Number of data points in the train set: 1035, number of used features: 9
-[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.097585 -&gt; initscore=-2.224356
-[LightGBM] [Info] Start training from score -2.224356
+[LightGBM] [Info] Total Bins 516
+[LightGBM] [Info] Number of data points in the train set: 429, number of used features: 9
+[LightGBM] [Info] [binary:BoostFromScore]: pavg=0.233100 -&gt; initscore=-1.190888
+[LightGBM] [Info] Start training from score -1.190888
 [LightGBM] [Warning] No further splits with positive gain, best gain: -inf
 [LightGBM] [Warning] No further splits with positive gain, best gain: -inf
 [LightGBM] [Warning] No further splits with positive gain, best gain: -inf
@@ -2598,12 +3458,12 @@ You can set `force_col_wise=true` to remove the overhead.
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[52]:</div>
 
 
 
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
-<style>#sk-container-id-1 {color: black;background-color: white;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LGBMClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LGBMClassifier</label><div class="sk-toggleable__content"><pre>LGBMClassifier()</pre></div></div></div></div></div>
+<style>#sk-container-id-3 {color: black;background-color: white;}#sk-container-id-3 pre{padding: 0;}#sk-container-id-3 div.sk-toggleable {background-color: white;}#sk-container-id-3 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-3 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-3 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-3 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-3 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-3 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-3 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-3 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-3 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-3 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-3 div.sk-item {position: relative;z-index: 1;}#sk-container-id-3 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-3 div.sk-item::before, #sk-container-id-3 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-3 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-3 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-3 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-3 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-3 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-3 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-3 div.sk-label-container {text-align: center;}#sk-container-id-3 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-3 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LGBMClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br />On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">LGBMClassifier</label><div class="sk-toggleable__content"><pre>LGBMClassifier()</pre></div></div></div></div></div>
 </div>
 
 </div>
@@ -2612,58 +3472,6 @@ You can set `force_col_wise=true` to remove the overhead.
 
 </div>
 
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="redis">Redis<a class="anchor-link" href="#redis">&#182;</a></h1>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="install-and-start-the-redis-database">Install and start the redis database<a class="anchor-link" href="#install-and-start-the-redis-database">&#182;</a></h2>
-<pre><code>pip install prometheus-client
-sudo apt install lsb-release curl gpg
-curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
-
-echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
-
-sudo apt-get update
-sudo apt-get install redis
-
-sudo service redis-server start
-# sudo service redis-server stop
-sudo service redis-server status
-redis-cli ping</code></pre>
-
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="fill-the-redis-database">Fill the Redis database<a class="anchor-link" href="#fill-the-redis-database">&#182;</a></h2><p>send data to redis</p>
-
-<pre><code>redis-cli -h localhost -p 6379
-redis-cli -h 10.152.183.169 -a redis -p 6379
-XADD v2x * car_id 123 engine_load 37.25 engine_coolant_temp 17.00 engine_speed 904.50 vehicle_speed 0.00 intake_air_temp 10.00 maf 12.55 throttle_position 83.14 fuel_rg_pressure 37270.00 barometric_pressure 101.00 control_voltage 0.0666</code></pre>
-
-</div>
-</div>
 </div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
@@ -2671,12 +3479,12 @@ XADD v2x * car_id 123 engine_load 37.25 engine_coolant_temp 17.00 engine_speed 9
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[117]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
         <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-7">
+            <clipboard-copy for="cell-21">
             <div>
                 <span class="notice" hidden>Copied!</span>
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2686,37 +3494,27 @@ XADD v2x * car_id 123 engine_load 37.25 engine_coolant_temp 17.00 engine_speed 9
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># Create connection object</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df_pred</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">95</span><span class="p">:</span><span class="mi">105</span><span class="p">][[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;vehicle_id&quot;</span><span class="p">]]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">df_pred</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span>
+    <span class="n">df_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">95</span><span class="p">:</span><span class="mi">105</span><span class="p">]</span>
+    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;vehicle_id&quot;</span><span class="p">])</span>
+    <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">)</span>
 
-<span class="c1"># pmulinka@saiacheron:~$ kubectl get svc -n redis</span>
-<span class="c1"># pmulinka@saiacheron:~$ kubectl exec -it redis-master-0 bash -n redis</span>
-<span class="c1"># I have no name!@redis-master-0:/$ dnsdomainname</span>
-<span class="c1"># redis-headless.redis.svc.cluster.local</span>
-<span class="n">redis_host</span> <span class="o">=</span> <span class="s2">&quot;redis-headless.redis.svc.cluster.local&quot;</span>
-<span class="n">redis_host</span> <span class="o">=</span> <span class="s2">&quot;10.152.183.169&quot;</span>
-
-<span class="c1"># https://redis.io/docs/latest/develop/connect/clients/python/</span>
-<span class="n">redis_conn</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">redis_host</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">6379</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;redis&quot;</span><span class="p">)</span>
-<span class="c1"># Add some data into &#39;my_stream&#39; as key-value pairs</span>
-<span class="c1"># entry_data = {&#39;field1&#39;: &#39;value1&#39;, &#39;field2&#39;: &#39;value2&#39;}</span>
-<span class="c1"># for index, row in df.iterrows():</span>
-<span class="c1">#     redis_conn.xadd(&quot;v2x&quot;, dict(row))</span>
+<span class="n">df_pred</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="mi">3600</span> <span class="o">+</span> <span class="n">df_pred</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;s&quot;</span>
+<span class="p">)</span>
 </pre></div>
-<div id="cell-7" class="clipboard-copy-txt"># Create connection object
+<div id="cell-21" class="clipboard-copy-txt">df_pred = df_train.iloc[95:105][["timestamp", "vehicle_id"]].reset_index(drop=True)
+df_pred["prediction"] = model.predict(
+    df_train.iloc[95:105]
+    .drop(columns=["class", "timestamp", "vehicle_id"])
+    .reset_index(drop=True)
+)
 
-# pmulinka@saiacheron:~$ kubectl get svc -n redis
-# pmulinka@saiacheron:~$ kubectl exec -it redis-master-0 bash -n redis
-# I have no name!@redis-master-0:/$ dnsdomainname
-# redis-headless.redis.svc.cluster.local
-redis_host = "redis-headless.redis.svc.cluster.local"
-redis_host = "10.152.183.169"
-
-# https://redis.io/docs/latest/develop/connect/clients/python/
-redis_conn = redis.Redis(host=redis_host, port=6379, password="redis")
-# Add some data into 'my_stream' as key-value pairs
-# entry_data = {'field1': 'value1', 'field2': 'value2'}
-# for index, row in df.iterrows():
-#     redis_conn.xadd("v2x", dict(row))</div>
+df_pred["timestamp"] = pd.to_datetime(
+    time.time() - 3600 + df_pred["timestamp"], unit="s"
+)</div>
     
         </div>
     </div>
@@ -2725,18 +3523,18 @@ redis_conn = redis.Redis(host=redis_host, port=6379, password="redis")
 </div>
 
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[118]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
         <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-8">
+            <clipboard-copy for="cell-22">
             <div>
                 <span class="notice" hidden>Copied!</span>
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2746,13 +3544,201 @@ redis_conn = redis.Redis(host=redis_host, port=6379, password="redis")
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">entry_data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;field1&quot;</span><span class="p">:</span> <span class="s2">&quot;value1&quot;</span><span class="p">,</span> <span class="s2">&quot;field2&quot;</span><span class="p">:</span> <span class="s2">&quot;value2&quot;</span><span class="p">}</span>
-<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-    <span class="n">redis_conn</span><span class="o">.</span><span class="n">xadd</span><span class="p">(</span><span class="s2">&quot;v2x&quot;</span><span class="p">,</span> <span class="nb">dict</span><span class="p">(</span><span class="n">row</span><span class="p">))</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df_pred</span>
 </pre></div>
-<div id="cell-8" class="clipboard-copy-txt">entry_data = {"field1": "value1", "field2": "value2"}
-for index, row in df.iterrows():
-    redis_conn.xadd("v2x", dict(row))</div>
+<div id="cell-22" class="clipboard-copy-txt">df_pred</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[118]:</div>
+
+
+
+<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>timestamp</th>
+      <th>vehicle_id</th>
+      <th>prediction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2024-07-30 11:56:40.044199467</td>
+      <td>abc123</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2024-07-30 11:56:41.464199305</td>
+      <td>abc123</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2024-07-30 11:56:42.954199314</td>
+      <td>abc123</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2024-07-30 11:56:44.474199295</td>
+      <td>abc123</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2024-07-30 11:56:45.914199352</td>
+      <td>abc123</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2024-07-30 11:56:47.334199429</td>
+      <td>abc123</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>2024-07-30 11:56:48.894199371</td>
+      <td>abc123</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>2024-07-30 11:56:50.384199381</td>
+      <td>abc123</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>2024-07-30 11:56:51.864199400</td>
+      <td>abc123</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>2024-07-30 11:56:53.384199381</td>
+      <td>abc123</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[120]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-23">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="c1"># # https://github.com/influxdata/helm-charts/blob/master/charts/influxdb2/values.yaml</span>
+<span class="c1"># INFLUXDB_IP = &quot;10.152.183.219&quot;</span>
+<span class="c1"># INFLUXDB_PORT = 80</span>
+<span class="c1"># INFLUXDB_USER = &quot;admin&quot;</span>
+<span class="c1"># INFLUXDB_PASS = &quot;admin_pass&quot;</span>
+
+<span class="c1"># influxdbClient = InfluxDBClient(url=f&quot;http://{INFLUXDB_IP}:{str(INFLUXDB_PORT)}&quot;, username=INFLUXDB_USER, password=INFLUXDB_PASS, org=&quot;influxdata&quot;)</span>
+<span class="c1"># # influxdbClient = InfluxDBClient(url=f&quot;http://{INFLUXDB_IP}:{str(INFLUXDB_PORT)}&quot;, token=&quot;admin_token&quot;, org=&quot;influxdata&quot;)</span>
+
+<span class="c1"># write_api = influxdbClient.write_api(write_options=SYNCHRONOUS)</span>
+
+<span class="c1"># Function to convert a DataFrame row to an InfluxDB Point</span>
+<span class="k">def</span> <span class="nf">df_row_to_point</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">Point</span><span class="p">(</span><span class="s2">&quot;prediction&quot;</span><span class="p">)</span>
+        <span class="o">.</span><span class="n">tag</span><span class="p">(</span><span class="s2">&quot;vehicle_id&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;vehicle_id&quot;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;prediction&quot;</span><span class="p">])</span>
+        <span class="o">.</span><span class="n">time</span><span class="p">(</span><span class="n">row</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">])</span>
+    <span class="p">)</span>
+
+
+<span class="c1"># Convert DataFrame to InfluxDB Points and write</span>
+<span class="n">points</span> <span class="o">=</span> <span class="p">[</span><span class="n">df_row_to_point</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_pred</span><span class="o">.</span><span class="n">iterrows</span><span class="p">()]</span>
+
+<span class="c1"># Write points to InfluxDB</span>
+<span class="n">write_api</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bucket</span><span class="o">=</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="n">record</span><span class="o">=</span><span class="n">points</span><span class="p">)</span>
+</pre></div>
+<div id="cell-23" class="clipboard-copy-txt"># # https://github.com/influxdata/helm-charts/blob/master/charts/influxdb2/values.yaml
+# INFLUXDB_IP = "10.152.183.219"
+# INFLUXDB_PORT = 80
+# INFLUXDB_USER = "admin"
+# INFLUXDB_PASS = "admin_pass"
+
+# influxdbClient = InfluxDBClient(url=f"http://{INFLUXDB_IP}:{str(INFLUXDB_PORT)}", username=INFLUXDB_USER, password=INFLUXDB_PASS, org="influxdata")
+# # influxdbClient = InfluxDBClient(url=f"http://{INFLUXDB_IP}:{str(INFLUXDB_PORT)}", token="admin_token", org="influxdata")
+
+# write_api = influxdbClient.write_api(write_options=SYNCHRONOUS)
+
+# Function to convert a DataFrame row to an InfluxDB Point
+def df_row_to_point(row):
+    return (
+        Point("prediction")
+        .tag("vehicle_id", row["vehicle_id"])
+        .field("value", row["prediction"])
+        .time(row["timestamp"])
+    )
+
+
+# Convert DataFrame to InfluxDB Points and write
+points = [df_row_to_point(row) for index, row in df_pred.iterrows()]
+
+# Write points to InfluxDB
+write_api.write(bucket="default", record=points)</div>
     
         </div>
     </div>
@@ -2768,22 +3754,34 @@ for index, row in df.iterrows():
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="retrieve-data-from-redis">Retrieve data from redis<a class="anchor-link" href="#retrieve-data-from-redis">&#182;</a></h2>
+<h2 id="querycollect-data-from-redis-and-send-it-to-influxdb">Query/collect data from redis and send it to influxdb<a class="anchor-link" href="#querycollect-data-from-redis-and-send-it-to-influxdb">&#182;</a></h2><p>This is a case when the data is not forwarded directly to inference service, i.e. legacy solution made due to previous agreements in the project</p>
+
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
-<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="subcsribe-to-channel-and-define-actions">Subcsribe to channel and define actions<a class="anchor-link" href="#subcsribe-to-channel-and-define-actions">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[65]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
         
         
         <div class="CodeMirror cm-s-jupyter">
         <div class="zeroclipboard-container">
-            <clipboard-copy for="cell-9">
+            <clipboard-copy for="cell-24">
             <div>
                 <span class="notice" hidden>Copied!</span>
                 <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
@@ -2793,25 +3791,196 @@ for index, row in df.iterrows():
                 </div>
             </clipboard-copy>
         </div>
-            <div class="highlight-ipynb hl-python"><pre><span></span><span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="c1"># Listening for new items with XREAD</span>
-    <span class="c1"># https://redis.io/docs/data-types/streams/</span>
-    <span class="p">[[</span><span class="n">stream</span><span class="p">,</span> <span class="p">[[</span><span class="n">number</span><span class="p">,</span> <span class="n">parts</span><span class="p">]]]]</span> <span class="o">=</span> <span class="n">redis_conn</span><span class="o">.</span><span class="n">xread</span><span class="p">(</span><span class="n">streams</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;v2x&quot;</span><span class="p">:</span> <span class="s2">&quot;$&quot;</span><span class="p">},</span> <span class="n">block</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parts</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
-    <span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">parts</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
-    <span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span> <span class="n">vals</span><span class="p">)),</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">d</span><span class="p">[</span><span class="s2">&quot;predicted_class&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;car_id&quot;</span><span class="p">]))[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">REDIS_PASSWORD</span> <span class="o">=</span> <span class="s2">&quot;redis&quot;</span>
+<span class="n">REDIS_IP</span> <span class="o">=</span> <span class="s2">&quot;10.152.183.169&quot;</span>
+<span class="n">REDIS_PORT</span> <span class="o">=</span> <span class="mi">6379</span>
+<span class="n">INFLUXDB_IP</span> <span class="o">=</span> <span class="s2">&quot;10.152.183.216&quot;</span>
+<span class="n">INFLUXDB_PORT</span> <span class="o">=</span> <span class="mi">8086</span>
+<span class="n">INFLUXDB_USER</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span>
+<span class="n">INFLUXDB_PASS</span> <span class="o">=</span> <span class="s2">&quot;admin&quot;</span>
+
+<span class="n">redisClient</span> <span class="o">=</span> <span class="n">redis</span><span class="o">.</span><span class="n">Redis</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="n">REDIS_IP</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">REDIS_PASSWORD</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="n">REDIS_PORT</span><span class="p">)</span>
+<span class="n">influxdbClient</span> <span class="o">=</span> <span class="n">InfluxDBClient</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;http://</span><span class="si">{</span><span class="n">INFLUXDB_PORT</span><span class="si">}</span><span class="s2">:</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">INFLUXDB_PORT</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="n">username</span><span class="o">=</span><span class="n">INFLUXDB_USER</span><span class="p">,</span>
+    <span class="n">password</span><span class="o">=</span><span class="n">INFLUXDB_PASS</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">handle_message</span><span class="p">(</span><span class="n">message</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;New data arrived:</span><span class="se">\n</span><span class="si">{</span><span class="n">message</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Convert the message data (bytes) to string</span>
+    <span class="n">json_data</span> <span class="o">=</span> <span class="n">message</span><span class="p">[</span><span class="s2">&quot;data&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="c1"># Convert JSON string to DataFrame</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_json</span><span class="p">(</span><span class="n">json_data</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s2">&quot;split&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+    <span class="n">df_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;class&quot;</span><span class="p">,</span> <span class="s2">&quot;timestamp&quot;</span><span class="p">,</span> <span class="s2">&quot;vehicle_id&quot;</span><span class="p">]))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Predictions:</span><span class="se">\n</span><span class="si">{</span><span class="n">df_pred</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># Subscribe to the &quot;idneo_v2x&quot; channel</span>
+<span class="n">pubsub</span> <span class="o">=</span> <span class="n">redisClient</span><span class="o">.</span><span class="n">pubsub</span><span class="p">()</span>
+<span class="n">pubsub</span><span class="o">.</span><span class="n">subscribe</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="s2">&quot;idneo_v2x&quot;</span><span class="p">:</span> <span class="n">handle_message</span><span class="p">})</span>
+
+<span class="c1"># Wait for messages</span>
+<span class="n">pubsub</span><span class="o">.</span><span class="n">run_in_thread</span><span class="p">(</span><span class="n">sleep_time</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
-<div id="cell-9" class="clipboard-copy-txt">while True:
-    # Listening for new items with XREAD
-    # https://redis.io/docs/data-types/streams/
-    [[stream, [[number, parts]]]] = redis_conn.xread(streams={"v2x": "$"}, block=0)
-    keys = [p.decode("utf-8") for p in parts.keys()]
-    vals = [float(p.decode("utf-8")) for p in parts.values()]
-    d = pd.DataFrame(dict(zip(keys, vals)), index=[0])
-    d["predicted_class"] = model.predict(d.drop(columns=["car_id"]))[0]
-    print(d)</div>
+<div id="cell-24" class="clipboard-copy-txt">REDIS_PASSWORD = "redis"
+REDIS_IP = "10.152.183.169"
+REDIS_PORT = 6379
+INFLUXDB_IP = "10.152.183.216"
+INFLUXDB_PORT = 8086
+INFLUXDB_USER = "admin"
+INFLUXDB_PASS = "admin"
+
+redisClient = redis.Redis(host=REDIS_IP, password=REDIS_PASSWORD, port=REDIS_PORT)
+influxdbClient = InfluxDBClient(
+    url=f"http://{INFLUXDB_PORT}:{str(INFLUXDB_PORT)}",
+    username=INFLUXDB_USER,
+    password=INFLUXDB_PASS,
+)
+
+
+def handle_message(message):
+    print(f"New data arrived:\n{message['data']}")
+    # Convert the message data (bytes) to string
+    json_data = message["data"].decode("utf-8")
+    # Convert JSON string to DataFrame
+    df = pd.read_json(json_data, orient="split")
+    print(df)
+    df_pred = model.predict(df.drop(columns=["class", "timestamp", "vehicle_id"]))
+    print(f"Predictions:\n{df_pred}")
+
+
+# Subscribe to the "idneo_v2x" channel
+pubsub = redisClient.pubsub()
+pubsub.subscribe(**{"idneo_v2x": handle_message})
+
+# Wait for messages
+pubsub.run_in_thread(sleep_time=1)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[65]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
+<pre>&lt;PubSubWorkerThread(Thread-6, started 128202013926976)&gt;</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h3 id="publish-the-data-into-the-channel-and-make-predictions">Publish the data into the channel and make predictions<a class="anchor-link" href="#publish-the-data-into-the-channel-and-make-predictions">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-25">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span><span class="n">df_test_json</span> <span class="o">=</span> <span class="n">df_train</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">95</span><span class="p">:</span><span class="mi">105</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">to_json</span><span class="p">(</span><span class="n">orient</span><span class="o">=</span><span class="s2">&quot;split&quot;</span><span class="p">)</span>
+
+
+<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Wait for a few seconds before publishing</span>
+<span class="n">redisClient</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="s2">&quot;idneo_v2x&quot;</span><span class="p">,</span> <span class="n">df_test_json</span><span class="p">)</span>
+</pre></div>
+<div id="cell-25" class="clipboard-copy-txt">df_test_json = df_train.iloc[95:105].reset_index(drop=True).to_json(orient="split")
+
+
+time.sleep(2)  # Wait for a few seconds before publishing
+redisClient.publish("idneo_v2x", df_test_json)</div>
+    
+        </div>
+    </div>
+
+</div>
+</div>
+
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h2 id="send-predictions-to-influxdb">Send predictions to InfluxDB<a class="anchor-link" href="#send-predictions-to-influxdb">&#182;</a></h2><ul>
+<li><a href="https://www.influxdata.com/blog/writing-data-to-influxdb-with-python/">https://www.influxdata.com/blog/writing-data-to-influxdb-with-python/</a></li>
+<li><a href="https://gist.github.com/noahcrowley/941e87422cd6fc43b0e9e8f0d0877836/#file-write_test-py">https://gist.github.com/noahcrowley/941e87422cd6fc43b0e9e8f0d0877836/#file-write_test-py</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+        
+        
+        <div class="CodeMirror cm-s-jupyter">
+        <div class="zeroclipboard-container">
+            <clipboard-copy for="cell-26">
+            <div>
+                <span class="notice" hidden>Copied!</span>
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 16 16" version="1.1"  data-view-component="true" class="clipboard-copy-icon">
+                    <path fill="currentColor" fill-rule="evenodd" d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z"></path>
+                    <path fill="currentColor" fill-rule="evenodd" d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z"></path>
+                </svg>
+                </div>
+            </clipboard-copy>
+        </div>
+            <div class="highlight-ipynb hl-python"><pre><span></span>
+</pre></div>
+<div id="cell-26" class="clipboard-copy-txt"></div>
     
         </div>
     </div>
