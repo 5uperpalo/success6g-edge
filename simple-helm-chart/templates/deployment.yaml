@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "simple-helm-chart.fullname" . }}
+  labels:
+    app: {{ include "simple-helm-chart.name" . }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "simple-helm-chart.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "simple-helm-chart.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: INFLUXDB_HOST
+              value: {{ .Values.influxdb.host }}
+            - name: INFLUXDB_PORT
+              value: "{{ .Values.influxdb.port }}"
+            - name: INFLUXDB_USER
+              value: {{ .Values.influxdb.user }}
+            - name: INFLUXDB_PASS
+              value: {{ .Values.influxdb.pass }}
+            - name: REDIS_HOST
+              value: {{ .Values.redis.host }}
+            - name: REDIS_PORT
+              value: "{{ .Values.redis.port }}"
+            - name: REDIS_PASS
+              value: {{ .Values.redis.pass }}
+          resources:
+            requests:
+              cpu: {{ .Values.resources.requests.cpu }}
+              memory: {{ .Values.resources.requests.memory }}
+            limits:
+              cpu: {{ .Values.resources.limits.cpu }}
+              memory: {{ .Values.resources.limits.memory }}

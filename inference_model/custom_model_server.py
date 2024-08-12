@@ -2,6 +2,7 @@ import dill
 from inference_model.config import LOGGING_CONFIG
 from inference_model.utils import handle_redis_message, df_row_to_influxdb_point, set_production_env
 import logging
+import logging.config
 
 logging.config.dictConfig(LOGGING_CONFIG)
 

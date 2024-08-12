@@ -7,7 +7,6 @@ from inference_model.training._base import BaseTrainer, BaseOptimizer
 from inference_model.training.utils import to_lgbdataset
 from inference_model.preprocessing.preprocess import PreprocessData
 from inference_model.training._lgb_train_function import lgb_train_function
-import kserve
 import os
 import redis
 from influxdb_client import Point, InfluxDBClient

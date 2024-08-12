@@ -23,5 +23,5 @@ ENV INFLUXDB_PASS admin_pass
 RUN pip install -r /app/requirements.txt
 RUN pip install /app/.
 
-
-CMD ["python", "/app/inference_model/dummy_script.py"]
+CMD ["python", "/app/inference_model/custom_model_server.py"]
+# CMD ["python", "/app/inference_model/dummy_script.py"]

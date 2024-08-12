@@ -23,6 +23,7 @@ from inference_model.training.utils import (
 from inference_model.training._params import set_base_params
 from inference_model.training.metrics import aiqc, rmse, nacil
 from inference_model.preprocessing.preprocess import PreprocessData
+import logging.config
 
 logging.config.dictConfig(LOGGING_CONFIG)
 

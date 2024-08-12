@@ -4,10 +4,23 @@ metadata:
   name: {{ .Values.InferenceService.name }}
 spec:
   predictor:
+    # to disable scaling to zero
     minReplicas: 1
     containers:
       - name: custom-model-container
         image: 5uperpalo/success6g_custom_kserve:latest
+        # this disables readiness probe - not recommended for production
+        # this also removes possibility of scaling the solution as kserve/knative does not have any idea about the current request rate https://kserve.github.io/website/0.13/developer/debug/#4-kubernetes-service-routes-the-requests-to-the-queue-proxy-sidecar-of-the-inference-service-pod-on-port-8012
+        #
+        readinessProbe:
+          httpGet:
+            path: /v1/models/your-model
+            port: 8080
+          initialDelaySeconds: 0
+          periodSeconds: 0
+          timeoutSeconds: 0
+          # successThreshold: 1
+          # failureThreshold: 1
         env:
           - name: INFLUXDB_HOST
             value: {{ .Values.InferenceService.INFLUXDB_HOST }}

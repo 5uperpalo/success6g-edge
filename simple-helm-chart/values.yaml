@@ -1,0 +1,23 @@
+image:
+  repository: 5uperpalo/success6g_custom_kserve
+  pullPolicy: IfNotPresent
+  tag: latest
+
+influxdb:
+  host: "10.152.183.219"
+  port: "80"
+  user: "admin"
+  pass: "admin_pass"
+
+redis:
+  host: "10.152.183.250"
+  port: "6379"
+  pass: "redis"
+
+resources:
+  requests:
+    cpu: "2"
+    memory: "4Gi"
+  limits:
+    cpu: "2"
+    memory: "4Gi"
