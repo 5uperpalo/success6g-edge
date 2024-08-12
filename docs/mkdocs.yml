@@ -12,29 +12,32 @@ edit_uri: edit/main/docs/sources
 nav:
     - home: index.md
     - use cases: use_cases.md
-    - architecture overview: architecture_overview.md
-    - data management: data_management.md
-    - ML model dev: ml_model_development.md
-    - Inference model deployment: inference_model_deployment.MD
-    - K8S reqs: kubernetes_services_requirements.MD
-    - networking: networking.md
-    - development: development.md
+    - architecture: 
+        - overview: architecture_overview.md
+        - data management: data_management.md
+        - networking: networking.md
+        - K8S reqs: kubernetes_services_requirements.md
+        - Inference model deployment: inference_model_deployment.md
+    - development:
+        - development: development.md
+        - ML model dev: ml_model_development.md
     - testing: testing.md
     - Idneo:
         - vehicle injector tool: idneo/vehicle_injector_tool.md
         - datasets: idneo/datasets.md
-    - inference_model:
-        - eda: inference_model/eda.md
-        - preprocessing: inference_model/preprocessing.md
-        - training: inference_model/training.md
-        - utils: inference_model/utils.md
-    - notebooks:
-        - 01_feature_analysis: notebooks/01_feature_analysis.ipynb  
-        - 02_target_analysis: notebooks/02_target_analysis.ipynb
-        - 03_models: notebooks/03_models.ipynb
-        - 04_model_training_pipeline: notebooks/04_model_training_pipeline.ipynb
-        - 05_model_analysis: notebooks/05_model_analysis.ipynb
-        - success6g-edge: notebooks/success6g-edge.ipynb
+    - code: 
+        - inference_model:
+            - eda: inference_model/eda.md
+            - preprocessing: inference_model/preprocessing.md
+            - training: inference_model/training.md
+            - utils: inference_model/utils.md
+        - notebooks:
+            - 01_feature_analysis: notebooks/01_feature_analysis.ipynb  
+            - 02_target_analysis: notebooks/02_target_analysis.ipynb
+            - 03_models: notebooks/03_models.ipynb
+            - 04_model_training_pipeline: notebooks/04_model_training_pipeline.ipynb
+            - 05_model_analysis: notebooks/05_model_analysis.ipynb
+            - success6g-edge: notebooks/success6g-edge.ipynb
     - code profiling: code_profiling.md
     - contributing: contributing.md
 

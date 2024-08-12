@@ -1,0 +1,1632 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>K8S reqs - success6g-edge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="bluegrey">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#parcmotor-castelloli-real-world-testing-requirements" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="success6g-edge" class="md-header__button md-logo" aria-label="success6g-edge" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            success6g-edge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              K8S reqs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="bluegrey"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="white" data-md-color-accent="bluegrey"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/5uperpalo/success6g-edge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    success6g-edge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="index.html" class="md-tabs__link">
+      home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="use_cases.html" class="md-tabs__link">
+      use cases
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="architecture_overview.html" class="md-tabs__link md-tabs__link--active">
+        architecture
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="development.html" class="md-tabs__link">
+        development
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="testing.html" class="md-tabs__link">
+      testing
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="idneo/vehicle_injector_tool.html" class="md-tabs__link">
+        Idneo
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="inference_model/eda.html" class="md-tabs__link">
+        code
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="code_profiling.html" class="md-tabs__link">
+      code profiling
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="contributing.html" class="md-tabs__link">
+      contributing
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="success6g-edge" class="md-nav__button md-logo" aria-label="success6g-edge" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    success6g-edge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/5uperpalo/success6g-edge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    success6g-edge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="use_cases.html" class="md-nav__link">
+        use cases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          architecture
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="architecture" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          architecture
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="architecture_overview.html" class="md-nav__link">
+        overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_management.html" class="md-nav__link">
+        data management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="networking.html" class="md-nav__link">
+        networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          K8S reqs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="kubernetes_services_requirements.html" class="md-nav__link md-nav__link--active">
+        K8S reqs
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-table" class="md-nav__link">
+    Summary table
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#analysis-of-kubernetes-services-requirements" class="md-nav__link">
+    Analysis of kubernetes services requirements
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model_deployment.html" class="md-nav__link">
+        Inference model deployment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="development" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="development.html" class="md-nav__link">
+        development
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ml_model_development.html" class="md-nav__link">
+        ML model dev
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Idneo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Idneo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Idneo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="idneo/vehicle_injector_tool.html" class="md-nav__link">
+        vehicle injector tool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="idneo/datasets.html" class="md-nav__link">
+        datasets
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="code" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          code
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          inference_model
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="inference_model" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          inference_model
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model/eda.html" class="md-nav__link">
+        eda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model/preprocessing.html" class="md-nav__link">
+        preprocessing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model/training.html" class="md-nav__link">
+        training
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model/utils.html" class="md-nav__link">
+        utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2">
+          notebooks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="notebooks" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          notebooks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/01_feature_analysis.html" class="md-nav__link">
+        01_feature_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/02_target_analysis.html" class="md-nav__link">
+        02_target_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/03_models.html" class="md-nav__link">
+        03_models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/04_model_training_pipeline.html" class="md-nav__link">
+        04_model_training_pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/05_model_analysis.html" class="md-nav__link">
+        05_model_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/success6g-edge.html" class="md-nav__link">
+        success6g-edge
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code_profiling.html" class="md-nav__link">
+        code profiling
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributing.html" class="md-nav__link">
+        contributing
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/5uperpalo/success6g-edge/edit/main/docs/sources/kubernetes_services_requirements.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="parcmotor-castelloli-real-world-testing-requirements">Parcmotor Castellolí <em>Real-world Testing</em> requirements<a class="headerlink" href="#parcmotor-castelloli-real-world-testing-requirements" title="Permanent link">&para;</a></h1>
+<h2 id="summary-table">Summary table<a class="headerlink" href="#summary-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>pod</th>
+<th>namespace</th>
+<th>cpu</th>
+<th>memory(GB)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>qosClass: Burstable</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>kserve-controller-manager-7bffcb7459-lbdfd</td>
+<td>kserve</td>
+<td>0.1</td>
+<td>0.2</td>
+</tr>
+<tr>
+<td>activator-55d856fccd-5b9jt</td>
+<td>knative-serving</td>
+<td>0.3</td>
+<td>0.06</td>
+</tr>
+<tr>
+<td>autoscaler-5df8b7c68-4fzm7</td>
+<td>knative-serving</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>controller-78b7976cc6-h7bz2</td>
+<td>knative-serving</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>net-istio-controller-cc877c4dc-xxlrj</td>
+<td>knative-serving</td>
+<td>0.03</td>
+<td>0.04</td>
+</tr>
+<tr>
+<td>net-istio-webhook-69cd4975b8-9kcv6</td>
+<td>knative-serving</td>
+<td>0.02</td>
+<td>0.02</td>
+</tr>
+<tr>
+<td>webhook-7c7b4cd674-kghj9</td>
+<td>knative-serving</td>
+<td>0.1</td>
+<td>0.1</td>
+</tr>
+<tr>
+<td>redis-master-0</td>
+<td>redis</td>
+<td>0.1</td>
+<td>0.128</td>
+</tr>
+<tr>
+<td>istio-ingressgateway-675669b8-5jpc9</td>
+<td>istio-system</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>istiod-68cb48856d-7ncqv</td>
+<td>istio-system</td>
+<td>0.5</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>qosClass: BestEffort</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>kepler-7dfh2</td>
+<td>kepler</td>
+<td>0.19</td>
+<td>0.07</td>
+</tr>
+<tr>
+<td>nginx-ingress-microk8s-controller-h5kfj</td>
+<td>ingress</td>
+<td>0.12</td>
+<td>0.45</td>
+</tr>
+<tr>
+<td>prometheus-grafana-6575c5968b-jx6l9</td>
+<td>monitoring</td>
+<td>0.04</td>
+<td>0.08</td>
+</tr>
+<tr>
+<td>prometheus-kube-prometheus-operator-6dbb54bbd6-26cjt</td>
+<td>monitoring</td>
+<td>0.16</td>
+<td>0.04</td>
+</tr>
+<tr>
+<td>prometheus-kube-state-metrics-547454f49d-2nrjp</td>
+<td>monitoring</td>
+<td>0.03</td>
+<td>0.03</td>
+</tr>
+<tr>
+<td>prometheus-prometheus-kube-prometheus-prometheus-0</td>
+<td>monitoring</td>
+<td>1.7</td>
+<td>2.34</td>
+</tr>
+<tr>
+<td>prometheus-prometheus-node-exporter-9f8kv</td>
+<td>monitoring</td>
+<td>0.02</td>
+<td>0.03</td>
+</tr>
+<tr>
+<td>cert-manager-7cf97bbd47-6g5v4</td>
+<td>cert-manager</td>
+<td>0.04</td>
+<td>0.06</td>
+</tr>
+<tr>
+<td>cert-manager-cainjector-99677759d-mf2fv</td>
+<td>cert-manager</td>
+<td>0.05</td>
+<td>0.13</td>
+</tr>
+<tr>
+<td>cert-manager-webhook-8486cb8479-96w6c</td>
+<td>cert-manager</td>
+<td>0.02</td>
+<td>0.03</td>
+</tr>
+<tr>
+<td><strong>MicroK8s</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>system requirements</td>
+<td></td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>Kserver Model InferenceService</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>model dependent</td>
+<td></td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td><strong>SUM</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>8.72</td>
+<td>15.008</td>
+</tr>
+</tbody>
+</table>
+<h2 id="analysis-of-kubernetes-services-requirements">Analysis of kubernetes services requirements<a class="headerlink" href="#analysis-of-kubernetes-services-requirements" title="Permanent link">&para;</a></h2>
+<details><summary>list of related services/pods in CTTC dev environment</summary>
+
+<div class="highlight"><pre><span></span><code>$ kubectl get pods --namespace kepler; \
+kubectl get pods --namespace ingress; \
+kubectl get pods --namespace kserve; \
+kubectl get pods --namespace knative-serving; \
+kubectl get pods --namespace monitoring; \
+kubectl get pods --namespace redis; \
+kubectl get pods --namespace istio-system; \
+kubectl get pods --namespace cert-manager; \
+kubectl get pods --namespace mlflow-kserve-success6g
+NAME           READY   STATUS    RESTARTS   AGE
+kepler-7dfh2   1/1     Running   0          19d
+kepler-dm28s   1/1     Running   0          19d
+kepler-nsx5k   1/1     Running   0          19d
+NAME                                      READY   STATUS    RESTARTS   AGE
+nginx-ingress-microk8s-controller-h5kfj   1/1     Running   0          19d
+nginx-ingress-microk8s-controller-lwl7r   1/1     Running   0          19d
+nginx-ingress-microk8s-controller-trp2k   1/1     Running   0          19d
+NAME                                         READY   STATUS    RESTARTS         AGE
+kserve-controller-manager-7bffcb7459-lbdfd   2/2     Running   11 (6d22h ago)   15d
+NAME                                   READY   STATUS    RESTARTS   AGE
+activator-55d856fccd-5b9jt             1/1     Running   0          15d
+autoscaler-5df8b7c68-4fzm7             1/1     Running   0          15d
+controller-78b7976cc6-h7bz2            1/1     Running   0          15d
+net-istio-controller-cc877c4dc-xxlrj   1/1     Running   0          15d
+net-istio-webhook-69cd4975b8-9kcv6     1/1     Running   0          15d
+webhook-7c7b4cd674-kghj9               1/1     Running   0          15d
+NAME                                                     READY   STATUS    RESTARTS   AGE
+alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running   0          19d
+prometheus-grafana-6575c5968b-jx6l9                      3/3     Running   0          19d
+prometheus-kube-prometheus-operator-6dbb54bbd6-26cjt     1/1     Running   0          19d
+prometheus-kube-state-metrics-547454f49d-2nrjp           1/1     Running   0          19d
+prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running   0          19d
+prometheus-prometheus-node-exporter-9f8kv                1/1     Running   0          19d
+prometheus-prometheus-node-exporter-f2rrx                1/1     Running   0          19d
+prometheus-prometheus-node-exporter-jdfjc                1/1     Running   0          19d
+prometheus-prometheus-node-exporter-kkqt9                1/1     Running   0          19d
+prometheus-prometheus-node-exporter-qsrlm                1/1     Running   0          19d
+prometheus-prometheus-node-exporter-xvt4c                1/1     Running   0          19d
+NAME               READY   STATUS             RESTARTS           AGE
+redis-master-0     1/1     Running            0                  15d
+redis-replicas-0   1/1     Running            0                  15d
+redis-replicas-1   1/1     Running            0                  15d
+redis-replicas-2   0/1     CrashLoopBackOff   4166 (3m26s ago)   15d
+NAME                                  READY   STATUS    RESTARTS   AGE
+istio-ingressgateway-675669b8-5jpc9   1/1     Running   0          15d
+istio-ingressgateway-675669b8-74c2t   1/1     Running   0          15d
+istio-ingressgateway-675669b8-srbfj   1/1     Running   0          15d
+istiod-68cb48856d-7ncqv               1/1     Running   0          15d
+istiod-68cb48856d-qb2xj               1/1     Running   0          15d
+istiod-68cb48856d-tpgfm               1/1     Running   0          15d
+NAME                                      READY   STATUS    RESTARTS   AGE
+cert-manager-7cf97bbd47-6g5v4             1/1     Running   0          15d
+cert-manager-cainjector-99677759d-mf2fv   1/1     Running   0          15d
+cert-manager-webhook-8486cb8479-96w6c     1/1     Running   0          15d
+pmulinka@saiacheron:~$ kubectl get pods --namespace mlflow-kserve-success6g
+NAME                                                              READY   STATUS    RESTARTS   AGE
+auto-encoder-decoder-openapi-predictor-00001-deployment-86thdq6   2/2     Running   0          47h
+auto-encoder-lstm-predictor-00001-deployment-d8846fd85-xdjnl      2/2     Running   0          2d
+nettools                                                          1/1     Running   0          46h
+</code></pre></div>
+</details>
+
+<details><summary>list cpu and memory limits of the services</summary>
+
+<div class="highlight"><pre><span></span><code>$ kubectl get pods kepler-7dfh2 -n kepler -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods nginx-ingress-microk8s-controller-h5kfj -n ingress -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods kserve-controller-manager-7bffcb7459-lbdfd -n kserve -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods activator-55d856fccd-5b9jt -n knative-serving -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods autoscaler-5df8b7c68-4fzm7 -n knative-serving -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods controller-78b7976cc6-h7bz2 -n knative-serving -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods net-istio-controller-cc877c4dc-xxlrj -n knative-serving -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods net-istio-webhook-69cd4975b8-9kcv6 -n knative-serving -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods webhook-7c7b4cd674-kghj9 -n knative-serving -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods prometheus-grafana-6575c5968b-jx6l9 -n monitoring -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods prometheus-kube-prometheus-operator-6dbb54bbd6-26cjt -n monitoring -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods prometheus-kube-state-metrics-547454f49d-2nrjp -n monitoring -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods prometheus-prometheus-kube-prometheus-prometheus-0 -n monitoring -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods prometheus-prometheus-node-exporter-9f8kv -n monitoring -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods redis-master-0 -n redis -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods istio-ingressgateway-675669b8-5jpc9 -n istio-system -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods istiod-68cb48856d-7ncqv -n istio-system -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods cert-manager-7cf97bbd47-6g5v4 -n cert-manager -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods cert-manager-cainjector-99677759d-mf2fv -n cert-manager -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+kubectl get pods cert-manager-webhook-8486cb8479-96w6c -n cert-manager -o jsonpath=&#39;{&quot;Pod Name: &quot;}{.metadata.name}{&quot;\n&quot;}{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{&quot;qosClass: &quot;}{end}{&quot;qosClass: &quot;}{.status.qosClass}{&quot;\n&quot;}&#39;; \
+
+Pod Name: kepler-7dfh2
+Container Name: kepler-exporter
+Requests:
+Limits:
+qosClass: BestEffort
+Pod Name: nginx-ingress-microk8s-controller-h5kfj
+Container Name: nginx-ingress-microk8s
+Requests:
+Limits:
+qosClass: BestEffort
+Pod Name: kserve-controller-manager-7bffcb7459-lbdfd
+Container Name: manager
+Requests:{&quot;cpu&quot;:&quot;100m&quot;,&quot;memory&quot;:&quot;200Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;100m&quot;,&quot;memory&quot;:&quot;300Mi&quot;}
+Container Name: kube-rbac-proxy
+Requests:
+Limits:
+qosClass: Burstable
+Pod Name: activator-55d856fccd-5b9jt
+Container Name: activator
+Requests:{&quot;cpu&quot;:&quot;300m&quot;,&quot;memory&quot;:&quot;60Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;1&quot;,&quot;memory&quot;:&quot;600Mi&quot;}
+qosClass: Burstable
+Pod Name: autoscaler-5df8b7c68-4fzm7
+Container Name: autoscaler
+Requests:{&quot;cpu&quot;:&quot;100m&quot;,&quot;memory&quot;:&quot;100Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;1&quot;,&quot;memory&quot;:&quot;1000Mi&quot;}
+qosClass: Burstable
+Pod Name: controller-78b7976cc6-h7bz2
+Container Name: controller
+Requests:{&quot;cpu&quot;:&quot;100m&quot;,&quot;memory&quot;:&quot;100Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;1&quot;,&quot;memory&quot;:&quot;1000Mi&quot;}
+qosClass: Burstable
+Pod Name: net-istio-controller-cc877c4dc-xxlrj
+Container Name: controller
+Requests:{&quot;cpu&quot;:&quot;30m&quot;,&quot;memory&quot;:&quot;40Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;300m&quot;,&quot;memory&quot;:&quot;400Mi&quot;}
+qosClass: Burstable
+Pod Name: net-istio-webhook-69cd4975b8-9kcv6
+Container Name: webhook
+Requests:{&quot;cpu&quot;:&quot;20m&quot;,&quot;memory&quot;:&quot;20Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;200m&quot;,&quot;memory&quot;:&quot;200Mi&quot;}
+qosClass: Burstable
+Pod Name: webhook-7c7b4cd674-kghj9
+Container Name: webhook
+Requests:{&quot;cpu&quot;:&quot;100m&quot;,&quot;memory&quot;:&quot;100Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;500m&quot;,&quot;memory&quot;:&quot;500Mi&quot;}
+qosClass: Burstable
+Pod Name: prometheus-grafana-6575c5968b-jx6l9
+Container Name: grafana-sc-dashboard
+Requests:
+Limits:
+Container Name: grafana-sc-datasources
+Requests:
+Limits:
+Container Name: grafana
+Requests:
+Limits:
+qosClass: BestEffort
+Pod Name: prometheus-kube-prometheus-operator-6dbb54bbd6-26cjt
+Container Name: kube-prometheus-stack
+Requests:
+Limits:
+qosClass: BestEffort
+Pod Name: prometheus-kube-state-metrics-547454f49d-2nrjp
+Container Name: kube-state-metrics
+Requests:
+Limits:
+qosClass: BestEffort
+Pod Name: prometheus-prometheus-kube-prometheus-prometheus-0
+Container Name: prometheus
+Requests:
+Limits:
+Container Name: config-reloader
+Requests:
+Limits:
+qosClass: BestEffort
+Pod Name: prometheus-prometheus-node-exporter-9f8kv
+Container Name: node-exporter
+Requests:
+Limits:
+qosClass: BestEffort
+Pod Name: redis-master-0
+Container Name: redis
+Requests:{&quot;cpu&quot;:&quot;100m&quot;,&quot;ephemeral-storage&quot;:&quot;50Mi&quot;,&quot;memory&quot;:&quot;128Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;150m&quot;,&quot;ephemeral-storage&quot;:&quot;1Gi&quot;,&quot;memory&quot;:&quot;192Mi&quot;}
+qosClass: Burstable
+Pod Name: istio-ingressgateway-675669b8-5jpc9
+Container Name: istio-proxy
+Requests:{&quot;cpu&quot;:&quot;1&quot;,&quot;memory&quot;:&quot;1Gi&quot;}
+Limits:{&quot;cpu&quot;:&quot;3&quot;,&quot;memory&quot;:&quot;2Gi&quot;}
+qosClass: Burstable
+Pod Name: istiod-68cb48856d-7ncqv
+Container Name: discovery
+Requests:{&quot;cpu&quot;:&quot;500m&quot;,&quot;memory&quot;:&quot;2Gi&quot;}
+Limits:
+qosClass: Burstable
+Pod Name: cert-manager-7cf97bbd47-6g5v4
+Container Name: cert-manager
+Requests:
+Limits:
+qosClass: BestEffort
+Pod Name: cert-manager-cainjector-99677759d-mf2fv
+Container Name: cert-manager
+Requests:
+Limits:
+BestEffort
+Pod Name: cert-manager-webhook-8486cb8479-96w6c
+Container Name: cert-manager
+Requests:
+Limits:
+qosClass: qosClass: BestEffort
+</code></pre></div>
+</details>
+
+<details><summary>summary of listed cpu and memory limits of the services</summary>
+
+qosClass: Burstable
+* kserve-controller-manager-7bffcb7459-lbdfd (kserve), Requests:{"cpu":"100m","memory":"200Mi"}
+* activator-55d856fccd-5b9jt (knative-serving), Requests:{"cpu":"300m","memory":"60Mi"}
+* autoscaler-5df8b7c68-4fzm7 (knative-serving), Requests:{"cpu":"100m","memory":"100Mi"}
+* controller-78b7976cc6-h7bz2 (knative-serving), Requests:{"cpu":"100m","memory":"100Mi"}
+* net-istio-controller-cc877c4dc-xxlrj (knative-serving), Requests:{"cpu":"30m","memory":"40Mi"}
+* net-istio-webhook-69cd4975b8-9kcv6 (knative-serving), Requests:{"cpu":"20m","memory":"20Mi"}
+* webhook-7c7b4cd674-kghj9 (knative-serving), Requests:{"cpu":"100m","memory":"100Mi"}
+* redis-master-0 (redis), Requests:{"cpu":"100m","ephemeral-storage":"50Mi","memory":"128Mi"}
+* istio-ingressgateway-675669b8-5jpc9 (istio-system), Requests:{"cpu":"1","memory":"1Gi"}
+* istiod-68cb48856d-7ncqv (istio-system), Requests:{"cpu":"500m","memory":"2Gi"}
+
+qosClass: BestEffort
+* kepler-7dfh2 (kepler), 
+* nginx-ingress-microk8s-controller-h5kfj (ingress)
+* prometheus-grafana-6575c5968b-jx6l9 (monitoring)
+* prometheus-kube-prometheus-operator-6dbb54bbd6-26cjt (monitoring)
+* prometheus-kube-state-metrics-547454f49d-2nrjp (monitoring)
+* prometheus-prometheus-kube-prometheus-prometheus-0 (monitoring)
+* prometheus-prometheus-node-exporter-9f8kv (monitoring)
+* cert-manager-7cf97bbd47-6g5v4 (cert-manager)
+* cert-manager-cainjector-99677759d-mf2fv (cert-manager)
+* cert-manager-webhook-8486cb8479-96w6c (cert-manager)
+
+</details>
+
+<details><summary>query max used cpu and memory of BestEffort in Prometheus</summary>
+
+[Kuberntes BestEffort class](https://kubernetes.io/docs/concepts/workloads/pods/pod-qos/#besteffort)
+First check the data retention in the Prometheus:
+<div class="highlight"><pre><span></span><code>$ kubectl get pods prometheus-prometheus-kube-prometheus-prometheus-0 -n monitoring --output=yaml | grep reten
+    - --storage.tsdb.retention.time=10d
+</code></pre></div>
+
+get max values of the BestEffort containers in python:
+<div class="highlight"><pre><span></span><code>from prometheus_api_client import PrometheusConnect
+from math import ceil
+
+def get_pod_max_cpu_memory_in_prometheus(
+    prometheus_url: str = &quot;http://prometheus-kube-prometheus-prometheus.monitoring:9090&quot;,
+    container_namespace: str = &quot;jupyterhub&quot;,
+    pod_name: str = &quot;jupyter-5uperpalo&quot;,
+) -&gt; dict:
+    &quot;&quot;&quot; Function to query max CPU and memory consumption of a specific pod in Kubernetes in the past 10 days.
+    container_memory_working_set_bytes metric returns value per spawned pod id (different pods might 
+    have been spawned with the same name in the past 10 days) - only the last is checked
+
+    For the specific query details see the link below:
+    https://stackoverflow.com/questions/58747562/how-to-get-max-cpu-useage-of-a-pod-in-kubernetes-over-a-time-interval-say-30-da
+    https://stackoverflow.com/a/66778814
+
+    Args:
+        prometheus_url (str): Prometheus service URL
+        container_namespace (str): Kubernetes pod namespace name
+        pod_name (str): Kubernetes namespace name
+    Returns:
+        metrics (dict): dictionary with values
+    &quot;&quot;&quot;
+    def round_up(n, decimals=0):
+        multiplier = 10**decimals
+        return math.ceil(n * multiplier) / multiplier
+
+    prom = PrometheusConnect(url=prometheus_url, disable_ssl=True)
+
+    pod_name = f&quot;&#39;{pod_name}&#39;&quot;
+    container_namespace = f&quot;&#39;{container_namespace}&#39;&quot;
+
+    container_cpu_max_query = f&quot;max_over_time(sum(rate(container_cpu_usage_seconds_total{{namespace={container_namespace}, pod={pod_name}, container!=&#39;&#39;}}[1m]))[10d:1m])&quot;
+    container_memory_max_query = f&quot;max_over_time(container_memory_working_set_bytes{{namespace={container_namespace}, pod={pod_name}, container!=&#39;&#39;}}[10d])&quot;
+
+    cpu_max = prom.custom_query(query=container_cpu_max_query)
+    memory_max = prom.custom_query(query=container_memory_max_query)
+
+    metrics = {
+        &quot;cpu&quot;: round_up(float(cpu_max[-1][&quot;value&quot;][1]), 2),
+        &quot;memory&quot;: round_up(float(memory_max[-1][&quot;value&quot;][1])/1024**3, 2),
+    }
+    return metrics
+
+besteffort_pods_list = [
+    (&quot;kepler-7dfh2&quot;, &quot;kepler&quot;),
+    (&quot;nginx-ingress-microk8s-controller-h5kfj&quot;, &quot;ingress&quot;),
+    (&quot;prometheus-grafana-6575c5968b-jx6l9&quot;, &quot;monitoring&quot;),
+    (&quot;prometheus-kube-prometheus-operator-6dbb54bbd6-26cjt&quot;, &quot;monitoring&quot;),
+    (&quot;prometheus-kube-state-metrics-547454f49d-2nrjp&quot;, &quot;monitoring&quot;),
+    (&quot;prometheus-prometheus-kube-prometheus-prometheus-0&quot;, &quot;monitoring&quot;),
+    (&quot;prometheus-prometheus-node-exporter-9f8kv&quot;, &quot;monitoring&quot;),
+    (&quot;cert-manager-7cf97bbd47-6g5v4&quot;, &quot;cert-manager&quot;),
+    (&quot;cert-manager-cainjector-99677759d-mf2fv&quot;, &quot;cert-manager&quot;),
+    (&quot;cert-manager-webhook-8486cb8479-96w6c&quot;, &quot;cert-manager&quot;),
+]
+
+for pod, namespace in besteffort_pods_list:
+    metrics = get_pod_max_cpu_memory_in_prometheus(
+        container_namespace=namespace,
+        pod_name=pod,
+    )
+    print(f&quot;{pod} ({namespace}),\n{metrics}&quot;)
+</code></pre></div>
+
+qosClass: BestEffort:
+* kepler-7dfh2 (kepler), {'cpu': 0.19, 'memory': 0.07}
+* nginx-ingress-microk8s-controller-h5kfj (ingress), {'cpu': 0.12, 'memory': 0.45}
+* prometheus-grafana-6575c5968b-jx6l9 (monitoring), {'cpu': 0.04, 'memory': 0.08}
+* prometheus-kube-prometheus-operator-6dbb54bbd6-26cjt (monitoring), {'cpu': 0.16, 'memory': 0.04}
+* prometheus-kube-state-metrics-547454f49d-2nrjp (monitoring), {'cpu': 0.03, 'memory': 0.03}
+* prometheus-prometheus-kube-prometheus-prometheus-0 (monitoring), {'cpu': 1.7, 'memory': 2.34}
+* prometheus-prometheus-node-exporter-9f8kv (monitoring), {'cpu': 0.02, 'memory': 0.03}
+* cert-manager-7cf97bbd47-6g5v4 (cert-manager), {'cpu': 0.04, 'memory': 0.06}
+* cert-manager-cainjector-99677759d-mf2fv (cert-manager), {'cpu': 0.05, 'memory': 0.13}
+* cert-manager-webhook-8486cb8479-96w6c (cert-manager), {'cpu': 0.02, 'memory': 0.03}
+</details>
+
+<details><summary>MicroK8s minimum requirements</summary>
+
+[MicroK8s minimum requirements](https://microk8s.io/docs/getting-started):
+<div class="highlight"><pre><span></span><code>An Ubuntu 22.04 LTS, 20.04 LTS, 18.04 LTS or 16.04 LTS environment to run the commands (or another operating system which supports snapd - see the snapd documentation)
+MicroK8s runs in as little as 540MB of memory, but to accommodate workloads, we recommend a system with at least 20G of disk space and 4G of memory.
+</code></pre></div>
+</details>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="networking.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: networking" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              networking
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="inference_model_deployment.html" class="md-footer__link md-footer__link--next" aria-label="Next: Inference model deployment" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Inference model deployment
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Pavol Mulinka
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.expand", "toc.integrate"], "search": "assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="stylesheets/extra.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

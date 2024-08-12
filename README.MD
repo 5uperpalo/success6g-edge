@@ -2,22 +2,22 @@
 
 Documentation: https://5uperpalo.github.io/success6g-edge/
 
-| ![Architecture_Overview_Basic](docs/sources/assets/images/Architecture_Overview_Basic.png "Basic architecture")  |
-| :--------------------------------------------------------------------------------------------------------------: |
-| *Basic Architecture Overview, more detailed information in [architecture_overview.MD](architecture_overview.MD)* |
+|        ![Architecture_Overview_Basic](docs/sources/assets/images/Architecture_Overview_Basic.png "Basic architecture")        |
+| :---------------------------------------------------------------------------------------------------------------------------: |
+| *Basic Architecture Overview, more detailed information in [architecture_overview.md](docs/sources/architecture_overview.md)* |
 
 This repository is for the edge pod implementation, monitoring, and analysis in [SUCCESS6G](https://success-6g-project.cttc.es/) project.
 
 Table of contents
-* [detailed description of the use cases](docs/sources/use_cases.MD)
-* [description of the data management and database choices](docs/sources/data_management.MD)
-* [description of the ml model choices](docs/sources/ml_model_development.MD)
-* [explanation of the communication between the services](docs/sources/networking.MD)
-* [description of Research&Development setup](docs/sources/development.MD)
-* [description of Testing setup](docs/sources/testing.MD)
-* [inference model helm chart](inference_model_helm_charts/README.MD)
-* [a guide to implementing needed services](docs/sources/kubernetes_services.MD)
-* [computational requiremetns of the services](docs/sources/kubernetes_services_requirements.MD)
+* [detailed description of the use cases](docs/sources/use_cases.md)
+* [description of the data management and database choices](docs/sources/data_management.md)
+* [description of the ml model choices](docs/sources/ml_model_development.md)
+* [explanation of the communication between the services](docs/sources/networking.md)
+* [description of Research&Development setup](docs/sources/development.md)
+* [description of Testing setup](docs/sources/testing.md)
+* [inference model helm chart](inference_model_helm_charts/README.md)
+* [a guide to implementing needed services](docs/sources/kubernetes_services.md)
+* [computational requiremetns of the services](docs/sources/kubernetes_services_requirements.md)
 * [vehicle injector tool](tools/vehicle/readme.md) - tool to inject example v2x data into Redis database
 * [example v2x sensor data](data/log_tiguan_27_mar_dac.txt) provided by [Idneo](https://www.idneo.com/)
 * [example v2x aggregated sensor data](tools/vehicle/datasets/ateca_R4_2.0l_TDI/README.md) provided by [Idneo](https://www.idneo.com/)

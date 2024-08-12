@@ -12,11 +12,3 @@ spec:
         name: mlflow
       protocolVersion: v2
       storageUri: {{ .Values.InferenceService.storageUri }}
-spec:
-  predictor:
-    # to disable scaling to zero
-    minReplicas: 1
-    containers:
-      - name: custom-model-container
-        image: 5uperpalo/success6g_custom_kserve:latest
-
