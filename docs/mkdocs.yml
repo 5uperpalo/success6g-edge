@@ -15,6 +15,8 @@ nav:
     - architecture overview: architecture_overview.md
     - data management: data_management.md
     - ML model dev: ml_model_development.md
+    - Inference model deployment: inference_model_deployment.MD
+    - K8S reqs: kubernetes_services_requirements.MD
     - networking: networking.md
     - development: development.md
     - testing: testing.md

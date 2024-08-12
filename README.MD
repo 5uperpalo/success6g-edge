@@ -9,14 +9,15 @@ Documentation: https://5uperpalo.github.io/success6g-edge/
 This repository is for the edge pod implementation, monitoring, and analysis in [SUCCESS6G](https://success-6g-project.cttc.es/) project.
 
 Table of contents
-* [detailed description of the use cases](use_cases.MD)
-* [description of the data management and database choices](data_management.MD)
-* [description of the ml model choices](ml_model_development.MD)
-* [explanation of the communication between the services](networking.MD)
-* [description of Research&Development setup](development.MD)
-* [description of Testing setup](testing.MD)
-* [a guide to implementing needed services](kubernetes_services.MD)
-* [computational requiremetns of the services](kubernetes_services_requirements.MD)
+* [detailed description of the use cases](docs/sources/use_cases.MD)
+* [description of the data management and database choices](docs/sources/data_management.MD)
+* [description of the ml model choices](docs/sources/ml_model_development.MD)
+* [explanation of the communication between the services](docs/sources/networking.MD)
+* [description of Research&Development setup](docs/sources/development.MD)
+* [description of Testing setup](docs/sources/testing.MD)
+* [inference model helm chart](inference_model_helm_charts/README.MD)
+* [a guide to implementing needed services](docs/sources/kubernetes_services.MD)
+* [computational requiremetns of the services](docs/sources/kubernetes_services_requirements.MD)
 * [vehicle injector tool](tools/vehicle/readme.md) - tool to inject example v2x data into Redis database
 * [example v2x sensor data](data/log_tiguan_27_mar_dac.txt) provided by [Idneo](https://www.idneo.com/)
 * [example v2x aggregated sensor data](tools/vehicle/datasets/ateca_R4_2.0l_TDI/README.md) provided by [Idneo](https://www.idneo.com/)

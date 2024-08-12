@@ -1,0 +1,4 @@
+InferenceService:
+  name: "custom-kserve-model"
+  storageUri: "s3://mlflow/5/988f6db2906641b8bcc1494c36619f9d/artifacts/model"
+  serviceAccountName: "success6g"
