@@ -7,7 +7,7 @@ entries:
     name: simple
     type: application
     urls:
-    - https://5uperpalo.github.io/success6g-edge/inference_model_helm_charts/simple-helm-chart-0.0.1.tgz
+    - https://5uperpalo.github.io/success6g-edge/charts/simple-helm-chart-0.0.1.tgz
     version: 0.0.1
   custom-model-kserve:
   - apiVersion: v2
@@ -16,5 +16,5 @@ entries:
     name: custom-model-kserve
     type: application
     urls:
-    - https://5uperpalo.github.io/success6g-edge/inference_model_helm_charts/cutom-model-kserve-helm-chart-0.0.1.tgz
+    - https://5uperpalo.github.io/success6g-edge/charts/custom-model-kserve-helm-chart-0.0.1.tgz
     version: 0.0.1
