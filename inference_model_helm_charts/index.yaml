@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  simple:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    description: A model deployed as Kubernetes-deployment that listens to Redis channel, makes predictions and forwards them to central InfluxdbDB
+    name: simple
+    type: application
+    urls:
+    - https://5uperpalo.github.io/success6g-edge/inference_model_helm_charts/simple-helm-chart-0.0.1.tgz
+    version: 0.0.1
+  custom-model-kserve:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    description: inference Kserve service that waits for input with possible scaling extension by Knative and Istio
+    name: custom-model-kserve
+    type: application
+    urls:
+    - https://5uperpalo.github.io/success6g-edge/inference_model_helm_charts/cutom-model-kserve-helm-chart-0.0.1.tgz
+    version: 0.0.1
