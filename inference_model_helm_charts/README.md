@@ -63,4 +63,5 @@ helm install custom-model-kserve success6g-edge/custom-model-kserve --namespace 
 ```bash
 helm repo add simple-helm-chart https://5uperpalo.github.io/success6g-edge/charts/
 helm install simple success6g-edge/simple --namespace simple --create-namespace
+# helm install simple success6g/simple --set redis.host="10.43.128.90" --set influxdb.host="10.17.252.101" --set influxdb.port="30567" --namespace simple --create-namespace
 ```
