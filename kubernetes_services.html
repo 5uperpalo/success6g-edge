@@ -1,0 +1,1987 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>CTTC development architecture and implementation steps - success6g-edge</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="bluegrey">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cttc-development-architecture-and-implementation-steps" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="success6g-edge" class="md-header__button md-logo" aria-label="success6g-edge" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            success6g-edge
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CTTC development architecture and implementation steps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="bluegrey"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="white" data-md-color-accent="bluegrey"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/5uperpalo/success6g-edge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    success6g-edge
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="index.html" class="md-tabs__link">
+      home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="use_cases.html" class="md-tabs__link">
+      use cases
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="architecture_overview.html" class="md-tabs__link">
+        architecture
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="development.html" class="md-tabs__link">
+        development
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="testing.html" class="md-tabs__link">
+      testing
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="idneo/vehicle_injector_tool.html" class="md-tabs__link">
+        Idneo
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="inference_model/eda.html" class="md-tabs__link">
+        code
+      </a>
+    </li>
+  
+
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="code_profiling.html" class="md-tabs__link">
+      code profiling
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="contributing.html" class="md-tabs__link">
+      contributing
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="success6g-edge" class="md-nav__button md-logo" aria-label="success6g-edge" data-md-component="logo">
+      
+  <img src="assets/images/logo.png" alt="logo">
+
+    </a>
+    success6g-edge
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/5uperpalo/success6g-edge" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    success6g-edge
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="use_cases.html" class="md-nav__link">
+        use cases
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          architecture
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="architecture" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          architecture
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="architecture_overview.html" class="md-nav__link">
+        overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data_management.html" class="md-nav__link">
+        data management
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="networking.html" class="md-nav__link">
+        networking
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="kubernetes_services_requirements.html" class="md-nav__link">
+        K8S reqs
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model_deployment.html" class="md-nav__link">
+        Inference model deployment
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="development" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="development.html" class="md-nav__link">
+        development
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="ml_model_development.html" class="md-nav__link">
+        ML model dev
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="testing.html" class="md-nav__link">
+        testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Idneo
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Idneo" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Idneo
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="idneo/vehicle_injector_tool.html" class="md-nav__link">
+        vehicle injector tool
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="idneo/datasets.html" class="md-nav__link">
+        datasets
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7" type="checkbox" id="__nav_7" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7">
+          code
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="code" data-md-level="1">
+        <label class="md-nav__title" for="__nav_7">
+          <span class="md-nav__icon md-icon"></span>
+          code
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7_1" type="checkbox" id="__nav_7_1" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_1">
+          inference_model
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="inference_model" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_1">
+          <span class="md-nav__icon md-icon"></span>
+          inference_model
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model/eda.html" class="md-nav__link">
+        eda
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model/preprocessing.html" class="md-nav__link">
+        preprocessing
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model/training.html" class="md-nav__link">
+        training
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="inference_model/utils.html" class="md-nav__link">
+        utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_7_2" type="checkbox" id="__nav_7_2" checked>
+      
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_7_2">
+          notebooks
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="notebooks" data-md-level="2">
+        <label class="md-nav__title" for="__nav_7_2">
+          <span class="md-nav__icon md-icon"></span>
+          notebooks
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/01_feature_analysis.html" class="md-nav__link">
+        01_feature_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/02_target_analysis.html" class="md-nav__link">
+        02_target_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/03_models.html" class="md-nav__link">
+        03_models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/04_model_training_pipeline.html" class="md-nav__link">
+        04_model_training_pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/05_model_analysis.html" class="md-nav__link">
+        05_model_analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="notebooks/success6g-edge.html" class="md-nav__link">
+        success6g-edge
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="code_profiling.html" class="md-nav__link">
+        code profiling
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="contributing.html" class="md-nav__link">
+        contributing
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+  <a href="https://github.com/5uperpalo/success6g-edge/edit/main/docs/sources/kubernetes_services.md" title="Edit this page" class="md-content__button md-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+
+<h1 id="cttc-development-architecture-and-implementation-steps">CTTC development architecture and implementation steps<a class="headerlink" href="#cttc-development-architecture-and-implementation-steps" title="Permanent link">&para;</a></h1>
+<h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Grafana GUI</td>
+<td>grafana.kubernetes.local.cttc.es</td>
+</tr>
+<tr>
+<td>Grafana GUI(port-forward)</td>
+<td><code>ssh -L 3000:localhost:3000 pmulinka@10.1.24.200</code><br><code>kubectl port-forward svc/prometheus-grafana 3000:80 -n monitoring</code><br><a href="http://localhost:3000">http://localhost:3000</a></td>
+</tr>
+<tr>
+<td>Prometheus GUI(port-forward)</td>
+<td><code>ssh -L 3000:localhost:3000 pmulinka@10.1.24.200</code><br><code>kubectl port-forward svc/prometheus-kube-prometheus-prometheus 3000:9090 -n monitoring</code><br><a href="http://localhost:3000/graph">http://localhost:3000/graph</a></td>
+</tr>
+<tr>
+<td>Alermanager GUI(port-forward)</td>
+<td><code>ssh -L 3000:localhost:3000 pmulinka@10.1.24.200</code><br><code>kubectl port-forward svc/prometheus-kube-prometheus-alertmanager 3000:9093 -n monitoring</code><br><a href="http://localhost:3000">http://localhost:3000</a></td>
+</tr>
+<tr>
+<td>MLflow GUI(Nodeport)</td>
+<td><a href="http://10.1.24.50:30580">http://10.1.24.50:30580</a></td>
+</tr>
+<tr>
+<td>MLflow GUI(port-forward)</td>
+<td><code>ssh -L 3000:localhost:3000 pmulinka@10.1.24.200</code><br><code>kubectl port-forward svc/mlflow 3000:5000 -n mlflow</code><br><a href="http://localhost:3000">http://localhost:3000</a></td>
+</tr>
+<tr>
+<td>MLflow host(cluster)</td>
+<td>10.152.183.54</td>
+</tr>
+<tr>
+<td>MLflow host url(cluster)</td>
+<td>mlflow.mlflow.svc.cluster.local</td>
+</tr>
+<tr>
+<td>MLflow port</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>Minio GUI(Nodeport - but not working?)</td>
+<td><a href="http://10.1.24.50:31747">http://10.1.24.50:31747</a></td>
+</tr>
+<tr>
+<td>Minio GUI(port-forward)</td>
+<td><code>ssh -L 3000:localhost:3000 pmulinka@10.1.24.200</code><br><code>kubectl port-forward svc/minio 3000:9001 -n minio</code><br><a href="http://localhost:3000">http://localhost:3000</a></td>
+</tr>
+<tr>
+<td>Minio host(cluster)</td>
+<td>10.152.183.135</td>
+</tr>
+<tr>
+<td>Minio host url(cluster)</td>
+<td>minio-operator.microk8s-console.svc.cluster.local</td>
+</tr>
+<tr>
+<td>Minio port</td>
+<td>9090</td>
+</tr>
+<tr>
+<td>Minio awsAccessKeyId</td>
+<td>minioadmin</td>
+</tr>
+<tr>
+<td>Minio awsSecretAccessKey</td>
+<td>minioadmin</td>
+</tr>
+<tr>
+<td>Minio bucket</td>
+<td>mlflow</td>
+</tr>
+<tr>
+<td>MySQL CMD</td>
+<td><code>mysql -h 10.152.183.77 --user mlflow --password mlflow</code><br><code>status</code></td>
+</tr>
+<tr>
+<td>MySQL host(cluster)</td>
+<td>10.152.183.77</td>
+</tr>
+<tr>
+<td>MySQL host url(cluster)</td>
+<td>mysql.mysql.svc.cluster.local</td>
+</tr>
+<tr>
+<td>MySQL port</td>
+<td>3306</td>
+</tr>
+<tr>
+<td>MySQL user</td>
+<td>mlflow</td>
+</tr>
+<tr>
+<td>MySQL password</td>
+<td>mlflow</td>
+</tr>
+<tr>
+<td>MySQL database</td>
+<td>mlflow</td>
+</tr>
+</tbody>
+</table>
+<h2 id="core-services">Core services<a class="headerlink" href="#core-services" title="Permanent link">&para;</a></h2>
+<h3 id="influxdb">InfluxDB<a class="headerlink" href="#influxdb" title="Permanent link">&para;</a></h3>
+<details><summary>add Helm repo</summary>
+
+<div class="highlight"><pre><span></span><code>helm repo add influxdata https://helm.influxdata.com/
+helm repo update
+</code></pre></div>
+</details>
+<details><summary>install InfluxDB</summary>
+
+[influxdb](https://github.com/influxdata/helm-charts/tree/master/charts/influxdb) with defined values
+<div class="highlight"><pre><span></span><code>helm install influx influxdata/influxdb2 \
+--namespace influx --create-namespace
+
+helm install influx influxdata/influxdb2 --set service.type=NodePort \
+--set adminUser.user=&quot;admin&quot; \
+--set adminUser.password=&quot;admin_pass&quot; \
+--set adminUser.token=&quot;admin_token&quot; \
+--namespace influx --create-namespace
+</code></pre></div>
+</details>
+<details><summary>log</summary>
+
+<div class="highlight"><pre><span></span><code>NAME: influx
+LAST DEPLOYED: Mon Jul 29 14:52:16 2024
+NAMESPACE: influx
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+InfluxDB 2 is deployed as a StatefulSet on your cluster.
+
+You can access it by using the service name: influx-influxdb2
+
+To retrieve the password for the &#39;admin&#39; user:
+
+  echo $(kubectl get secret influx-influxdb2-auth -o &quot;jsonpath={.data[&#39;admin-password&#39;]}&quot; --namespace influx | base64 --decode)
+
+Note: with enabled persistence, admin password is only set once during the initial deployment. The password is not changed when InfluxDB 2 is re-deployed with different password.
+</code></pre></div>
+</details>
+
+<h3 id="prometheus-stack">Prometheus stack<a class="headerlink" href="#prometheus-stack" title="Permanent link">&para;</a></h3>
+<p>Prometheus, Grafana, Alertmanager, Thanos-?</p>
+<details><summary>add Helm repo</summary>
+
+<div class="highlight"><pre><span></span><code>helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+</code></pre></div>
+</details>
+<details><summary>install Prometheus</summary>
+
+[prometheus-stack](https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/README.md) with defined values
+<div class="highlight"><pre><span></span><code>helm install prometheus-stack prometheus-community/kube-prometheus-stack --namespace prometheus-stack --create-namespace -f configs/prometheus_stack.yaml
+</code></pre></div>
+</details>
+<details><summary>make the grafana and prometheus service available from outside using ingress</summary>
+
+<div class="highlight"><pre><span></span><code>kubectl apply -f configs/ingress_prometheus_stack.yaml
+</code></pre></div>
+</details>
+
+<h3 id="kepler">Kepler<a class="headerlink" href="#kepler" title="Permanent link">&para;</a></h3>
+<details><summary>add Helm repo</summary>
+
+<div class="highlight"><pre><span></span><code>helm repo add kepler https://sustainable-computing-io.github.io/kepler-helm-chart
+helm repo update
+</code></pre></div>
+</details>
+<details><summary>install</summary>
+
+[kepler](https://sustainable-computing.io/installation/kepler-helm/) - default confguration
+<div class="highlight"><pre><span></span><code>helm install kepler kepler/kepler --namespace kepler --create-namespace
+</code></pre></div>
+</details>
+<details><summary>scrape Kepler metrics by Prometheus</summary>
+
+<div class="highlight"><pre><span></span><code>kubectl apply -f configs/prometheus_kepler_service_monitor.yaml
+</code></pre></div>
+</details>
+
+<details><summary>import Kepler dashboard into Grafana</summary>
+
+[Kepler dashboard](/configs/Kepler_Exporter_dashboard.json) dashboard
+</details>
+
+<h2 id="inference-services">Inference Services<a class="headerlink" href="#inference-services" title="Permanent link">&para;</a></h2>
+<h3 id="mlflow">MLflow<a class="headerlink" href="#mlflow" title="Permanent link">&para;</a></h3>
+<ul>
+<li>implemented - not the most up to date solution, but works and the mlflow pod was spawned without issues as opposed to bitnami mlflow package</li>
+</ul>
+<details><summary>install</summary>
+
+<div class="highlight"><pre><span></span><code>helm install mlflow community-charts/mlflow \
+  --set service.type=NodePort \
+  --set backendStore.databaseMigration=true \
+  --set backendStore.mysql.enabled=true \
+  --set backendStore.mysql.host=mysql.mysql.svc.cluster.local \
+  --set backendStore.mysql.port=3306 \
+  --set backendStore.mysql.database=mlflow \
+  --set backendStore.mysql.user=mlflow \
+  --set backendStore.mysql.password=mlflow \
+  --set artifactRoot.s3.enabled=true \
+  --set artifactRoot.s3.bucket=mlflow \
+  --set artifactRoot.s3.awsAccessKeyId=minioadmin \
+  --set artifactRoot.s3.awsSecretAccessKey=minioadmin \
+  --set extraEnvVars.MLFLOW_S3_ENDPOINT_URL=http://10.152.183.156:9000 \
+  --set serviceMonitor.enabled=true \
+  --namespace mlflow --create-namespace
+</code></pre></div>
+
+</details>
+
+<details><summary>output</summary>
+
+<div class="highlight"><pre><span></span><code>Release &quot;mlflow&quot; has been upgraded. Happy Helming!
+NAME: mlflow
+LAST DEPLOYED: Thu May 16 15:24:32 2024
+NAMESPACE: mlflow
+STATUS: deployed
+REVISION: 3
+TEST SUITE: None
+NOTES:
+1. Get the application URL by running these commands:
+  export NODE_PORT=$(kubectl get --namespace mlflow -o jsonpath=&quot;{.spec.ports[0].nodePort}&quot; services mlflow)
+  export NODE_IP=$(kubectl get nodes --namespace mlflow -o jsonpath=&quot;{.items[0].status.addresses[0].address}&quot;)
+  echo http://$NODE_IP:$NODE_PORT
+</code></pre></div>
+</details>
+
+<ul>
+<li>
+<p><strong>NOT</strong> implemented</p>
+</li>
+<li>
+<p><a href="https://github.com/bitnami/charts/tree/main/bitnami/mlflow/">Bitnami MLflow package</a> - at the time of the implementation the spawned mlflow pod was crashing with unhelpful logs(no logs saved, sorry)</p>
+</li>
+</ul>
+<h4 id="minio">Minio<a class="headerlink" href="#minio" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Implemented</li>
+</ul>
+<details><summary>install</summary>
+
+<div class="highlight"><pre><span></span><code>helm install minio oci://registry-1.docker.io/bitnamicharts/minio \
+  --set service.type=NodePort \
+  --set auth.rootUser=minioadmin \
+  --set auth.rootPassword=minioadmin \
+  --namespace minio --create-namespace
+</code></pre></div>
+</details>
+
+<details><summary>output</summary>
+
+<div class="highlight"><pre><span></span><code>Pulled: registry-1.docker.io/bitnamicharts/minio:14.4.2
+Digest: sha256:cee339fbfbb55ff08aa1a9e3abdc01fa9fb90094a49709873fe8ee3e3efb352c
+NAME: minio
+LAST DEPLOYED: Wed May 15 15:40:15 2024
+NAMESPACE: minio
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: minio
+CHART VERSION: 14.4.2
+APP VERSION: 2024.5.10
+
+** Please be patient while the chart is being deployed **
+
+MinIO&amp;reg; can be accessed via port  on the following DNS name from within your cluster:
+
+   minio.minio.svc.cluster.local
+
+To get your credentials run:
+
+   export ROOT_USER=$(kubectl get secret --namespace minio minio -o jsonpath=&quot;{.data.root-user}&quot; | base64 -d)
+   export ROOT_PASSWORD=$(kubectl get secret --namespace minio minio -o jsonpath=&quot;{.data.root-password}&quot; | base64 -d)
+
+To connect to your MinIO&amp;reg; server using a client:
+
+- Run a MinIO&amp;reg; Client pod and append the desired command (e.g. &#39;admin info&#39;):
+
+   kubectl run --namespace minio minio-client \
+     --rm --tty -i --restart=&#39;Never&#39; \
+     --env MINIO_SERVER_ROOT_USER=$ROOT_USER \
+     --env MINIO_SERVER_ROOT_PASSWORD=$ROOT_PASSWORD \
+     --env MINIO_SERVER_HOST=minio \
+     --image docker.io/bitnami/minio-client:2024.5.9-debian-12-r2 -- admin info minio
+
+To access the MinIO&amp;reg; web UI:
+
+- Get the MinIO&amp;reg; URL:
+
+   export NODE_PORT=$(kubectl get --namespace minio -o jsonpath=&quot;{.spec.ports[0].nodePort}&quot; services minio)
+   export NODE_IP=$(kubectl get nodes --namespace minio -o jsonpath=&quot;{.items[0].status.addresses[0].address}&quot;)
+   echo &quot;MinIO&amp;reg; web URL: http://$NODE_IP:$NODE_PORT/minio&quot;
+
+WARNING: There are &quot;resources&quot; sections in the chart not set. Using &quot;resourcesPreset&quot; is not recommended for production. For production installations, please set the following values according to your workload needs:
+  - resources
++info https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+</code></pre></div>
+</details>
+
+<details><summary>issues</summary>
+<details><summary>Kserve inference service issues</summary>
+Issues saying that Kserve could not locate credentials:
+
+<div class="highlight"><pre><span></span><code>botocore.exceptions.NoCredentialsError: Unable to locate credentials
+</code></pre></div>
+
+, I tried to remove them, but this did not help:
+<div class="highlight"><pre><span></span><code>helm upgrade minio oci://registry-1.docker.io/bitnamicharts/minio \
+  --set service.type=NodePort \
+  --set auth.rootUser=admin \
+  --set auth.rootPassword=&quot;&quot; \
+  --namespace minio
+</code></pre></div>
+</details>
+</details>
+
+<ul>
+<li><strong>NOT</strong> implemented</li>
+</ul>
+<details><summary>Minio operator</summary>
+
+[The operator](https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-operator-helm.html) is for more complex deployments.
+
+<div class="highlight"><pre><span></span><code>helm repo add minio-operator https://operator.min.io
+helm install   --namespace minio-operator   --create-namespace   operator minio-operator/operator
+</code></pre></div>
+</details>
+
+<details><summary>Minio microk8s addon</summary>
+
+* [Minio microk8s addon](https://microk8s.io/docs/addon-minio)
+install:
+
+<div class="highlight"><pre><span></span><code>sudo microk8s enable minio -c 30Gi -s nfs
+Infer repository core for addon minio
+Infer repository core for addon dns
+Addon core/dns is already enabled
+Infer repository core for addon hostpath-storage
+Addon core/hostpath-storage is already enabled
+Download kubectl-minio
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 36.8M  100 36.8M    0     0  13.8M      0  0:00:02  0:00:02 --:--:-- 18.1M
+Initialize minio operator
+Warning: resource namespaces/minio-operator is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
+namespace/minio-operator configured
+serviceaccount/minio-operator created
+clusterrole.rbac.authorization.k8s.io/minio-operator-role created
+clusterrolebinding.rbac.authorization.k8s.io/minio-operator-binding created
+customresourcedefinition.apiextensions.k8s.io/tenants.minio.min.io created
+service/operator created
+deployment.apps/minio-operator created
+serviceaccount/console-sa created
+secret/console-sa-secret created
+clusterrole.rbac.authorization.k8s.io/console-sa-role created
+clusterrolebinding.rbac.authorization.k8s.io/console-sa-binding created
+configmap/console-env created
+service/console created
+deployment.apps/console created
+-----------------
+
+To open Operator UI, start a port forward using this command:
+
+kubectl minio proxy -n minio-operator
+
+-----------------
+Create default tenant with:
+
+  Name: microk8s
+  Capacity: 30Gi
+  Servers: 1
+  Volumes: 1
+  Storage class: nfs
+  TLS: no
+  Prometheus: no
+
++ /var/snap/microk8s/common/plugins/kubectl-minio tenant create microk8s --storage-class nfs --capacity 30Gi --servers 1 --volumes 1 --namespace minio-operator --enable-audit-logs=false --disable-tls --enable-prometheus=false
+W0513 11:19:46.012386 2934999 warnings.go:70] unknown field &quot;spec.pools[0].volumeClaimTemplate.metadata.creationTimestamp&quot;
+
+Tenant &#39;microk8s&#39; created in &#39;minio-operator&#39; Namespace
+
+  Username: 6ZQD4KM2Z4S952HYL73M
+  Password: vLDbSJ1C6cXKuGLC2K4V5wigatpCfjiICZY3owKM
+  Note: Copy the credentials to a secure location. MinIO will not display these again.
+
+APPLICATION     SERVICE NAME            NAMESPACE       SERVICE TYPE    SERVICE PORT
+MinIO           minio                   minio-operator  ClusterIP       80
+Console         microk8s-console        minio-operator  ClusterIP       9090
+
++ set +x
+================================
+Enabled minio addon.
+
+You can manage minio tenants using the kubectl-minio plugin.
+
+For more details, use
+</code></pre></div>
+
+Minio addon is not working anymore in microk8s - [git issue](https://github.com/minio/console/issues/3318), output in Kubernetes cluster:
+<div class="highlight"><pre><span></span><code>  Normal   Scheduled  3m4s                default-scheduler  Successfully assigned minio-operator/console-78d567bfc8-gsspn to iesc-gpu
+  Normal   Pulling    89s (x4 over 3m4s)  kubelet            Pulling image &quot;minio/console:v0.20.3&quot;
+  Warning  Failed     88s (x4 over 3m2s)  kubelet            Failed to pull image &quot;minio/console:v0.20.3&quot;: failed to pull and unpack image &quot;docker.io/minio/console:v0.20.3&quot;: failed to resolve reference &quot;docker.io/minio/console:v0.20.3&quot;: pull access denied, repository does not exist or may require authorization: server message: insufficient_scope: authorization failed
+  Warning  Failed     88s (x4 over 3m2s)  kubelet            Error: ErrImagePull
+  Warning  Failed     74s (x6 over 3m1s)  kubelet            Error: ImagePullBackOff
+  Normal   BackOff    60s (x7 over 3m1s)  kubelet            Back-off pulling image &quot;minio/console:v0.20.3&quot;
+</code></pre></div>
+
+</details>
+
+<h4 id="mysql">MySQL<a class="headerlink" href="#mysql" title="Permanent link">&para;</a></h4>
+<ul>
+<li>Implemented</li>
+</ul>
+<details><summary>install</summary>
+
+<div class="highlight"><pre><span></span><code>helm install mysql oci://registry-1.docker.io/bitnamicharts/mysql \
+--set auth.database=mlflow \
+--set auth.username=mlflow \
+--set auth.password=mlflow \
+--set auth.rootPassword=root \
+--namespace mysql --create-namespace
+</code></pre></div>
+</details>
+<details><summary>output</summary>
+
+<div class="highlight"><pre><span></span><code>Pulled: registry-1.docker.io/bitnamicharts/mysql:10.2.2
+Digest: sha256:61b5d1a6f8ac29662160d30e620ed388d782857e9d895585181a6930c83f1ebf
+NAME: mysql
+LAST DEPLOYED: Mon May 13 11:54:19 2024
+NAMESPACE: mysql
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: mysql
+CHART VERSION: 10.2.2
+APP VERSION: 8.0.37
+
+** Please be patient while the chart is being deployed **
+
+Tip:
+
+  Watch the deployment status using the command: kubectl get pods -w --namespace mysql
+
+Services:
+
+  echo Primary: mysql.mysql.svc.cluster.local:3306
+
+Execute the following to get the administrator credentials:
+
+  echo Username: root
+  MYSQL_ROOT_PASSWORD=$(kubectl get secret --namespace mysql mysql -o jsonpath=&quot;{.data.mysql-root-password}&quot; | base64 -d)
+
+To connect to your database:
+
+  1. Run a pod that you can use as a client:
+
+      kubectl run mysql-client --rm --tty -i --restart=&#39;Never&#39; --image  docker.io/bitnami/mysql:8.0.37-debian-12-r0 --namespace mysql --env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD --command -- bash
+
+  2. To connect to primary service (read/write):
+
+      mysql -h mysql.mysql.svc.cluster.local -uroot -p&quot;$MYSQL_ROOT_PASSWORD&quot;
+
+
+
+
+
+
+WARNING: There are &quot;resources&quot; sections in the chart not set. Using &quot;resourcesPreset&quot; is not recommended for production. For production installations, please set the following values according to your workload needs:
+  - primary.resources
+  - secondary.resources
++info https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+</code></pre></div>
+</details>
+
+<ul>
+<li><strong>NOT</strong> implemented</li>
+</ul>
+<details><summary>MySQL operator</summary>
+
+[The operator](https://dev.mysql.com/doc/mysql-operator/en/mysql-operator-installation-helm.html) is for more complex mysql deployments using InnoDB cluster
+
+<div class="highlight"><pre><span></span><code>helm repo add MySQL-operator https://mysql.github.io/mysql-operator/
+helm install my-mysql-operator mysql-operator/mysql-operator    --namespace mysql-operator --create-namespace
+</code></pre></div>
+</details>
+
+<h2 id="custom-service-helm-chart">Custom Service Helm chart<a class="headerlink" href="#custom-service-helm-chart" title="Permanent link">&para;</a></h2>
+<p>E.g. <a href="https://overcast.blog/building-a-kubernetes-native-iot-edge-computing-platform-839ebf7606cd">Building a Kubernetes-Native IoT Edge Computing Platform</a>
+Adjusted Kserve Inference service for a helm chart, e.g. <a href="inference_model_helm_chart_installation.MD">inference_model_helm_chart_installation.MD</a></p>
+<h3 id="kserve">Kserve<a class="headerlink" href="#kserve" title="Permanent link">&para;</a></h3>
+<p>I chose <a href="https://kserve.github.io/website/master/admin/serverless/serverless/">Serverless</a> implementation as it supports <code>Scale down and from Zero</code> and I do not need <a href="https://kserve.github.io/website/master/admin/modelmesh/">Mesh</a> implementation with multiple models in a pod.
+Kserve supports <a href="https://kserve.github.io/website/0.8/modelserving/nodescheduling/inferenceservicenodescheduling/">node selector, node affinity and tolerations</a> to select edge nodes for deployment of the model. I could not find the sam capabilities for <a href="https://docs.seldon.io/projects/seldon-core/en/latest/index.html">Seldom Core</a></p>
+<h4 id="knative">Knative<a class="headerlink" href="#knative" title="Permanent link">&para;</a></h4>
+<p><a href="https://knative.dev/docs/install/yaml-install/serving/install-serving-with-yaml/">Kserve installation guide</a></p>
+<details><summary>image verification did not work so I skipped it - cosign was not working</summary>
+
+<div class="highlight"><pre><span></span><code>sudo apt install golang-go
+sudo apt install -y jq
+go install github.com/sigstore/cosign/v2/cmd/cosign@latest
+</code></pre></div>
+</details>
+
+<h5 id="istio-for-knative-and-kserve">Istio (for Knative and Kserve)<a class="headerlink" href="#istio-for-knative-and-kserve" title="Permanent link">&para;</a></h5>
+<p><a href="https://kserve.github.io/website/master/admin/serverless/serverless/#2-install-networking-layer">Istio is recommended for Kserve</a></p>
+<details><summary>Installation</summary>
+
+<div class="highlight"><pre><span></span><code>pmulinka@saiacheron:~/kubernetes/knative$ kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.14.0/serving-crds.yaml
+customresourcedefinition.apiextensions.k8s.io/certificates.networking.internal.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/configurations.serving.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/clusterdomainclaims.networking.internal.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/domainmappings.serving.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/ingresses.networking.internal.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/metrics.autoscaling.internal.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/podautoscalers.autoscaling.internal.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/revisions.serving.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/routes.serving.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/serverlessservices.networking.internal.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/services.serving.knative.dev created
+customresourcedefinition.apiextensions.k8s.io/images.caching.internal.knative.dev created
+pmulinka@saiacheron:~/kubernetes/knative$ kubectl apply -f https://github.com/knative/serving/releases/download/knative-v1.14.0/serving-core.yaml
+namespace/knative-serving created
+role.rbac.authorization.k8s.io/knative-serving-activator created
+clusterrole.rbac.authorization.k8s.io/knative-serving-activator-cluster created
+clusterrole.rbac.authorization.k8s.io/knative-serving-aggregated-addressable-resolver created
+clusterrole.rbac.authorization.k8s.io/knative-serving-addressable-resolver created
+clusterrole.rbac.authorization.k8s.io/knative-serving-namespaced-admin created
+clusterrole.rbac.authorization.k8s.io/knative-serving-namespaced-edit created
+clusterrole.rbac.authorization.k8s.io/knative-serving-namespaced-view created
+clusterrole.rbac.authorization.k8s.io/knative-serving-core created
+clusterrole.rbac.authorization.k8s.io/knative-serving-podspecable-binding created
+serviceaccount/controller created
+clusterrole.rbac.authorization.k8s.io/knative-serving-admin created
+clusterrolebinding.rbac.authorization.k8s.io/knative-serving-controller-admin created
+clusterrolebinding.rbac.authorization.k8s.io/knative-serving-controller-addressable-resolver created
+serviceaccount/activator created
+rolebinding.rbac.authorization.k8s.io/knative-serving-activator created
+clusterrolebinding.rbac.authorization.k8s.io/knative-serving-activator-cluster created
+customresourcedefinition.apiextensions.k8s.io/images.caching.internal.knative.dev unchanged
+certificate.networking.internal.knative.dev/routing-serving-certs created
+customresourcedefinition.apiextensions.k8s.io/certificates.networking.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/configurations.serving.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/clusterdomainclaims.networking.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/domainmappings.serving.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/ingresses.networking.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/metrics.autoscaling.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/podautoscalers.autoscaling.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/revisions.serving.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/routes.serving.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/serverlessservices.networking.internal.knative.dev unchanged
+customresourcedefinition.apiextensions.k8s.io/services.serving.knative.dev unchanged
+image.caching.internal.knative.dev/queue-proxy created
+configmap/config-autoscaler created
+configmap/config-defaults created
+configmap/config-deployment created
+configmap/config-domain created
+configmap/config-features created
+configmap/config-gc created
+configmap/config-leader-election created
+configmap/config-logging created
+configmap/config-network created
+configmap/config-observability created
+configmap/config-tracing created
+horizontalpodautoscaler.autoscaling/activator created
+poddisruptionbudget.policy/activator-pdb created
+deployment.apps/activator created
+service/activator-service created
+deployment.apps/autoscaler created
+service/autoscaler created
+deployment.apps/controller created
+service/controller created
+horizontalpodautoscaler.autoscaling/webhook created
+poddisruptionbudget.policy/webhook-pdb created
+deployment.apps/webhook created
+service/webhook created
+validatingwebhookconfiguration.admissionregistration.k8s.io/config.webhook.serving.knative.dev created
+mutatingwebhookconfiguration.admissionregistration.k8s.io/webhook.serving.knative.dev created
+validatingwebhookconfiguration.admissionregistration.k8s.io/validation.webhook.serving.knative.dev created
+secret/webhook-certs created
+pmulinka@saiacheron:~/kubernetes/knative$ kubectl apply -l knative.dev/crd-install=true -f https://github.com/knative/net-istio/releases/download/knative-v1.14.0/istio.yaml
+customresourcedefinition.apiextensions.k8s.io/authorizationpolicies.security.istio.io created
+customresourcedefinition.apiextensions.k8s.io/destinationrules.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/envoyfilters.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/gateways.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/peerauthentications.security.istio.io created
+customresourcedefinition.apiextensions.k8s.io/proxyconfigs.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/requestauthentications.security.istio.io created
+customresourcedefinition.apiextensions.k8s.io/serviceentries.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/sidecars.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/telemetries.telemetry.istio.io created
+customresourcedefinition.apiextensions.k8s.io/virtualservices.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/wasmplugins.extensions.istio.io created
+customresourcedefinition.apiextensions.k8s.io/workloadentries.networking.istio.io created
+customresourcedefinition.apiextensions.k8s.io/workloadgroups.networking.istio.io created
+pmulinka@saiacheron:~/kubernetes/knative$ kubectl apply -f https://github.com/knative/net-istio/releases/download/knative-v1.14.0/istio.yaml
+namespace/istio-system created
+serviceaccount/istio-ingressgateway-service-account created
+serviceaccount/istio-reader-service-account created
+serviceaccount/istiod created
+clusterrole.rbac.authorization.k8s.io/istio-reader-clusterrole-istio-system created
+clusterrole.rbac.authorization.k8s.io/istiod-clusterrole-istio-system created
+clusterrole.rbac.authorization.k8s.io/istiod-gateway-controller-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istio-reader-clusterrole-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istiod-clusterrole-istio-system created
+clusterrolebinding.rbac.authorization.k8s.io/istiod-gateway-controller-istio-system created
+role.rbac.authorization.k8s.io/istio-ingressgateway-sds created
+role.rbac.authorization.k8s.io/istiod created
+rolebinding.rbac.authorization.k8s.io/istio-ingressgateway-sds created
+rolebinding.rbac.authorization.k8s.io/istiod created
+customresourcedefinition.apiextensions.k8s.io/authorizationpolicies.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/destinationrules.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/envoyfilters.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/gateways.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/peerauthentications.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/proxyconfigs.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/requestauthentications.security.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/serviceentries.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/sidecars.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/telemetries.telemetry.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/virtualservices.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/wasmplugins.extensions.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/workloadentries.networking.istio.io unchanged
+customresourcedefinition.apiextensions.k8s.io/workloadgroups.networking.istio.io unchanged
+configmap/istio created
+configmap/istio-sidecar-injector created
+deployment.apps/istio-ingressgateway created
+deployment.apps/istiod created
+service/istio-ingressgateway created
+service/istiod created
+horizontalpodautoscaler.autoscaling/istiod created
+poddisruptionbudget.policy/istio-ingressgateway created
+poddisruptionbudget.policy/istiod created
+mutatingwebhookconfiguration.admissionregistration.k8s.io/istio-sidecar-injector created
+validatingwebhookconfiguration.admissionregistration.k8s.io/istio-validator-istio-system created
+pmulinka@saiacheron:~/kubernetes/knative$
+pmulinka@saiacheron:~/kubernetes/knative$ kubectl apply -f https://github.com/knative/net-istio/releases/download/knative-v1.14.0/net-istio.yaml
+clusterrole.rbac.authorization.k8s.io/knative-serving-istio created
+gateway.networking.istio.io/knative-ingress-gateway created
+gateway.networking.istio.io/knative-local-gateway created
+service/knative-local-gateway created
+configmap/config-istio created
+peerauthentication.security.istio.io/webhook created
+peerauthentication.security.istio.io/net-istio-webhook created
+deployment.apps/net-istio-controller created
+deployment.apps/net-istio-webhook created
+secret/net-istio-webhook-certs created
+service/net-istio-webhook created
+mutatingwebhookconfiguration.admissionregistration.k8s.io/webhook.istio.networking.internal.knative.dev created
+validatingwebhookconfiguration.admissionregistration.k8s.io/config.webhook.istio.networking.internal.knative.dev created
+certificate.networking.internal.knative.dev/routing-serving-certs created
+pmulinka@saiacheron:~/kubernetes/knative$
+pmulinka@saiacheron:~/kubernetes/knative$ kubectl --namespace istio-system get service istio-ingressgateway
+NAME                   TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                                      AGE
+istio-ingressgateway   LoadBalancer   10.152.183.36   &lt;pending&gt;     15021:32390/TCP,80:32327/TCP,443:32456/TCP   29s
+</code></pre></div>
+</details>
+
+<details><summary>verification</summary>
+
+<div class="highlight"><pre><span></span><code>pmulinka@saiacheron:~/kubernetes/knative$ kubectl get pods -n knative-serving
+NAME                                   READY   STATUS    RESTARTS   AGE
+activator-55d856fccd-5b9jt             1/1     Running   0          3m27s
+autoscaler-5df8b7c68-4fzm7             1/1     Running   0          3m27s
+controller-78b7976cc6-h7bz2            1/1     Running   0          3m27s
+net-istio-controller-cc877c4dc-xxlrj   1/1     Running   0          119s
+net-istio-webhook-69cd4975b8-9kcv6     1/1     Running   0          119s
+webhook-7c7b4cd674-kghj9               1/1     Running   0          3m26s
+pmulinka@saiacheron:~/kubernetes/knative$ kubectl get svc -n knative-serving
+NAME                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                                   AGE
+activator-service            ClusterIP   10.152.183.59    &lt;none&gt;        9090/TCP,8008/TCP,80/TCP,81/TCP,443/TCP   3m38s
+autoscaler                   ClusterIP   10.152.183.75    &lt;none&gt;        9090/TCP,8008/TCP,8080/TCP                3m38s
+autoscaler-bucket-00-of-01   ClusterIP   10.152.183.69    &lt;none&gt;        8080/TCP                                  3m30s
+controller                   ClusterIP   10.152.183.166   &lt;none&gt;        9090/TCP,8008/TCP                         3m38s
+net-istio-webhook            ClusterIP   10.152.183.76    &lt;none&gt;        9090/TCP,8008/TCP,443/TCP                 2m10s
+webhook                      ClusterIP   10.152.183.241   &lt;none&gt;        9090/TCP,8008/TCP,443/TCP                 3m37s
+</code></pre></div>
+</details>
+
+<h4 id="cert-manager">Cert Manager<a class="headerlink" href="#cert-manager" title="Permanent link">&para;</a></h4>
+<p>Using <a href="https://microk8s.io/docs/addon-cert-manager">Microk8s addon</a>.</p>
+<details><summary>install</summary>
+
+<div class="highlight"><pre><span></span><code>pmulinka@saiacheron:~/kubernetes/knative$ microk8s enable cert-manager
+Infer repository core for addon cert-manager
+Enable DNS addon
+Infer repository core for addon dns
+Addon core/dns is already enabled
+Enabling cert-manager
+namespace/cert-manager created
+customresourcedefinition.apiextensions.k8s.io/certificaterequests.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/certificates.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/challenges.acme.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/clusterissuers.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/issuers.cert-manager.io created
+customresourcedefinition.apiextensions.k8s.io/orders.acme.cert-manager.io created
+serviceaccount/cert-manager-cainjector created
+serviceaccount/cert-manager created
+serviceaccount/cert-manager-webhook created
+configmap/cert-manager-webhook created
+clusterrole.rbac.authorization.k8s.io/cert-manager-cainjector created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-issuers created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificates created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-orders created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-challenges created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created
+clusterrole.rbac.authorization.k8s.io/cert-manager-view created
+clusterrole.rbac.authorization.k8s.io/cert-manager-edit created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created
+clusterrole.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created
+clusterrole.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-cainjector created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-issuers created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-clusterissuers created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificates created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-orders created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-challenges created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-ingress-shim created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-approve:cert-manager-io created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-controller-certificatesigningrequests created
+clusterrolebinding.rbac.authorization.k8s.io/cert-manager-webhook:subjectaccessreviews created
+role.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created
+role.rbac.authorization.k8s.io/cert-manager:leaderelection created
+role.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created
+rolebinding.rbac.authorization.k8s.io/cert-manager-cainjector:leaderelection created
+rolebinding.rbac.authorization.k8s.io/cert-manager:leaderelection created
+rolebinding.rbac.authorization.k8s.io/cert-manager-webhook:dynamic-serving created
+service/cert-manager created
+service/cert-manager-webhook created
+deployment.apps/cert-manager-cainjector created
+deployment.apps/cert-manager created
+deployment.apps/cert-manager-webhook created
+mutatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created
+validatingwebhookconfiguration.admissionregistration.k8s.io/cert-manager-webhook created
+Waiting for cert-manager to be ready.
+..ready
+Enabled cert-manager
+
+===========================
+
+Cert-manager is installed. As a next step, try creating a ClusterIssuer
+for Let&#39;s Encrypt by creating the following resource:
+
+$ microk8s kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt
+spec:
+  acme:
+    # You must replace this email address with your own.
+    # Let&#39;s Encrypt will use this to contact you about expiring
+    # certificates, and issues related to your account.
+    email: me@example.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      # Secret resource that will be used to store the account&#39;s private key.
+      name: letsencrypt-account-key
+    # Add a single challenge solver, HTTP01 using nginx
+    solvers:
+    - http01:
+        ingress:
+          class: public
+EOF
+
+Then, you can create an ingress to expose &#39;my-service:80&#39; on &#39;https://my-service.example.com&#39; with:
+
+$ microk8s enable ingress
+$ microk8s kubectl create ingress my-ingress \
+    --annotation cert-manager.io/cluster-issuer=letsencrypt \
+    --rule &#39;my-service.example.com/*=my-service:80,tls=my-service-tls&#39;
+</code></pre></div>
+</details>
+
+<h4 id="kserve_1">Kserve<a class="headerlink" href="#kserve_1" title="Permanent link">&para;</a></h4>
+<details><summary>install Kserve</summary>
+
+<div class="highlight"><pre><span></span><code>pmulinka@saiacheron:~/kubernetes/knative$ kubectl apply -f https://github.com/kserve/kserve/releases/download/v0.12.0/kserve.yaml
+namespace/kserve created
+customresourcedefinition.apiextensions.k8s.io/clusterservingruntimes.serving.kserve.io created
+customresourcedefinition.apiextensions.k8s.io/clusterstoragecontainers.serving.kserve.io created
+customresourcedefinition.apiextensions.k8s.io/inferencegraphs.serving.kserve.io created
+customresourcedefinition.apiextensions.k8s.io/inferenceservices.serving.kserve.io created
+customresourcedefinition.apiextensions.k8s.io/servingruntimes.serving.kserve.io created
+customresourcedefinition.apiextensions.k8s.io/trainedmodels.serving.kserve.io created
+serviceaccount/kserve-controller-manager created
+role.rbac.authorization.k8s.io/kserve-leader-election-role created
+clusterrole.rbac.authorization.k8s.io/kserve-manager-role created
+clusterrole.rbac.authorization.k8s.io/kserve-proxy-role created
+rolebinding.rbac.authorization.k8s.io/kserve-leader-election-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/kserve-manager-rolebinding created
+clusterrolebinding.rbac.authorization.k8s.io/kserve-proxy-rolebinding created
+configmap/inferenceservice-config created
+secret/kserve-webhook-server-secret created
+service/kserve-controller-manager-metrics-service created
+service/kserve-controller-manager-service created
+service/kserve-webhook-server-service created
+deployment.apps/kserve-controller-manager created
+certificate.cert-manager.io/serving-cert created
+issuer.cert-manager.io/selfsigned-issuer created
+mutatingwebhookconfiguration.admissionregistration.k8s.io/inferenceservice.serving.kserve.io created
+validatingwebhookconfiguration.admissionregistration.k8s.io/clusterservingruntime.serving.kserve.io created
+validatingwebhookconfiguration.admissionregistration.k8s.io/inferencegraph.serving.kserve.io created
+validatingwebhookconfiguration.admissionregistration.k8s.io/inferenceservice.serving.kserve.io created
+validatingwebhookconfiguration.admissionregistration.k8s.io/servingruntime.serving.kserve.io created
+validatingwebhookconfiguration.admissionregistration.k8s.io/trainedmodel.serving.kserve.io created
+</code></pre></div>
+</details>
+
+<details><summary>Built-in ClusterServingRuntimes</summary>
+
+<div class="highlight"><pre><span></span><code>pmulinka@saiacheron:~/kubernetes/knative$ kubectl apply -f https://github.com/kserve/kserve/releases/download/v0.12.0/kserve-cluster-resources.yaml
+clusterservingruntime.serving.kserve.io/kserve-huggingfaceserver created
+clusterservingruntime.serving.kserve.io/kserve-lgbserver created
+clusterservingruntime.serving.kserve.io/kserve-mlserver created
+clusterservingruntime.serving.kserve.io/kserve-paddleserver created
+clusterservingruntime.serving.kserve.io/kserve-pmmlserver created
+clusterservingruntime.serving.kserve.io/kserve-sklearnserver created
+clusterservingruntime.serving.kserve.io/kserve-tensorflow-serving created
+clusterservingruntime.serving.kserve.io/kserve-torchserve created
+clusterservingruntime.serving.kserve.io/kserve-tritonserver created
+clusterservingruntime.serving.kserve.io/kserve-xgbserver created
+clusterstoragecontainer.serving.kserve.io/default created
+</code></pre></div>
+</details>
+
+<h3 id="redis-db-for-possible-testing">Redis DB for possible testing<a class="headerlink" href="#redis-db-for-possible-testing" title="Permanent link">&para;</a></h3>
+<details><summary>install</summary>
+
+[helm chat values](https://github.com/bitnami/charts/tree/main/bitnami/redis/#installing-the-chart)
+
+<div class="highlight"><pre><span></span><code>helm install redis oci://registry-1.docker.io/bitnamicharts/redis --set auth.password=redis --set master.service.type=NodePort --namespace redis --create-namespace
+</code></pre></div>
+</details>
+<details><summary>output</summary>
+
+<div class="highlight"><pre><span></span><code>Pulled: registry-1.docker.io/bitnamicharts/redis:19.3.2
+Digest: sha256:1eb24b3e230b23cd307e8aa5ef9006a52484c7e3cf1b4b2eb611f113f24e53e5
+NAME: redis
+LAST DEPLOYED: Tue May 14 11:19:39 2024
+NAMESPACE: redis
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+CHART NAME: redis
+CHART VERSION: 19.3.2
+APP VERSION: 7.2.4
+
+** Please be patient while the chart is being deployed **
+
+Redis&amp;reg; can be accessed on the following DNS names from within your cluster:
+
+    redis-master.redis.svc.cluster.local for read/write operations (port 6379)
+    redis-replicas.redis.svc.cluster.local for read-only operations (port 6379)
+
+
+
+To get your password run:
+
+    export REDIS_PASSWORD=$(kubectl get secret --namespace redis redis -o jsonpath=&quot;{.data.redis-password}&quot; | base64 -d)
+
+To connect to your Redis&amp;reg; server:
+
+1. Run a Redis&amp;reg; pod that you can use as a client:
+
+   kubectl run --namespace redis redis-client --restart=&#39;Never&#39;  --env REDIS_PASSWORD=$REDIS_PASSWORD  --image docker.io/bitnami/redis:7.2.4-debian-12-r16 --command -- sleep infinity
+
+   Use the following command to attach to the pod:
+
+   kubectl exec --tty -i redis-client \
+   --namespace redis -- bash
+
+2. Connect using the Redis&amp;reg; CLI:
+   REDISCLI_AUTH=&quot;$REDIS_PASSWORD&quot; redis-cli -h redis-master
+   REDISCLI_AUTH=&quot;$REDIS_PASSWORD&quot; redis-cli -h redis-replicas
+
+To connect to your database from outside the cluster execute the following commands:
+
+    kubectl port-forward --namespace redis svc/redis-master 6379:6379 &amp;
+    REDISCLI_AUTH=&quot;$REDIS_PASSWORD&quot; redis-cli -h 127.0.0.1 -p 6379
+
+WARNING: There are &quot;resources&quot; sections in the chart not set. Using &quot;resourcesPreset&quot; is not recommended for production. For production installations, please set the following values according to your workload needs:
+  - replica.resources
+  - master.resources
++info https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
+</code></pre></div>
+</details>
+
+<h2 id="appendix">APPENDIX:<a class="headerlink" href="#appendix" title="Permanent link">&para;</a></h2>
+<details><summary>Get requirements and limits of the services/pods, e.g. for Redis</summary>
+
+<div class="highlight"><pre><span></span><code>kubectl get pods redis-master-0 -n redis -o jsonpath=&#39;{range .spec.containers[*]}{&quot;Container Name: &quot;}{.name}{&quot;\n&quot;}{&quot;Requests:&quot;}{.resources.requests}{&quot;\n&quot;}{&quot;Limits:&quot;}{.resources.limits}{&quot;\n&quot;}{end}&#39;
+Container Name: redis
+Requests:{&quot;cpu&quot;:&quot;100m&quot;,&quot;ephemeral-storage&quot;:&quot;50Mi&quot;,&quot;memory&quot;:&quot;128Mi&quot;}
+Limits:{&quot;cpu&quot;:&quot;150m&quot;,&quot;ephemeral-storage&quot;:&quot;1Gi&quot;,&quot;memory&quot;:&quot;192Mi&quot;}
+</code></pre></div>
+</details>
+
+<details><summary>Get Nodeport:port of the service</summary>
+
+<div class="highlight"><pre><span></span><code># example for minio
+kubectl get --namespace minio -o jsonpath=&quot;{.spec.ports[0].nodePort}&quot; services minio
+kubectl get nodes --namespace minio -o jsonpath=&quot;{.items[0].status.addresses[0].address}
+</code></pre></div>
+</details>
+<details><summary>Docker image creation from mlflow model</summary>
+
+<div class="highlight"><pre><span></span><code># connect to a machine that has docker and access to model storage and add your user to docker group
+sudo usermod -a -G docker $(whoami)
+# install the python venv and activate it
+sudo apt-get install python3.10-venv
+python3.10 -m venv python310venv
+source python310venv/bin/activate
+# install mlflow and boto3 for communication with s3 storage
+pip install mlflow
+pip install boto3
+# export keys and s3 endpoint
+export AWS_ACCESS_KEY_ID=minioadmin
+export AWS_SECRET_ACCESS_KEY=minioadmin
+export MLFLOW_S3_ENDPOINT_URL=http://10.152.183.156:9000
+# build a docker image
+mlflow models build-docker -m s3://mlflow/1/777cf64c922149a4b77c85987865deb0/artifacts/success6g_model -n 5uperpalo/mlflow-success6g --enable-mlserver
+# connect to your dockerhub and push the image
+docker login -u 5uperpalo
+docker push 5uperpalo/mlflow-success6g
+</code></pre></div>
+</details>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Pavol Mulinka: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#117;&#108;&#105;&#110;&#107;&#97;&#46;&#112;&#97;&#118;&#111;&#108;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#109;&#117;&#108;&#105;&#110;&#107;&#97;&#46;&#112;&#97;&#118;&#111;&#108;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Pavol Mulinka
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.expand", "toc.integrate"], "search": "assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
+        <script src="stylesheets/extra.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
