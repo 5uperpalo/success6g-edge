@@ -6,15 +6,9 @@ import time
 import redis
 
 
-sys.path.append(os.getcwd())
-os.chdir("../..")
 os.environ["REDIS_PASSWORD"] = "redis"
 os.environ["REDIS_HOST"] = "10.17.7.158"
 os.environ["REDIS_PORT"] = "17935"
-
-# ssh -L 3000:localhost:3000 fog_user@10.17.252.101
-# kubectl port-forward svc/influx-influxdb2 -n influx 3000:80
-# browser http://localhost:3000/ ; admin/admin_pass
 
 
 def load_new_dataset(num: int):

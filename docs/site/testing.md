@@ -27,3 +27,17 @@ legend:
 * make screenshots: Grafana, NBC environment
 * make vehicle pictures
 </details>
+
+## Testing of prediction service without vehicle
+
+| ![Testing_without_vehicle](assets/images/testing_without_vehicle.png "Testing without vehicle") |
+| :---------------------------------------------------------------------------------------------: |
+|                              *Castellolí testing without vehicle*                               |
+
+Testing of the [simple-helm-chart](https://github.com/5uperpalo/success6g-edge/tree/main/inference_model_helm_charts) deployed on dUPF1 by running a [test_script.py](https://github.com/5uperpalo/success6g-edge/tree/main/) from dUPF2.
+
+To access Influx db in browser(admin/admin_pass): http://localhost:3000/
+```
+ssh -L 3000:localhost:3000 fog_user@10.17.252.101
+kubectl port-forward svc/influx-influxdb2 -n influx 3000:80
+``` 

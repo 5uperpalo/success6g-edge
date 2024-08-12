@@ -602,9 +602,40 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          testing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="testing.html" class="md-nav__link md-nav__link--active">
         testing
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#testing-of-prediction-service-without-vehicle" class="md-nav__link">
+    Testing of prediction service without vehicle
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1039,6 +1070,24 @@
 <li>make vehicle pictures</li>
 </ul>
 </details>
+<h2 id="testing-of-prediction-service-without-vehicle">Testing of prediction service without vehicle<a class="headerlink" href="#testing-of-prediction-service-without-vehicle" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th align="center"><img alt="Testing_without_vehicle" src="assets/images/testing_without_vehicle.png" title="Testing without vehicle" /></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center"><em>Castellolí testing without vehicle</em></td>
+</tr>
+</tbody>
+</table>
+<p>Testing of the <a href="https://github.com/5uperpalo/success6g-edge/tree/main/inference_model_helm_charts">simple-helm-chart</a> deployed on dUPF1 by running a <a href="https://github.com/5uperpalo/success6g-edge/tree/main/">test_script.py</a> from dUPF2.</p>
+<p>To access Influx db in browser(admin/admin_pass): <a href="http://localhost:3000/">http://localhost:3000/</a>
+<div class="highlight"><pre><span></span><code>ssh -L 3000:localhost:3000 fog_user@10.17.252.101
+kubectl port-forward svc/influx-influxdb2 -n influx 3000:80
+</code></pre></div></p>
 
               
             </article>

@@ -1163,12 +1163,13 @@
 <h4 id="from-added-helm-repo">From added helm repo:<a class="headerlink" href="#from-added-helm-repo" title="Permanent link">&para;</a></h4>
 <ul>
 <li>custom-model-kserve-helm-chart
-<div class="highlight"><pre><span></span><code>helm repo add custom-model-kserve-helm-chart https://github.com/5uperpalo/success6g-edge/inference_model_helm_charts/custom-model-kserve-helm-chart
-helm install custom-model-kserve custom-model-kserve-helm-chart --namespace custom-model-kserve --create-namespace
+<div class="highlight"><pre><span></span><code>helm repo add success6g https://5uperpalo.github.io/success6g-edge/charts/
+helm install custom-model-kserve success6g/custom-model-kserve --namespace custom-model-kserve --create-namespace
 </code></pre></div></li>
 <li>simple-helm-chart
-<div class="highlight"><pre><span></span><code>helm repo add simple-helm-chart https://github.com/5uperpalo/success6g-edge/inference_model_helm_charts/simple-helm-chart
-helm install simple simple-helm-chart --namespace simple --create-namespace
+<div class="highlight"><pre><span></span><code>helm repo add success6g https://5uperpalo.github.io/success6g-edge/charts/
+helm install success6g/simple simple-helm-chart --namespace simple --create-namespace
+<span class="c1"># helm install simple success6g/simple --set redis.host=&quot;10.43.128.90&quot; --set influxdb.host=&quot;10.17.252.101&quot; --set influxdb.port=&quot;30567&quot; --namespace simple --create-namespace</span>
 </code></pre></div></li>
 </ul>
 
