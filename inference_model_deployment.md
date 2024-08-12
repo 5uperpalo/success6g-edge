@@ -56,11 +56,13 @@ helm install simple ./simple-helm-chart --namespace simple --create-namespace
 #### From added helm repo:
 * custom-model-kserve-helm-chart
 ```bash
-helm repo add custom-model-kserve-helm-chart https://github.com/5uperpalo/success6g-edge/inference_model_helm_charts/custom-model-kserve-helm-chart
-helm install custom-model-kserve custom-model-kserve-helm-chart --namespace custom-model-kserve --create-namespace
+helm repo add success6g https://5uperpalo.github.io/success6g-edge/charts/
+helm install custom-model-kserve success6g/custom-model-kserve --namespace custom-model-kserve --create-namespace
 ```
 * simple-helm-chart
 ```bash
-helm repo add simple-helm-chart https://github.com/5uperpalo/success6g-edge/inference_model_helm_charts/simple-helm-chart
-helm install simple simple-helm-chart --namespace simple --create-namespace
+helm repo add success6g https://5uperpalo.github.io/success6g-edge/charts/
+helm install success6g/simple simple-helm-chart --namespace simple --create-namespace
+# helm install simple success6g/simple --set redis.host="10.43.128.90" --set influxdb.host="10.17.252.101" --set influxdb.port="30567" --namespace simple --create-namespace
 ```
+
