@@ -1,6 +1,29 @@
 # Parcmotor Castellolí *Real-world Testing* requirements
 
-## Summary table
+## Summary tables
+
+### Minimal Requirements
+
+| pod                                                  | namespace       | cpu  | memory(GB) |
+| ---------------------------------------------------- | --------------- | ---- | ---------- |
+| **qosClass: Burstable**                              |                 |      |            |
+| redis-master-0                                       | redis           | 0.1  | 0.128      |
+| **qosClass: BestEffort**                             |                 |      |            |
+| kepler-7dfh2                                         | kepler          | 0.19 | 0.07       |
+| prometheus-grafana-6575c5968b-jx6l9                  | monitoring      | 0.04 | 0.08       |
+| prometheus-kube-prometheus-operator-6dbb54bbd6-26cjt | monitoring      | 0.16 | 0.04       |
+| prometheus-kube-state-metrics-547454f49d-2nrjp       | monitoring      | 0.03 | 0.03       |
+| prometheus-prometheus-kube-prometheus-prometheus-0   | monitoring      | 1.7  | 2.34       |
+| prometheus-prometheus-node-exporter-9f8kv            | monitoring      | 0.02 | 0.03       |
+| influxdb-operator-76d899888d-5775c                   | monitoring      | 2.0  | 1.00       |
+| **MicroK8s**                                         |                 |      |            |
+| system requirements                                  |                 | 2    | 4          |
+| **Model InferenceService**                           |                 |      |            |
+| model dependent                                      |                 | 2    | 4          |
+| **SUM**                                              |                 |      |            |
+|                                                      |                 | 8.24 | 11.718     |
+
+### Full Requirements
 
 | pod                                                  | namespace       | cpu  | memory(GB) |
 | ---------------------------------------------------- | --------------- | ---- | ---------- |
@@ -23,6 +46,7 @@
 | prometheus-kube-state-metrics-547454f49d-2nrjp       | monitoring      | 0.03 | 0.03       |
 | prometheus-prometheus-kube-prometheus-prometheus-0   | monitoring      | 1.7  | 2.34       |
 | prometheus-prometheus-node-exporter-9f8kv            | monitoring      | 0.02 | 0.03       |
+| influxdb-operator-76d899888d-5775c                   | monitoring      | 2.0  | 1.00       |
 | cert-manager-7cf97bbd47-6g5v4                        | cert-manager    | 0.04 | 0.06       |
 | cert-manager-cainjector-99677759d-mf2fv              | cert-manager    | 0.05 | 0.13       |
 | cert-manager-webhook-8486cb8479-96w6c                | cert-manager    | 0.02 | 0.03       |
@@ -31,7 +55,7 @@
 | **Kserver Model InferenceService**                   |                 |      |            |
 | model dependent                                      |                 | 2    | 4          |
 | **SUM**                                              |                 |      |            |
-|                                                      |                 | 8.72 | 15.008     |
+|                                                      |                 | 10.72 | 16.008     |
 
 ## Analysis of kubernetes services requirements
 
