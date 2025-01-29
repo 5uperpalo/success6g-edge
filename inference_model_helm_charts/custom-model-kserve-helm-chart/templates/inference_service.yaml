@@ -12,3 +12,10 @@ spec:
         name: mlflow
       protocolVersion: v2
       storageUri: {{ .Values.InferenceService.storageUri }}
+      resources:
+        requests:
+          cpu: "200m"  # Adjusted CPU request
+          memory: "512Mi"
+        limits:
+          cpu: "1000m"
+          memory: "2Gi"
