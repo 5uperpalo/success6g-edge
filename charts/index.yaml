@@ -16,5 +16,5 @@ entries:
     name: custom-model-kserve
     type: application
     urls:
-    - https://5uperpalo.github.io/success6g-edge/charts/custom-model-kserve-helm-chart-0.0.1.tgz
+    - https://5uperpalo.github.io/success6g-edge/charts/custom-model-kserve-helm-chart-0.0.1-dev.tgz
     version: 0.0.1
